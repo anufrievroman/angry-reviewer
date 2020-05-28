@@ -1,7 +1,7 @@
 def open_file():
     '''This function opens the text file that needs to be checked.'''
 
-    path = "spp.txt"
+    path = "Manuscript.tex"
 
     with open(path, "r") as manuscript:
         text = manuscript.readlines()
@@ -21,7 +21,7 @@ def load_dictionaries():
 
     # Common abbriviations
     dict_abbreviations = ["MFP", "TC", "TDTR", "TEM", "AFM", "SEM", "SPP", "SPhP", "XRD", "DOS", "NW", "PnC", "RMS",
-                          "rms", "BTU", "1D", "2D", "3D", "HD", "LOC", "JSAP", "PL"]
+                          "BTU", "1D", "2D", "3D", "HD", "LOC", "JSAP", "PL"]
 
     # Words that usually have a comma after them
     dict_comma_after = [
@@ -115,10 +115,12 @@ def load_dictionaries():
         "outstanding": "The word 'outstanding' might be considered hype. Consider alternatives, e.g. 'remarkable'.",
         "groundbreaking": "The word 'groundbreaking' might be considered hype. Consider alternatives, e.g. 'remarkable'.",
         "ground breaking": "The word 'groundbreaking' might be considered hype. Consider alternatives, e.g. 'remarkable'.",
-        "new ": "If the word 'new' refers to the results or methods, editors and reviewers often dislike such claims. Consider explaining novelty in some other way. Some helpful words are 'innovative', 'fresh', 'original', 'cutting-edge'.",
-        "novel ": "If the word 'novel' refers to the results or methods, editors and reviewers often dislike such claims. Consider explaining novelty in some other way. Some helpful words are 'innovative', 'fresh', 'original', 'cutting-edge'.",
-        " prove ": "Phrases about 'prove' should be considered with caution. Strict prove is possible only in math, whereas science usually operates with evidences. Consider replacing with words like 'evidence', 'demonstration', 'confirmation' etc.",
-        " proves ": "Phrases about 'proves' should be considered with caution. Strict prove is possible only in math, whereas science usually operates with evidences. Consider replacing with verbs like 'evidence', 'demonstrate', 'confirm' etc.",
+        "new ": "If the word 'new' refers to the results or methods, editors and reviewers often dislike such claims. Consider explaining novelty in some other way. Some helpful words are 'innovative', 'fresh', 'original', 'cutting-edge', 'alternative'.",
+        "novel ": "If the word 'novel' refers to the results or methods, editors and reviewers often dislike such claims. Consider explaining novelty in some other way. Some helpful words are 'innovative', 'fresh', 'original', 'cutting-edge', 'alternative'.",
+        " prove ": "Phrases about 'prove' should be considered with caution. Strict proof is possible only in math, whereas science usually operates with evidences. Consider replacing with words like 'evidence', 'demonstration', 'confirmation' etc.",
+        " proved ": "Phrases about 'prove' should be considered with caution. Strict proof is possible only in math, whereas science usually operates with evidences. Consider replacing with words like 'evidence', 'demonstration', 'confirmation' etc.",
+        " proof ": "Phrases about 'proof' should be considered with caution. Strict proof is possible only in math, whereas science usually operates with evidences. Consider replacing with words like 'evidence', 'demonstration', 'confirmation' etc.",
+        " proves ": "Phrases about 'proves' should be considered with caution. Strict proof is possible only in math, whereas science usually operates with evidences. Consider replacing with verbs like 'evidence', 'demonstrate', 'confirm' etc.",
         " never ": "The word 'never' could be considered a hype or exaggeration in instances like 'never shown before', thus it is better to avoid such statements. Consider alternatives: 'rarely', 'seldom', 'remains unclear', 'remains challenging'.",
         "certainly": "Consider if this sentence needs the word 'certainly'. According to The Elements of Style: 'Used indiscriminately by some speakers, much as others use very, to intensify any and every statement. A mannerism of this kind, bad in speech, is even worse in writing'.",
         " fact ": "Check if the word 'fact' is actually applied to a fact. According to The Elements of Style: 'Use this word only of matters of a kind capable of direct verification, not of matters of judgment.'",
@@ -301,6 +303,7 @@ def load_dictionaries():
         "did not have": "Consider replacing negative 'did not have' with more positive 'lacked'.",
 
         # Redundant words
+
         "necessary requirements": "Consider replacing redundant 'necessary requirements' with just 'requirements'.",
         "necessary requirement ": "Consider replacing redundant 'necessary requirement' with just 'requirement'.",
         "smaller in size": "Consider replacing redundant 'smaller in size' with just 'smaller'.",
@@ -336,6 +339,7 @@ def load_dictionaries():
         "conducted the investigation of": "Consider replacing 'conducted the investigation of' with just 'investigated'.",
 
         # Overused words
+
         "clearly": "The word 'clearly' is clearly overused in science and often points to things that actually aren't so clear. Consider removing it.",
         "clear ": "The word 'clear' is overused in science and often points to things that actually aren't so clear. Consider if it is necessary here.",
         "obviously": "The word 'obviously' is often misused in science and might describe something that is not so obvious. Consider removing it.",
@@ -355,6 +359,7 @@ def load_dictionaries():
         ", while": "Constructions like 'A is white, while B is red' can be simplified as 'A is white; B is red.'",
 
         # Random rules
+
         "less then": "Probably 'then' should be changed to 'than' if this is a comparison.",
         "more then": "Probably 'then' should be changed to 'than' if this is a comparison.",
         "higher then": "Probably 'then' should be changed to 'than' if this is a comparison.",
@@ -373,6 +378,7 @@ def load_dictionaries():
         "In conclusions": "Correct as 'In conclusion'.",
 
         # Passive voice
+
         "has been observed": "Consider rewriting the sentence with 'has been observed' in active voice, e.g. 'we observed that'.",
         "have been observed": "Consider rewriting the sentence with 'have been observed' in active voice, e.g. 'we observed that'.",
         "have been demonstrated": "Consider rewriting the sentence with 'have been demonstrated' in active voice, e.g. 'we demonstrated that'.",
@@ -396,6 +402,7 @@ def load_dictionaries():
         "was studied": "Consider rewriting the sentence with 'was studied' in active voice, e.g. 'researchers studied the effect'.",
 
         # Inappropriate language
+
         "it's": "If you mean 'it is', better to just write 'it is'. Otherwise, it might need to be corrected as 'its', for example 'silicon and its properties'.",
         "kind of": "Consider kind of replacing 'kind of' with 'rather' or kind of avoiding it completely.",
         "sort of": "Consider sort of replacing 'sort of' with 'rather' or sort of avoiding it completely.",
@@ -432,12 +439,15 @@ def load_dictionaries():
         "firstly": "In modern English 'first' is preferred to 'firstly'.",
         "Secondly": "In modern English 'Second' is preferred to 'Secondly'.",
         "secondly": "In modern English 'second' is preferred to 'secondly'.",
-        "diminish": "If by 'diminish' you mean that something is decreasing, consider replacing with 'decrease'.",
+        "diminish ": "If by 'diminish' you mean that something is decreasing, consider replacing with 'decrease'.",
+        "diminishing ": "If by 'diminishing' you mean that something is decreasing, consider replacing with 'decreasing'.",
+        "diminished ": "If by 'diminished' you mean that something is decreasing, consider replacing with 'decreased'.",
         "So,": "Beginning with 'So' might seem so informal. Consider replacing with 'Thus,'.",
         "So ": "Beginning with 'So' might seem so informal. Consider replacing with 'Thus'.",
         "By the way": "'By the way' might seem inappropriate sometimes.",
 
         # Latin expressions
+
         "radiuses": "Preferably replace 'radiuses' with 'radii'.",
         "axises": "Correct 'axises' as 'axes'.",
         "thesises": "Correct 'thesises' as 'theses'.",
@@ -447,7 +457,7 @@ def load_dictionaries():
         "in vitro ": "Consider if your readers know the Latin expressions 'in vitro' or if there might be a more common term.",
         "in vivo ": "Consider if your readers know the Latin expressions 'in vivo' or if there might be a more common term.",
         "e.g.": "Consider if your readers know the Latin expressions 'e.g.'. It might be better to write 'for example'.",
-        "i.e.": "Consider if your readers know the Latin expressions 'e.g.'. It might be better to write 'that is'.",
+        "i.e.": "Consider if your readers know the Latin expressions 'i.e.'. It might be better to write 'that is'.",
         "in silico ": "Consider if your readers know the Latin expressions 'in silico' or if there might be a more common term.",
         "in utero": "Consider if your readers know the Latin expressions 'in utero' or if there might be a more common term.",
         "in situ ": "Consider if your readers know the Latin expressions 'in situ' or if there might be a more common term.",
@@ -466,7 +476,7 @@ def output(message):
 
 
 def main():
-    """This is the main function that runs the program"""
+    '''This is the main function that runs the program'''
     with open("corrections.txt", "w+") as f:  # This is just to clear or create the file.
         pass
     text = open_file()
