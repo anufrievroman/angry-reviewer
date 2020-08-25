@@ -2,7 +2,7 @@
 Stylistic corrector for academic writing and scientific papers.
 
 ## Usage
-1. Download the code and change the path to your text document ( .txt, .doc, .tex) at the beginning of the code. For example, if code and your text are in the same folder simply write:
+1. Download the corrector.py file and change the path to your text document (you can use any plain text document, e.g. .txt, .tex, .md) at the beginning of this file. For example, if the corrector.py and your text are in the same folder simply write:
 
 ```
 path = "MyText.txt"
