@@ -1,7 +1,7 @@
 def open_file():
     '''This function opens the text file that needs to be checked.'''
 
-    path = "Manuscript.tex"
+    path = "My_text.tex"
 
     with open(path, "r") as manuscript:
         text = manuscript.readlines()
@@ -17,7 +17,7 @@ def load_dictionaries():
                      " Zr ",
                      " Ag ", " Ta ", " Pt ", " Hg ", " U ", " O2 ", " H2O ", " Sn ", " Sb ", " SiN ", " SiO2 ", " H ",
                      " N ", " GaN ",
-                     " InP ", " InAs "]
+                     " InP ", " InAs ", " SiO$_2$ "]
 
     # Common abbriviations
     dict_abbreviations = ["MFP", "TC", "TDTR", "TEM", "AFM", "SEM", "SPP", "SPhP", "XRD", "DOS", "NW", "PnC", "RMS",
@@ -151,8 +151,8 @@ def load_dictionaries():
         "In this article": "You may replace 'In this article' with just 'Here, ...' or just start with 'We show that'.",
         "In this paper": "You may replace 'In this article' with just 'Here, ...' or just start with 'We show that'.",
         "In recent years": "Consider replacing 'In recent years' with shorter 'Recently' or more specific 'Since 1999'.",
-        "make is possible": "Consider replacing 'make it possible' with shorter 'allow'.",
-        "makes is possible": "Consider replacing 'makes it possible' with shorter 'allows'.",
+        "make it possible": "Consider replacing 'make it possible' with shorter 'enable'.",
+        "makes it possible": "Consider replacing 'makes it possible' with shorter 'enables'.",
         "Consequently": "Consider replacing 'Consequently' with shorter 'Thus' or 'Hence'.",
         "Therefore": "Consider replacing 'Therefore' with shorter 'Thus' or 'Hence'.",
         "therefore": "Consider replacing 'therefore' with shorter 'thus' or 'hence'.",
@@ -163,6 +163,7 @@ def load_dictionaries():
         "Similarly": "Consider replacing 'Similarly' with 'Likewise'.",
         "In contrast to": "Consider replacing 'In contrast to' with shorter 'Unlike'.",
         "In contrast with": "Consider replacing 'In contrast with' with shorter 'Unlike'.",
+        "Similarly to this": "Consider replacing 'Similarly to this' with shorter 'Likewise'.",
         "Owning to the fact that": "Consider replacing 'Owning to the fact that' with simple 'Since' or 'Because'.",
         "owning to the fact that": "Consider replacing 'owning to the fact that' with simple 'since' or 'because'.",
         "In spite of the fact that": "Consider replacing 'In spite of the fact that' with simple 'Although'.",
@@ -367,9 +368,18 @@ def load_dictionaries():
         "bigger then": "Probably 'then' should be changed to 'than' if this is a comparison.",
         "smaller then": "Probably 'then' should be changed to 'than' if this is a comparison.",
         "larger then": "Probably 'then' should be changed to 'than' if this is a comparison.",
-        " 0 ": "Simple numbers 0-9 are better to be spelled out, e.g. 'five samples', 'above zero', 'equal to one'.",
+        " 0 ": "Simple numbers 0-10 are better to be spelled out, e.g. 'five samples', 'above zero', 'equal to one'.",
         "not important": "Consider using a more positive form and replace 'not important' with 'unimportant' or 'trifling'.",
-        " % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 100%.",
+        "0 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 100%.",
+        "1 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 10%.",
+        "2 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 20%.",
+        "3 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 30%.",
+        "4 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 40%.",
+        "5 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 50%.",
+        "6 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 60%.",
+        "7 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 70%.",
+        "8 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 80%.",
+        "9 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 90%.",
         "and/or": "Try to say it without 'and/or'. Often, just 'and' or 'or' is enough.",
         "or/and": "Try to say it without 'or/end'. Often, just 'and' or 'or' is enough.",
         "generate ": "Verify that the verb 'generate' really describes a generation process. Otherwise, consider replacing it with 'cause'.",
@@ -403,10 +413,10 @@ def load_dictionaries():
 
         # Inappropriate language
 
-        "it's": "If you mean 'it is', better to just write 'it is'. Otherwise, it might need to be corrected as 'its', for example 'silicon and its properties'.",
+        "it's": "If you mean 'it is', it's better to just write 'it is'. Otherwise, it might need to be corrected as 'its', for example 'material and its properties'.",
         "kind of": "Consider kind of replacing 'kind of' with 'rather' or kind of avoiding it completely.",
         "sort of": "Consider sort of replacing 'sort of' with 'rather' or sort of avoiding it completely.",
-        " less ": "Verify that 'less' is not misused for 'fewer', e.g. 'less time', but 'fewer samples'.",
+        " less ": "Verify that 'less' is not misused for 'fewer', e.g. 'less time', but 'fewer samples', or cannot be replace with a more precise word like 'thinner', 'shorter' etc.",
         " very ": "Consider if the word 'very' is very very necessary. If emphasis is necessary, use words strong in themselves or quantify the statement.",
         "viewpoint": "Consider replacing with 'point of view'.",
         "don't": "Most academic journals prefer 'do not' instead of 'don't'.",
