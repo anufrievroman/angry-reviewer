@@ -108,7 +108,9 @@ def load_dictionaries():
 
     # Dictionary of all other rules
     dict_generic = {
+
         # Hype and cliches
+
         "excellent agreement": "Usually, the agreement is actually not so excellent. Consider replacing with 'good agreement' or better yet quantify the agreement, e.g. 'A agrees with B within 5%'.",
         "excellent fit": "Sometimes the fit is actually not so excellent. Consider quantifying the fit, e.g. 'Line fits the data within 5% of inaccuracy'.",
         "outstanding": "The word 'outstanding' might be considered hype. Consider alternatives, e.g. 'remarkable'.",
@@ -147,6 +149,7 @@ def load_dictionaries():
         "it is well known": "Phrases like 'it is well known' are often considered inappropriate. Consider rewriting or at least suppling the references.",
 
         # Inconcise expressions
+
         "by means of": "Usually, 'by means of' can be replaced with shorter 'by' or 'using'.",
         "By means of": "Usually, 'By means of' can be replaced with shorter 'By' or 'Using'.",
         "It is important to note": "Consider replacing long 'It is important to note' with just 'Note'.",
@@ -358,6 +361,8 @@ def load_dictionaries():
         "This shows": "It might be unclear what 'This' points to if previous phrase was complicated. Rewrite with more specific subject, e.g. 'This data show', 'This dependence shows' etc.",
         "This demonstrates": "It might be unclear what 'This' points to if previous phrase was complicated. Rewrite with more specific subject, e.g. 'This data show', 'This dependence shows' etc.",
         "This proves": "It might be unclear what 'This' points to if previous phrase was complicated. Rewrite with more specific subject, e.g. 'This experiment proves'.",
+        "This is": "It might be unclear what 'This is' points to if previous phrase was complicated. Rewrite with more specific subject, e.g. 'This result is'.",
+        "This leads": "It might be unclear what 'This leads' points to if previous phrase was complicated. Rewrite with more specific subject, e.g. 'This result leads'.",
         "et al ": "Needs period after 'et al', i.e. 'et al.'.",
         "while": "In scientific papers, 'while' can often be replaced by 'whereas', unless something really happens at the same time.",
         ", while": "Constructions like 'A is white, while B is red' can be simplified as 'A is white; B is red.'",
@@ -390,6 +395,21 @@ def load_dictionaries():
         "generating": "Verify that 'generating' really describes a generation process. Otherwise, consider replacing it with 'causing'.",
         "In conclusions": "Correct as 'In conclusion'.",
         " the the ": "Seems like 'the' is repeated twice,",
+        " a a ": "Seems like 'a' is repeated twice,",
+        " an an ": "Seems like 'a' is repeated twice,",
+
+        # Shortened units
+
+        "thousands of µm": "Consider spelling of the units as micrometeres instead of µm",
+        "hundreds of µm": "Consider spelling of the units as micrometeres instead of µm",
+        "tens of µm": "Consider spelling of the units as micrometeres instead of µm",
+        "few µm": "Consider spelling of the units as micrometeres instead of µm",
+        "several µm": "Consider spelling of the units as micrometeres instead of µm",
+        "thousands of nm": "Consider spelling of the units as nanometers instead of nm",
+        "hundreds of nm": "Consider spelling of the units as nanometers instead of nm",
+        "tens of nm": "Consider spelling of the units as nanometers instead of nm",
+        "few nm": "Consider spelling of the units as nanometers instead of mm",
+        "several nm": "Consider spelling of the units as nanometers instead of nm",
 
         # Passive voice
 
@@ -414,13 +434,20 @@ def load_dictionaries():
         "was investigated": "Consider rewriting the sentence with 'was investigated' in active voice, e.g. 'researchers investigated the effect'.",
         "were studied": "Consider rewriting the sentence with 'were studied' in active voice, e.g. 'researchers studied the effect'.",
         "was studied": "Consider rewriting the sentence with 'was studied' in active voice, e.g. 'researchers studied the effect'.",
+        "has been attracting a great attention": "Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.",
+        "has attracted a great attention": "Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.",
+        "have attracted a great attention": "Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.",
+        "has attracted great attention": "Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.",
+        "have attracted great attention": "Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.",
+        "has attracted attention": "Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.",
+        "have attracted attention": "Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.",
 
         # Inappropriate language
 
         "it's": "If you mean 'it is', it's better to just write 'it is'. Otherwise, it might need to be corrected as 'its', for example 'material and its properties'.",
         "kind of": "Consider kind of replacing 'kind of' with 'rather' or kind of avoiding it completely.",
         "sort of": "Consider sort of replacing 'sort of' with 'rather' or sort of avoiding it completely.",
-        " less ": "Verify that 'less' is not misused for 'fewer', e.g. 'less time', but 'fewer samples', or cannot be replace with a more precise word like 'thinner', 'shorter' etc.",
+        " less ": "Verify that 'less' is not misused for 'fewer' (e.g. 'less time', but 'fewer samples') or cannot be replace with a more precise word like 'thinner', 'shorter', 'weaker' etc.",
         " very ": "Consider if the word 'very' is very very necessary. If emphasis is necessary, use words strong in themselves or quantify the statement.",
         "viewpoint": "Consider replacing with 'point of view'.",
         "don't": "Most academic journals prefer 'do not' instead of 'don't'.",
