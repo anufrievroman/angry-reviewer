@@ -1,7 +1,7 @@
 def open_file():
     '''This function opens the text file that needs to be checked.'''
 
-    path = "My_text.tex"
+    path = "abstract.txt"
 
     with open(path, "r") as manuscript:
         text = manuscript.readlines()
@@ -67,8 +67,7 @@ def load_dictionaries():
         "very dangerous": "perilous, precarious, unsafe",
         "very dark": "black, inky, ebony, sooty, lightless",
         "very deep": "abysmal, bottomless, vast",
-        "very delicate": "subtle, slight, fragile, frail",
-        "very different": "unusual, distinctive, atypical, dissimilar",
+        "very delicate": "subtle, slight, fragile, frail", "very different": "unusual, distinctive, atypical, dissimilar",
         "very difficult": "complicated, complex, demanding",
         "very easy": "effortless, uncomplicated, unchallenging, simple",
         "very fast": "rapid, swift, fleet, blistering",
@@ -85,7 +84,7 @@ def load_dictionaries():
         "very recent": "the latest, current, fresh, up-to-date",
         "very rough": "coarse, jagged, rugged, craggy, gritty, broken",
         "very severe": "acute, grave, critical, serious, brutal, relentless",
-        "very significant": "key, noteworthy, momentous, major, vital",
+        "very significant": "key, notable, substatial, noteworthy, momentous, major, vital",
         "very similar": "alike, akin, analogous, comparable, equivalent",
         "very simple": "easy, straightforward, effortless, uncomplicated",
         "very small": "tiny, miniscule, infinitesimal, microscopic, wee",
@@ -115,8 +114,8 @@ def load_dictionaries():
         "outstanding": "The word 'outstanding' might be considered hype. Consider alternatives, e.g. 'remarkable'.",
         "groundbreaking": "The word 'groundbreaking' might be considered hype. Consider alternatives, e.g. 'remarkable'.",
         "ground breaking": "The word 'groundbreaking' might be considered hype. Consider alternatives, e.g. 'remarkable'.",
-        "new ": "If the word 'new' refers to the results or methods, editors and reviewers often dislike such claims. Consider explaining novelty in some other way. Some helpful words are 'innovative', 'fresh', 'original', 'cutting-edge', 'alternative'.",
-        "novel ": "If the word 'novel' refers to the results or methods, editors and reviewers often dislike such claims. Consider explaining novelty in some other way. Some helpful words are 'innovative', 'fresh', 'original', 'cutting-edge', 'alternative'.",
+        "new ": "If the word 'new' refers to the results or methods, editors and reviewers often dislike such claims. Consider explaining novelty in some other way. Some helpful words are 'innovative', 'original', 'alternative', 'previously unknown'.",
+        "novel ": "If the word 'novel' refers to the results or methods, editors and reviewers often dislike such claims. Consider explaining novelty in some other way. Some helpful words are 'innovative', 'original', 'cutting-edge', 'alternative', 'previously unknown'.",
         " prove ": "Phrases about 'prove' should be considered with caution. Strict proof is possible only in math, whereas science usually operates with evidences. Consider replacing with words like 'evidence', 'demonstration', 'confirmation' etc.",
         " proved ": "Phrases about 'prove' should be considered with caution. Strict proof is possible only in math, whereas science usually operates with evidences. Consider replacing with words like 'evidence', 'demonstration', 'confirmation' etc.",
         " proof ": "Phrases about 'proof' should be considered with caution. Strict proof is possible only in math, whereas science usually operates with evidences. Consider replacing with words like 'evidence', 'demonstration', 'confirmation' etc.",
@@ -142,6 +141,10 @@ def load_dictionaries():
         "in a nutshell": "Phrases like 'in a nutshell' are considered a cliche.",
         "at the end of the day": "Phrases like 'at the end of the day' are considered a cliche.",
         "At the end of the day": "Phrases like 'At the end of the day' are considered a cliche.",
+        "It is known": "Phrases like 'It is known' are often considered inappropriate. Consider rewriting or at least suppling the references.",
+        "it is known": "Phrases like 'it is known' are often considered inappropriate. Consider rewriting or at least suppling the references.",
+        "It is well known": "Phrases like 'It is well known' are often considered inappropriate. Consider rewriting or at least suppling the references.",
+        "it is well known": "Phrases like 'it is well known' are often considered inappropriate. Consider rewriting or at least suppling the references.",
 
         # Inconcise expressions
         "by means of": "Usually, 'by means of' can be replaced with shorter 'by' or 'using'.",
@@ -350,8 +353,8 @@ def load_dictionaries():
         "obvious ": "The word 'obvious' is often misused in science and might describe something that is not so obvious. It also annoys readers. Consider removing it.",
         "strongly": "The word 'strongly' is often strongly misused to describe not so strong things. Consider removing it and expressing the strength quantitatively, e.g. '50% stronger' or 'increased by 50%'.",
         "strong ": "The word 'strong' is often misused to describe not so strong things. Consider if the usage here is appropriate.",
-        "significantly": "The word 'significantly' is often significantly misused in science. It might mean statistically significant or significant to the author, so the meaning is unclear. Consider removing it and describe significance quantitatively, e.g. 'increased by 50%' or '50% different'.",
-        "significant ": "The word 'significant' is often misused in science. It might mean statistically significant or significant to the author, so the meaning is unclear. Consider removing it and writing about significance more quantitatively, e.g. 'by 50%'.",
+        "significantly": "The word 'significantly' is often significantly misused in science. It might mean statistically significant or significant to the author, so the meaning is unclear. Consider removing it and describe significance quantitatively, e.g. 'increased by 50%' or '50% different'. Other alternatives: 'substantially, notably'",
+        "significant ": "The word 'significant' is often misused in science. It might mean statistically significant or significant to the author, so the meaning is unclear. Consider removing it and writing about significance more quantitatively, e.g. 'by 50%'. Other alternatives: 'substantial, notable'",
         "This shows": "It might be unclear what 'This' points to if previous phrase was complicated. Rewrite with more specific subject, e.g. 'This data show', 'This dependence shows' etc.",
         "This demonstrates": "It might be unclear what 'This' points to if previous phrase was complicated. Rewrite with more specific subject, e.g. 'This data show', 'This dependence shows' etc.",
         "This proves": "It might be unclear what 'This' points to if previous phrase was complicated. Rewrite with more specific subject, e.g. 'This experiment proves'.",
@@ -386,6 +389,7 @@ def load_dictionaries():
         "generated": "Verify that the verb 'generated' really describes a generation process. Otherwise, consider replacing it with 'caused'.",
         "generating": "Verify that 'generating' really describes a generation process. Otherwise, consider replacing it with 'causing'.",
         "In conclusions": "Correct as 'In conclusion'.",
+        " the the ": "Seems like 'the' is repeated twice,",
 
         # Passive voice
 
@@ -482,7 +486,6 @@ def output(message):
     print(message)
     with open("corrections.txt", "a+") as f:
         f.writelines(message)
-    return
 
 
 def main():
