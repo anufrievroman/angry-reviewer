@@ -13,11 +13,9 @@ def load_dictionaries():
 
     # Chemical elements
     dict_elements = [" Al ", " Si ", " Cr ", " Ga ", " Ti ", " InP ", " GaAs ", " SiC ", " Cu ", " He ",
-                     " Li ", " Ne ", " Na ", " Cl ", " Ar ", " Au ", " VO2 ", " Sc ", " Fe ", " Nb ", " Ni ", " Sr ",
-                     " Zr ",
-                     " Ag ", " Ta ", " Pt ", " Hg ", " U ", " O2 ", " H2O ", " Sn ", " Sb ", " SiN ", " SiO2 ", " H ",
-                     " N ", " GaN ",
-                     " InP ", " InAs ", " SiO$_2$ "]
+                     " Li ", " Ne ", " Na ", " Cl ", " Ar ", " Au ", " VO2 ", " Sc ", " Fe ", " Nb ", " Ni ", 
+                     " Sr ", " Zr ", " Ag ", " Ta ", " Pt ", " Hg ", " U ", " O2 ", " H2O ", " Sn ", " Sb ",
+                     " SiN ", " SiO2 ", " H ", " N ", " GaN ", " InP ", " InAs ", " SiO$_2$ "]
 
     # Common abbriviations
     dict_abbreviations = ["MFP", "TC", "TDTR", "TEM", "AFM", "SEM", "SPP", "SPhP", "XRD", "DOS", "NW", "PnC", "RMS",
@@ -143,10 +141,10 @@ def load_dictionaries():
         "in a nutshell": "Phrases like 'in a nutshell' are considered a cliche.",
         "at the end of the day": "Phrases like 'at the end of the day' are considered a cliche.",
         "At the end of the day": "Phrases like 'At the end of the day' are considered a cliche.",
-        "It is known": "Phrases like 'It is known' are often considered inappropriate. Consider rewriting or at least suppling the references.",
-        "it is known": "Phrases like 'it is known' are often considered inappropriate. Consider rewriting or at least suppling the references.",
-        "It is well known": "Phrases like 'It is well known' are often considered inappropriate. Consider rewriting or at least suppling the references.",
-        "it is well known": "Phrases like 'it is well known' are often considered inappropriate. Consider rewriting or at least suppling the references.",
+        "It is known": "Phrases like 'It is known' are often considered inappropriate. Ofter it is not known to the readers. Consider rewriting or at least suppling the references.",
+        "it is known": "Phrases like 'it is known' are often considered inappropriate. Ofter it is not known to the readers. Consider rewriting or at least suppling the references.",
+        "It is well known": "Phrases like 'It is well known' are often considered inappropriate. Often is it not so well known to the readers. Consider rewriting or at least suppling the references.",
+        "it is well known": "Phrases like 'it is well known' are often considered inappropriate. Often is it not so well known to the readers. Consider rewriting or at least suppling the references.",
 
         # Inconcise expressions
 
@@ -398,18 +396,33 @@ def load_dictionaries():
         " a a ": "Seems like 'a' is repeated twice,",
         " an an ": "Seems like 'a' is repeated twice,",
 
+        # Refering to figures
+
+        " fig.": "Most journals prefer capitalized references to figures, e.g. 'as shown in Fig. 1'.", 
+        " figs.": "Most journals prefer capitalized references to figures, e.g. 'as shown in Figs. 1-2'.", 
+
         # Shortened units
 
-        "thousands of µm": "Consider spelling of the units as micrometeres instead of µm",
-        "hundreds of µm": "Consider spelling of the units as micrometeres instead of µm",
-        "tens of µm": "Consider spelling of the units as micrometeres instead of µm",
-        "few µm": "Consider spelling of the units as micrometeres instead of µm",
-        "several µm": "Consider spelling of the units as micrometeres instead of µm",
-        "thousands of nm": "Consider spelling of the units as nanometers instead of nm",
-        "hundreds of nm": "Consider spelling of the units as nanometers instead of nm",
-        "tens of nm": "Consider spelling of the units as nanometers instead of nm",
-        "few nm": "Consider spelling of the units as nanometers instead of mm",
-        "several nm": "Consider spelling of the units as nanometers instead of nm",
+        "thousands of K ": "Consider spelling our the units as kelvin",
+        "hundreds of K ": "Consider spelling our the units as kelvin",
+        "tens of K ": "Consider spelling our the units as kelvin",
+        "few K ": "Consider spelling our the units as kelvin",
+        "several K ": "Consider spelling our the units as kelvin",
+        "thousands of µm": "Consider spelling out the units as micrometeres",
+        "hundreds of µm": "Consider spelling out the units as micrometeres",
+        "tens of µm": "Consider spelling out the units as micrometeres",
+        "few µm": "Consider spelling out the units as micrometeres",
+        "several µm": "Consider spelling our the units as micrometeres",
+        "thousands of nm": "Consider spelling our the units as nanometers instead of nm",
+        "hundreds of nm": "Consider spelling our the units as nanometers instead of nm",
+        "tens of nm": "Consider spelling our the units as nanometers instead of nm",
+        "few nm": "Consider spelling our the units as nanometers instead of mm",
+        "several nm": "Consider spelling our the units as nanometers instead of nm",
+        "thousands of mm": "Consider spelling our the units as milimeters instead of mm",
+        "hundreds of mm": "Consider spelling our the units as milimeters instead of nm",
+        "tens of mm": "Consider spelling our the units as milimeters instead of mm",
+        "few mm": "Consider spelling our the units as milimeters instead of mm",
+        "several mm": "Consider spelling our the units as milimeters instead of mm",
 
         # Passive voice
 
@@ -466,7 +479,7 @@ def load_dictionaries():
         "actually": "The word 'actually' might actually be unnecessary.",
         "really": "The word 'really' might be really unnecessary.",
         "years": "Instead of 'years', it might be better to give the exact year of event.",
-        "a bit ": "Consider a bit replacing informal 'a bit' with a bit more formal 'somewhat' or removing it completely.",
+        "a bit ": "Consider replacing informal 'a bit' with a bit more formal 'somewhat' or removing it completely.",
         "a lot of": "Consider replacing 'a lot of' with 'many' or 'several', or just give exact number.",
         "A lot of": "Consider replacing 'A lot of' with 'Many' or 'Several', or just give exact number.",
         "You ": "Using 'You' might be inappropriate in academic writing. Consider using 'One', e.g. 'One can see...'.",
@@ -485,7 +498,7 @@ def load_dictionaries():
         "diminished ": "If by 'diminished' you mean that something is decreasing, consider replacing with 'decreased'.",
         "So,": "Beginning with 'So' might seem so informal. Consider replacing with 'Thus,'.",
         "So ": "Beginning with 'So' might seem so informal. Consider replacing with 'Thus'.",
-        "By the way": "'By the way' might seem inappropriate sometimes.",
+        "By the way": "'By the way' might seem too informal.",
 
         # Latin expressions
 
@@ -504,8 +517,25 @@ def load_dictionaries():
         "in situ ": "Consider if your readers know the Latin expressions 'in situ' or if there might be a more common term.",
         "ex vivo ": "Consider if your readers know the Latin expressions 'ex vivo' or if there might be a more common term.",
         "vs.": "Consider if your readers know the Latin expressions 'vs.'. It might be better to replace with 'against' or 'as a function of'.",
+        "a.k.a.": "Consider replacing 'a.k.a.' with 'also known as' for clarity.",
+        " aka ": "Consider replacing 'aka' with 'also known as' for clarity.",
     }
     return dict_comma_after, dict_generic, dict_american, dict_elements, dict_abbreviations, dict_very
+
+
+def figure_references(line, index):
+    '''Check for Fig. in the beginning of the line or Figure in the middle'''
+    if "Fig." in line[0:4] or "Figs." in line[0:4]:
+        output(str("Line " + str(index + 1) + ". The word Fig. in the beginning of a sentence can usually be spelled out, e.g. 'Figure 1 shows...'.\n"))
+    if "Figure " in line and "Figure " not in line[0:4]:
+        output(str("Line " + str(index + 1) + ". Most journals prefer shortening the word Figure as Fig. if it is not opening the sentence.\n"))
+
+
+def numbers_next_to_units(line, index):
+    '''Check if there are units not separated from numbers with a space'''
+    units = ['m.', 'm ', 'mm', 'um', 'nm', 'km', 'cm', 'W', 'V', 'K', 's ', 's.', 'ps', 'us', 'Pa', 'min', 'h'] 
+    for number in range(9): for unit in units: if str(number)+unit in line:
+                output("Line " + str(index + 1) + ". Put a space between the number " + str(number) + " and the unit " + unit + ".\n")
 
 
 def output(message):
@@ -553,6 +583,9 @@ def main():
                     ("Conclusions" or "CONCLUSIONS") in text[index - 2]):
                 output(str("Line " + str(
                     index + 1) + ". This section seems to be already titled 'Conclusions', thus you may omit 'In conclusion' at the beginning.\n"))
+
+        figure_references(line, index)   
+        numbers_next_to_units(line, index)
 
     # Checking how many times chemical elements occur in the text
     for element in dict_elements:
