@@ -1,6 +1,7 @@
 def open_file():
     '''This function opens the text file that needs to be checked.'''
-
+    
+    # CHANGE THIS TO YOUR FILE:
     path = "abstract.txt"
 
     with open(path, "r") as manuscript:
@@ -17,7 +18,7 @@ def load_dictionaries():
                      " Sr ", " Zr ", " Ag ", " Ta ", " Pt ", " Hg ", " U ", " O2 ", " H2O ", " Sn ", " Sb ",
                      " SiN ", " SiO2 ", " H ", " N ", " GaN ", " InP ", " InAs ", " SiO$_2$ "]
 
-    # Common abbriviations
+    # Common abbreviations
     dict_abbreviations = ["MFP", "TC", "TDTR", "TEM", "AFM", "SEM", "SPP", "SPhP", "XRD", "DOS", "NW", "PnC", "RMS",
                           "BTU", "1D", "2D", "3D", "HD", "LOC", "JSAP", "PL"]
 
@@ -137,14 +138,14 @@ def load_dictionaries():
         "holy grail": "Phrases like 'A is the holy grail of B' are considered a cliche.",
         "best": "If the word 'best' serves here to qualify results or methods, it will be considered a hype and should be avoided. Consider replacing it with 'optimal' or 'reasonable' or just removing it.",
         "Best": "If the word 'best' serves here to qualify results or methods, it will be considered a hype and should be avoided. Consider replacing it with 'optimal' or 'reasonable' or just removing it.",
-        "In a nutshell": "Phrases like 'In a nutshell' are considered a cliche.",
-        "in a nutshell": "Phrases like 'in a nutshell' are considered a cliche.",
+        "In a nutshell": "In a nutshell, phrases like 'In a nutshell' are a cliche and should be avoided.",
+        "in a nutshell": "In a nutshell, phrases like 'in a nutshell' are a cliche and should be avoided.",
         "at the end of the day": "Phrases like 'at the end of the day' are considered a cliche.",
         "At the end of the day": "Phrases like 'At the end of the day' are considered a cliche.",
-        "It is known": "Phrases like 'It is known' are often considered inappropriate. Often it is not known to the readers. Consider rewriting or at least suppling the references.",
-        "it is known": "Phrases like 'it is known' are often considered inappropriate. Often it is not known to the readers. Consider rewriting or at least suppling the references.",
-        "It is well known": "Phrases like 'It is well known' are often considered inappropriate. Often is it not so well known to the readers. Consider rewriting or at least suppling the references.",
-        "it is well known": "Phrases like 'it is well known' are often considered inappropriate. Often is it not so well known to the readers. Consider rewriting or at least suppling the references.",
+        "It is known": "It is known that phrases like 'It is known' are often inappropriate. Often it is not known to the readers. Consider rewriting or at least suppling the references.",
+        "it is known": "It is known that phrases like 'it is known' are often inappropriate. Often it is not known to the readers. Consider rewriting or at least suppling the references.",
+        "It is well known": "It is well known that phrases like 'It is well known' are often inappropriate. Usually, is it not so well known to the readers. Consider rewriting or at least suppling the references.",
+        "it is well known": "It is well known that phrases like 'it is well known' are often inappropriate. Usually, is it not so well known to the readers. Consider rewriting or at least suppling the references.",
 
         # Inconcise expressions
 
@@ -376,16 +377,6 @@ def load_dictionaries():
         "larger then": "Probably 'then' should be changed to 'than' if this is a comparison.",
         " 0 ": "Simple numbers 0-10 are better to be spelled out, e.g. 'five samples', 'above zero', 'equal to one'.",
         "not important": "Consider using a more positive form and replace 'not important' with 'unimportant' or 'trifling'.",
-        "0 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 100%.",
-        "1 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 10%.",
-        "2 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 20%.",
-        "3 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 30%.",
-        "4 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 40%.",
-        "5 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 50%.",
-        "6 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 60%.",
-        "7 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 70%.",
-        "8 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 80%.",
-        "9 % ": "Per cent signs '%' usually should follow numbers without a space, e.g. 90%.",
         "and/or": "Try to say it without 'and/or'. Often, just 'and' or 'or' is enough.",
         "or/and": "Try to say it without 'or/end'. Often, just 'and' or 'or' is enough.",
         "generate ": "Verify that the verb 'generate' really describes a generation process. Otherwise, consider replacing it with 'cause'.",
@@ -395,6 +386,10 @@ def load_dictionaries():
         " the the ": "Seems like 'the' is repeated twice,",
         " a a ": "Seems like 'a' is repeated twice,",
         " an an ": "Seems like 'a' is repeated twice,",
+        "Dr.": "Full stop is not required after Dr, i.e. just 'Dr Smith' is fine.",
+        "Mr.": "Full stop is not required after Mr, i.e. just 'Mr Smith' is fine.",
+        "Ms.": "Full stop is not required after Ms, i.e. just 'Ms Smith' is fine.",
+        "Co.": "Full stop is not required after Co, i.e. just 'and Co' is fine.",
 
         # Referring to figures
 
@@ -523,6 +518,12 @@ def load_dictionaries():
     return dict_comma_after, dict_generic, dict_american, dict_elements, dict_abbreviations, dict_very
 
 
+def start_with_numbers(line, index):
+    '''Check is the sentence starts with a number'''
+    if line[0].isdigit():
+        output(str("Line " + str(index + 1) + ". Avoid starting sentences with numbers. Rewrite spelling out the number, e.g. 'Five samples...'\n"))
+
+
 def figure_references(line, index):
     '''Check for "Fig." in the beginning of the line or "Figure" in the middle'''
     if "Fig." in line[0:4] or "Figs." in line[0:4]:
@@ -532,12 +533,14 @@ def figure_references(line, index):
 
 
 def numbers_next_to_units(line, index):
-    '''Check if there are units not separated from numbers with a space'''
+    '''Check if there are units not separated from numbers with a space or % sign separated'''
     units = ['m.', 'm ', 'mm', 'um', 'nm', 'km', 'cm', 'W', 'V', 'K', 's ', 's.', 'ps', 'us', 'Pa', 'min', 'h'] 
     for number in range(9): 
         for unit in units: 
             if str(number)+unit in line:
                 output("Line " + str(index + 1) + ". Put a space between the number " + str(number) + " and the unit " + unit + ".\n")
+        if str(number)+" %" in line:
+            output("Line " + str(index + 1) + ". Per cent signs '%' should follow numbers without a space, i.e. " + str(number) + "%.\n")
 
 
 def output(message):
@@ -587,6 +590,7 @@ def main():
                     index + 1) + ". This section seems to be already titled 'Conclusions', thus you may omit 'In conclusion' at the beginning.\n"))
 
         figure_references(line, index)   
+        start_with_numbers(line, index)   
         numbers_next_to_units(line, index)
 
     # Checking how many times chemical elements occur in the text
