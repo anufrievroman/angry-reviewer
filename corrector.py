@@ -141,8 +141,8 @@ def load_dictionaries():
         "in a nutshell": "Phrases like 'in a nutshell' are considered a cliche.",
         "at the end of the day": "Phrases like 'at the end of the day' are considered a cliche.",
         "At the end of the day": "Phrases like 'At the end of the day' are considered a cliche.",
-        "It is known": "Phrases like 'It is known' are often considered inappropriate. Ofter it is not known to the readers. Consider rewriting or at least suppling the references.",
-        "it is known": "Phrases like 'it is known' are often considered inappropriate. Ofter it is not known to the readers. Consider rewriting or at least suppling the references.",
+        "It is known": "Phrases like 'It is known' are often considered inappropriate. Often it is not known to the readers. Consider rewriting or at least suppling the references.",
+        "it is known": "Phrases like 'it is known' are often considered inappropriate. Often it is not known to the readers. Consider rewriting or at least suppling the references.",
         "It is well known": "Phrases like 'It is well known' are often considered inappropriate. Often is it not so well known to the readers. Consider rewriting or at least suppling the references.",
         "it is well known": "Phrases like 'it is well known' are often considered inappropriate. Often is it not so well known to the readers. Consider rewriting or at least suppling the references.",
 
@@ -396,7 +396,7 @@ def load_dictionaries():
         " a a ": "Seems like 'a' is repeated twice,",
         " an an ": "Seems like 'a' is repeated twice,",
 
-        # Refering to figures
+        # Referring to figures
 
         " fig.": "Most journals prefer capitalized references to figures, e.g. 'as shown in Fig. 1'.", 
         " figs.": "Most journals prefer capitalized references to figures, e.g. 'as shown in Figs. 1-2'.", 
@@ -524,7 +524,7 @@ def load_dictionaries():
 
 
 def figure_references(line, index):
-    '''Check for Fig. in the beginning of the line or Figure in the middle'''
+    '''Check for "Fig." in the beginning of the line or "Figure" in the middle'''
     if "Fig." in line[0:4] or "Figs." in line[0:4]:
         output(str("Line " + str(index + 1) + ". The word Fig. in the beginning of a sentence can usually be spelled out, e.g. 'Figure 1 shows...'.\n"))
     if "Figure " in line and "Figure " not in line[0:4]:
@@ -534,7 +534,9 @@ def figure_references(line, index):
 def numbers_next_to_units(line, index):
     '''Check if there are units not separated from numbers with a space'''
     units = ['m.', 'm ', 'mm', 'um', 'nm', 'km', 'cm', 'W', 'V', 'K', 's ', 's.', 'ps', 'us', 'Pa', 'min', 'h'] 
-    for number in range(9): for unit in units: if str(number)+unit in line:
+    for number in range(9): 
+        for unit in units: 
+            if str(number)+unit in line:
                 output("Line " + str(index + 1) + ". Put a space between the number " + str(number) + " and the unit " + unit + ".\n")
 
 
