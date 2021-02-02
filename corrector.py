@@ -1,7 +1,7 @@
 YOUR_FILE = "abstract.txt"
 
 
-def generic_dictionary(line, index):
+def bad_patterns(line, index):
     '''Check in general dictionary of known errors and suggestions of how to fix them'''
     dictionary = {
 
@@ -419,7 +419,7 @@ def generic_dictionary(line, index):
     }
     for word in dictionary:
         if word in line:
-            output(str("Line " + str(index + 1) + ". " + dictionary[word] + "\n"))
+            output(str("Line " + str(index + 1) + ". " + dictionary[word] + ""))
 
 
 def comma_after(line, index):
@@ -453,7 +453,7 @@ def comma_after(line, index):
         ]
     for word in dictionary:
         if word in line:
-            output("Line " + str(index + 1) + ". Might need a comma after " + word + "\n")
+            output("Line " + str(index + 1) + ". Might need a comma after " + word + "")
 
 
 def phrases_with_very(line, index):
@@ -507,32 +507,32 @@ def phrases_with_very(line, index):
         if word in line:
             output(str(
                 "Line " + str(index + 1) + ". Consider replacing '" + word + "' with words like " + dict_very[
-                    word] + " etc.\n"))
+                    word] + " etc."))
 
 
 def start_with_numbers(line, index):
     '''Check if the sentence starts with a number'''
     if line[0].isdigit():
-        output("Line " + str(index + 1) + ". Avoid starting sentences with numbers. Rewrite spelling out the number, e.g. 'Five samples...'\n")
+        output("Line " + str(index + 1) + ". Avoid starting sentences with numbers. Rewrite spelling out the number, e.g. 'Five samples...'")
 
 
 def figure_references(line, index):
     '''Check for "Fig." in the beginning of the line or "Figure" in the middle'''
     if "Fig." in line[0:4] or "Figs." in line[0:4]:
-        output(str("Line " + str(index + 1) + ". The word Fig. in the beginning of a sentence can usually be spelled out, e.g. 'Figure 1 shows...'.\n"))
+        output(str("Line " + str(index + 1) + ". The word Fig. in the beginning of a sentence can usually be spelled out, e.g. 'Figure 1 shows...'."))
     if "Figure " in line and "Figure " not in line[0:4]:
-        output("Line " + str(index + 1) + ". Most journals prefer shortening the word Figure as Fig. if it is not opening the sentence.\n")
+        output("Line " + str(index + 1) + ". Most journals prefer shortening the word Figure as Fig. if it is not opening the sentence.")
 
 
 def numbers_next_to_units(line, index):
-    '''Check if there are units not separated from numbers with a space or % sign separated'''
-    units = ['m.', 'm ', 'mm', 'um', 'nm', 'km', 'cm', 'W', 'V', 'K', 's ', 's.', 'ps', 'us', 'Pa', 'min', 'h'] 
+    '''Check if there are units not separated from numbers with a space or % sign is separated'''
+    units = ['m.', 'm ', 'mm', 'um', 'nm', 'km', 'cm', 'W', 'V', 'K', 's ', 's.', 'ps', 'us', 'Pa', 'min', 'h', 'Hz', 'GHz', 'THz', 'MHz', 'g'] 
     for number in range(9): 
         for unit in units: 
             if str(number)+unit in line:
-                output("Line " + str(index + 1) + ". Put a space between the number " + str(number) + " and the unit " + unit + ".\n")
+                output("Line " + str(index + 1) + ". Put a space between the number " + str(number) + " and the unit " + unit + ".")
         if str(number)+" %" in line:
-            output("Line " + str(index + 1) + ". Per cent signs '%' should follow numbers without a space, i.e. " + str(number) + "%.\n")
+            output("Line " + str(index + 1) + ". Per cent signs '%' should follow numbers without a space, i.e. " + str(number) + "%.")
 
 
 def elements(text):
@@ -541,29 +541,30 @@ def elements(text):
                      " Li ", " Ne ", " Na ", " Cl ", " Ar ", " Au ", " VO2 ", " Sc ", " Fe ", " Nb ", " Ni ", 
                      " Sr ", " Zr ", " Ag ", " Ta ", " Pt ", " Hg ", " U ", " O2 ", " H2O ", " Sn ", " Sb ",
                      " SiN ", " SiO2 ", " H ", " N ", " GaN ", " InP ", " InAs ", " SiO$_2$ "]
-
     for element in elements:
         occurance = 0
         for index, line in enumerate(text):
             occurance += line.count(element)
         if occurance == 1:
-            output("The element" + str(element) + "occurs only once. Consider using its full name instead of the symbol." + "\n")
+            output("The element" + str(element) + "occurs only once. Consider using its full name instead of the symbol." + "")
         if occurance > 1 and occurance < 4:
-            output("The element" + str(element) + "occurs only " + str(occurance) + " times. Consider using its full name instead of the symbol." + "\n")
+            output("The element" + str(element) + "occurs only " + str(occurance) + " times. Consider using its full name instead of the symbol." + "")
 
 
 def abbreviations(text):
     '''Check how many times common abbreviations occur in the text'''
-    abbreviations = ["MFP", "TC", "TDTR", "TEM", "AFM", "SEM", "SPP", "SPhP", "XRD", "DOS", "NW", "PnC", "RMS",
-                          "BTU", "1D", "2D", "3D", "HD", "LOC", "JSAP", "PL"]
+    abbreviations = ["MFP", "TC", "TDTR", "TEM", "AFM", "SEM", "SPP", "SPhP", "XRD",
+            "DOS", "CNT", "NW", "PnC", "RMS", "BG", "SAW", "AMM", "RF", "NP",
+            "BTU", "1D", "2D", "3D", "HD", "LOC", "JSAP", "PL", "BLS", "RIE",
+            "EBL", "FIB", "MFP"]
     for abbreviation in abbreviations:
         occurance = 0
         for index, line in enumerate(text):
             occurance += line.count(abbreviation)
         if occurance == 1:
-            output("The abbreviation " + str(abbreviation) + " occurs only once. Since abbreviations are hard to read, consider just spelling it out." + "\n")
+            output("The abbreviation " + str(abbreviation) + " occurs only once. Since abbreviations are hard to read, consider just spelling it out." + "")
         if occurance > 1 and occurance < 5:
-            output("The abbreviation " + str(abbreviation) + " occurs only " + str(occurance) + " times. Because abbreviations are hard to read, consider just spelling it out." + "\n")
+            output("The abbreviation " + str(abbreviation) + " occurs only " + str(occurance) + " times. Because abbreviations are hard to read, consider just spelling it out." + "")
 
 
 def in_conclusions(line, index):
@@ -572,33 +573,36 @@ def in_conclusions(line, index):
         if (("Conclusions" or "CONCLUSIONS") in text[index - 1]) or (
                 ("Conclusions" or "CONCLUSIONS") in text[index - 2]):
             output(str("Line " + str(
-                index + 1) + ". This section seems to be already titled 'Conclusions', thus you may omit 'In conclusion' at the beginning.\n"))
+                index + 1) + ". This section seems to be already titled 'Conclusions', thus you may omit 'In conclusion' at the beginning."))
 
 
 def output(message):
     '''Print messages in the terminal and in the 'corrections.txt' file'''
     print(message)
     with open("corrections.txt", "a+") as f:
-        f.writelines(message)
+        f.writelines(message+"\n")
 
 
 def main():
     '''This is the main function that runs the program'''
-    with open("corrections.txt", "w+") as f:  # This is just to clear or create the file.
+    with open("corrections.txt", "w+") as f:  # This is just to clear or create the output file.
         pass
-    with open(YOUR_FILE, "r") as manuscript:
-        text = manuscript.readlines()
+    try:
+        with open(YOUR_FILE, "r") as manuscript:
+            text = manuscript.readlines()
+        for index, line in enumerate(text):
+            bad_patterns(line, index)
+            phrases_with_very(line, index)
+            in_conclusions(line, index)
+            comma_after(line, index)
+            figure_references(line, index)   
+            start_with_numbers(line, index)   
+            numbers_next_to_units(line, index)
+        elements(text)
+        abbreviations(text)
 
-    for index, line in enumerate(text):
-        generic_dictionary(line, index)
-        phrases_with_very(line, index)
-        in_conclusions(line, index)
-        comma_after(line, index)
-        figure_references(line, index)   
-        start_with_numbers(line, index)   
-        numbers_next_to_units(line, index)
-    elements(text)
-    abbreviations(text)
+    except(FileNotFoundError):
+        print("Looks like there is no file " + YOUR_FILE + " Check that it is in the same folder as this code and that the name is correct.")
 
 
 if __name__ == "__main__":
