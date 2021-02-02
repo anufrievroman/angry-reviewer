@@ -1,112 +1,9 @@
-def open_file():
-    '''This function opens the text file that needs to be checked.'''
-    
-    # CHANGE THIS TO YOUR FILE:
-    path = "abstract.txt"
-
-    with open(path, "r") as manuscript:
-        text = manuscript.readlines()
-    return text
+YOUR_FILE = "abstract.txt"
 
 
-def load_dictionaries():
-    '''This function creates dictionaries of known errors and suggestions of how to fix them'''
-
-    # Chemical elements
-    dict_elements = [" Al ", " Si ", " Cr ", " Ga ", " Ti ", " InP ", " GaAs ", " SiC ", " Cu ", " He ",
-                     " Li ", " Ne ", " Na ", " Cl ", " Ar ", " Au ", " VO2 ", " Sc ", " Fe ", " Nb ", " Ni ", 
-                     " Sr ", " Zr ", " Ag ", " Ta ", " Pt ", " Hg ", " U ", " O2 ", " H2O ", " Sn ", " Sb ",
-                     " SiN ", " SiO2 ", " H ", " N ", " GaN ", " InP ", " InAs ", " SiO$_2$ "]
-
-    # Common abbreviations
-    dict_abbreviations = ["MFP", "TC", "TDTR", "TEM", "AFM", "SEM", "SPP", "SPhP", "XRD", "DOS", "NW", "PnC", "RMS",
-                          "BTU", "1D", "2D", "3D", "HD", "LOC", "JSAP", "PL"]
-
-    # Words that usually have a comma after them
-    dict_comma_after = [
-        "However ",
-        "Therefore ",
-        "Thus ",
-        "Yet ",
-        "Hence ",
-        "Nevertheless ",
-        "But ",
-        "In this work ",
-        "In this article",
-        "In this paper ",
-        "In this case ",
-        "In that case ",
-        "Moreover ",
-        "In addition ",
-        "Consequently ",
-        "So ",
-        "In conclusion ",
-        "In conclusions ",
-        "Particularly ",
-        "Specifically ",
-        "For this reason ",
-        "For these reasons ",
-        "On the other hand ",
-        "On the one hand ",
-        "On one hand ",
-    ]
-
-    # Phrases with very
-    dict_very = {
-        "very precise": "precise, exact, unimpeachable, perfect, flawless",
-        "very basic": "rudimentary, primary, fundamental, simple",
-        "very capable": "efficient, proficient, skillful",
-        "very clean": "spotless, immaculate, stainless",
-        "very clear": "transparent, sheer, translucent",
-        "very competitive": "ambitious, driven, cutthroat",
-        "very confident": "self-assured, self-reliant, secure",
-        "very consistent": "constant, unfailing, uniform, same",
-        "very conventional": "conservative, common, predictable, unoriginal",
-        "very critical": "vital, crucial, essential, indispensable, integral",
-        "very dangerous": "perilous, precarious, unsafe",
-        "very dark": "black, inky, ebony, sooty, lightless",
-        "very deep": "abysmal, bottomless, vast",
-        "very delicate": "subtle, slight, fragile, frail", "very different": "unusual, distinctive, atypical, dissimilar",
-        "very difficult": "complicated, complex, demanding",
-        "very easy": "effortless, uncomplicated, unchallenging, simple",
-        "very fast": "rapid, swift, fleet, blistering",
-        "very few": "meager, scarce, scant, limited, negligible",
-        "very good": "superb, superior, excellent",
-        "very important": "crucial, vital, essential, paramount, imperative",
-        "very impressive": "extraordinary, remarkable",
-        "very interesting": "fascinating, remarkable, riveting, compelling",
-        "very large": "huge, giant",
-        "very long": "extended, extensive, interminable, protracted",
-        "very new": "innovative, fresh, original, cutting-edge",
-        "very obvious": "apparent, evident, plain, visible",
-        "very reasonable": "equitable, judicious, sensible, practical, fair",
-        "very recent": "the latest, current, fresh, up-to-date",
-        "very rough": "coarse, jagged, rugged, craggy, gritty, broken",
-        "very severe": "acute, grave, critical, serious, brutal, relentless",
-        "very significant": "key, notable, substatial, noteworthy, momentous, major, vital",
-        "very similar": "alike, akin, analogous, comparable, equivalent",
-        "very simple": "easy, straightforward, effortless, uncomplicated",
-        "very small": "tiny, miniscule, infinitesimal, microscopic, wee",
-        "very smooth": "flat, glassy, polished, level, even, unblemished",
-        "very specific": "precise, exact, explicit, definite, unambiguous",
-        "very strange": "weird, eerie, bizarre, uncanny, peculiar, odd",
-        "very strict": "stern, austere, severe, rigorous, harsh, rigid",
-        "very substantial": "considerable, significant, extensive, ample",
-        "very unlikely": "improbable, implausible, doubtful, dubious",
-        "very unusual": "abnormal, extraordinary, uncommon, unique",
-        "very visible": "conspicuous, exposed, obvious, prominent",
-        "very weak": "feeble, frail, delicate, debilitated, fragile",
-        "very wide": "vast, expansive, sweeping, boundless",
-    }
-
-    # Words specific to American English
-    dict_american = {
-        "e.g. ": "In American English 'e.g.' should be followed by a comma.",
-        "i.e. ": "In American English 'i.e.' should be followed by a comma.",
-    }
-
-    # Dictionary of all other rules
-    dict_generic = {
+def generic_dictionary(line, index):
+    '''Check in general dictionary of known errors and suggestions of how to fix them'''
+    dictionary = {
 
         # Hype and cliches
 
@@ -363,8 +260,10 @@ def load_dictionaries():
         "This is": "It might be unclear what 'This is' points to if previous phrase was complicated. Rewrite with more specific subject, e.g. 'This result is'.",
         "This leads": "It might be unclear what 'This leads' points to if previous phrase was complicated. Rewrite with more specific subject, e.g. 'This result leads'.",
         "et al ": "Needs period after 'et al', i.e. 'et al.'.",
-        "while": "In scientific papers, 'while' can often be replaced by 'whereas', unless something really happens at the same time.",
+        " while": "Usually, it is better to replace 'while' with 'whereas', unless something is really happening at the same time.",
         ", while": "Constructions like 'A is white, while B is red' can be simplified as 'A is white; B is red.'",
+        "e.g. ": "In American English 'e.g.' should be followed by a comma.",
+        "i.e. ": "In American English 'i.e.' should be followed by a comma.",
 
         # Random rules
 
@@ -395,6 +294,9 @@ def load_dictionaries():
 
         " fig.": "Most journals prefer capitalized references to figures, e.g. 'as shown in Fig. 1'.", 
         " figs.": "Most journals prefer capitalized references to figures, e.g. 'as shown in Figs. 1-2'.", 
+        "[Fig": "Most journals prefer regular brackets for figure references, e.g. (Fig. 1).", 
+        "(see Fig": "You can omit the word 'see' in the figure reference, e.g. (Fig. 1).", 
+        "(see fig": "You can omit the word 'see' in the figure reference, e.g. (Fig. 1).", 
 
         # Shortened units
 
@@ -491,8 +393,8 @@ def load_dictionaries():
         "diminish ": "If by 'diminish' you mean that something is decreasing, consider replacing with 'decrease'.",
         "diminishing ": "If by 'diminishing' you mean that something is decreasing, consider replacing with 'decreasing'.",
         "diminished ": "If by 'diminished' you mean that something is decreasing, consider replacing with 'decreased'.",
-        "So,": "Beginning with 'So' might seem so informal. Consider replacing with 'Thus,'.",
-        "So ": "Beginning with 'So' might seem so informal. Consider replacing with 'Thus'.",
+        "So,": "Beginning with 'So' might seem so informal. So, consider replacing it with 'Thus,'.",
+        "So ": "Beginning with 'So' might seem so informal. So, consider replacing it with 'Thus'.",
         "By the way": "'By the way' might seem too informal.",
 
         # Latin expressions
@@ -515,13 +417,103 @@ def load_dictionaries():
         "a.k.a.": "Consider replacing 'a.k.a.' with 'also known as' for clarity.",
         " aka ": "Consider replacing 'aka' with 'also known as' for clarity.",
     }
-    return dict_comma_after, dict_generic, dict_american, dict_elements, dict_abbreviations, dict_very
+    for word in dictionary:
+        if word in line:
+            output(str("Line " + str(index + 1) + ". " + dictionary[word] + "\n"))
+
+
+def comma_after(line, index):
+    '''Check for words that usually have comma after them.'''
+    dictionary = [
+        "However ",
+        "Therefore ",
+        "Thus ",
+        "Yet ",
+        "Hence ",
+        "Nevertheless ",
+        "But ",
+        "In this work ",
+        "In this article",
+        "In this paper ",
+        "In this case ",
+        "In that case ",
+        "Moreover ",
+        "In addition ",
+        "Consequently ",
+        "So ",
+        "In conclusion ",
+        "In conclusions ",
+        "Particularly ",
+        "Specifically ",
+        "For this reason ",
+        "For these reasons ",
+        "On the other hand ",
+        "On the one hand ",
+        "On one hand ",
+        ]
+    for word in dictionary:
+        if word in line:
+            output("Line " + str(index + 1) + ". Might need a comma after " + word + "\n")
+
+
+def phrases_with_very(line, index):
+    dictionary = {
+        "very precise": "precise, exact, unimpeachable, perfect, flawless",
+        "very basic": "rudimentary, primary, fundamental, simple",
+        "very capable": "efficient, proficient, skillful",
+        "very clean": "spotless, immaculate, stainless",
+        "very clear": "transparent, sheer, translucent",
+        "very competitive": "ambitious, driven, cutthroat",
+        "very confident": "self-assured, self-reliant, secure",
+        "very consistent": "constant, unfailing, uniform, same",
+        "very conventional": "conservative, common, predictable, unoriginal",
+        "very critical": "vital, crucial, essential, indispensable, integral",
+        "very dangerous": "perilous, precarious, unsafe",
+        "very dark": "black, inky, ebony, sooty, lightless",
+        "very deep": "abysmal, bottomless, vast",
+        "very delicate": "subtle, slight, fragile, frail", "very different": "unusual, distinctive, atypical, dissimilar",
+        "very difficult": "complicated, complex, demanding",
+        "very easy": "effortless, uncomplicated, unchallenging, simple",
+        "very fast": "rapid, swift, fleet, blistering",
+        "very few": "meager, scarce, scant, limited, negligible",
+        "very good": "superb, superior, excellent",
+        "very important": "crucial, vital, essential, paramount, imperative",
+        "very impressive": "extraordinary, remarkable",
+        "very interesting": "fascinating, remarkable, riveting, compelling",
+        "very large": "huge, giant",
+        "very long": "extended, extensive, interminable, protracted",
+        "very new": "innovative, fresh, original, cutting-edge",
+        "very obvious": "apparent, evident, plain, visible",
+        "very reasonable": "equitable, judicious, sensible, practical, fair",
+        "very recent": "the latest, current, fresh, up-to-date",
+        "very rough": "coarse, jagged, rugged, craggy, gritty, broken",
+        "very severe": "acute, grave, critical, serious, brutal, relentless",
+        "very significant": "key, notable, substatial, noteworthy, momentous, major, vital",
+        "very similar": "alike, akin, analogous, comparable, equivalent",
+        "very simple": "easy, straightforward, effortless, uncomplicated",
+        "very small": "tiny, miniscule, infinitesimal, microscopic, wee",
+        "very smooth": "flat, glassy, polished, level, even, unblemished",
+        "very specific": "precise, exact, explicit, definite, unambiguous",
+        "very strange": "weird, eerie, bizarre, uncanny, peculiar, odd",
+        "very strict": "stern, austere, severe, rigorous, harsh, rigid",
+        "very substantial": "considerable, significant, extensive, ample",
+        "very unlikely": "improbable, implausible, doubtful, dubious",
+        "very unusual": "abnormal, extraordinary, uncommon, unique",
+        "very visible": "conspicuous, exposed, obvious, prominent",
+        "very weak": "feeble, frail, delicate, debilitated, fragile",
+        "very wide": "vast, expansive, sweeping, boundless",
+        }
+    for word in dictionary:
+        if word in line:
+            output(str(
+                "Line " + str(index + 1) + ". Consider replacing '" + word + "' with words like " + dict_very[
+                    word] + " etc.\n"))
 
 
 def start_with_numbers(line, index):
-    '''Check is the sentence starts with a number'''
+    '''Check if the sentence starts with a number'''
     if line[0].isdigit():
-        output(str("Line " + str(index + 1) + ". Avoid starting sentences with numbers. Rewrite spelling out the number, e.g. 'Five samples...'\n"))
+        output("Line " + str(index + 1) + ". Avoid starting sentences with numbers. Rewrite spelling out the number, e.g. 'Five samples...'\n")
 
 
 def figure_references(line, index):
@@ -529,7 +521,7 @@ def figure_references(line, index):
     if "Fig." in line[0:4] or "Figs." in line[0:4]:
         output(str("Line " + str(index + 1) + ". The word Fig. in the beginning of a sentence can usually be spelled out, e.g. 'Figure 1 shows...'.\n"))
     if "Figure " in line and "Figure " not in line[0:4]:
-        output(str("Line " + str(index + 1) + ". Most journals prefer shortening the word Figure as Fig. if it is not opening the sentence.\n"))
+        output("Line " + str(index + 1) + ". Most journals prefer shortening the word Figure as Fig. if it is not opening the sentence.\n")
 
 
 def numbers_next_to_units(line, index):
@@ -543,8 +535,48 @@ def numbers_next_to_units(line, index):
             output("Line " + str(index + 1) + ". Per cent signs '%' should follow numbers without a space, i.e. " + str(number) + "%.\n")
 
 
+def elements(text):
+    '''Check how many times chemical elements occur in the text'''
+    elements = [" Al ", " Si ", " Cr ", " Ga ", " Ti ", " InP ", " GaAs ", " SiC ", " Cu ", " He ",
+                     " Li ", " Ne ", " Na ", " Cl ", " Ar ", " Au ", " VO2 ", " Sc ", " Fe ", " Nb ", " Ni ", 
+                     " Sr ", " Zr ", " Ag ", " Ta ", " Pt ", " Hg ", " U ", " O2 ", " H2O ", " Sn ", " Sb ",
+                     " SiN ", " SiO2 ", " H ", " N ", " GaN ", " InP ", " InAs ", " SiO$_2$ "]
+
+    for element in elements:
+        occurance = 0
+        for index, line in enumerate(text):
+            occurance += line.count(element)
+        if occurance == 1:
+            output("The element" + str(element) + "occurs only once. Consider using its full name instead of the symbol." + "\n")
+        if occurance > 1 and occurance < 4:
+            output("The element" + str(element) + "occurs only " + str(occurance) + " times. Consider using its full name instead of the symbol." + "\n")
+
+
+def abbreviations(text):
+    '''Check how many times common abbreviations occur in the text'''
+    abbreviations = ["MFP", "TC", "TDTR", "TEM", "AFM", "SEM", "SPP", "SPhP", "XRD", "DOS", "NW", "PnC", "RMS",
+                          "BTU", "1D", "2D", "3D", "HD", "LOC", "JSAP", "PL"]
+    for abbreviation in abbreviations:
+        occurance = 0
+        for index, line in enumerate(text):
+            occurance += line.count(abbreviation)
+        if occurance == 1:
+            output("The abbreviation " + str(abbreviation) + " occurs only once. Since abbreviations are hard to read, consider just spelling it out." + "\n")
+        if occurance > 1 and occurance < 5:
+            output("The abbreviation " + str(abbreviation) + " occurs only " + str(occurance) + " times. Because abbreviations are hard to read, consider just spelling it out." + "\n")
+
+
+def in_conclusions(line, index):
+    '''Check if we can skip In conclusions because there is already a title Conclusions'''
+    if ("In conclusion") in line:
+        if (("Conclusions" or "CONCLUSIONS") in text[index - 1]) or (
+                ("Conclusions" or "CONCLUSIONS") in text[index - 2]):
+            output(str("Line " + str(
+                index + 1) + ". This section seems to be already titled 'Conclusions', thus you may omit 'In conclusion' at the beginning.\n"))
+
+
 def output(message):
-    '''This function prints messages in the terminal and in the 'corrections.txt' file'''
+    '''Print messages in the terminal and in the 'corrections.txt' file'''
     print(message)
     with open("corrections.txt", "a+") as f:
         f.writelines(message)
@@ -554,68 +586,19 @@ def main():
     '''This is the main function that runs the program'''
     with open("corrections.txt", "w+") as f:  # This is just to clear or create the file.
         pass
-    text = open_file()
-    dict_comma_after, dict_generic, dict_american, dict_elements, dict_abbreviations, dict_very = load_dictionaries()
+    with open(YOUR_FILE, "r") as manuscript:
+        text = manuscript.readlines()
 
-    # For each line of text, we check if some patterns from dictionaries show up.
     for index, line in enumerate(text):
-
-        # Commas after some words
-        for word in dict_comma_after:
-            if word in line:
-                output(str("Line " + str(index + 1) + ". Might need a comma after " + word + "\n"))
-
-        # Phrases with 'very'
-        for word in dict_very:
-            if word in line:
-                output(str(
-                    "Line " + str(index + 1) + ". Consider replacing '" + word + "' with words like " + dict_very[
-                        word] + " etc.\n"))
-
-        # Main dictionary
-        for word in dict_generic:
-            if word in line:
-                output(str("Line " + str(index + 1) + ". " + dict_generic[word] + "\n"))
-
-        # American style
-        for word in dict_american:
-            if word in line:
-                output(str("Line " + str(index + 1) + ". " + dict_american[word] + "\n"))
-
-        # Check for 'In conclusions'
-        if ("In conclusion") in line:
-            if (("Conclusions" or "CONCLUSIONS") in text[index - 1]) or (
-                    ("Conclusions" or "CONCLUSIONS") in text[index - 2]):
-                output(str("Line " + str(
-                    index + 1) + ". This section seems to be already titled 'Conclusions', thus you may omit 'In conclusion' at the beginning.\n"))
-
+        generic_dictionary(line, index)
+        phrases_with_very(line, index)
+        in_conclusions(line, index)
+        comma_after(line, index)
         figure_references(line, index)   
         start_with_numbers(line, index)   
         numbers_next_to_units(line, index)
-
-    # Checking how many times chemical elements occur in the text
-    for element in dict_elements:
-        occurance = 0
-        for index, line in enumerate(text):
-            occurance += line.count(element)
-        if occurance == 1:
-            output(str("The element" + str(
-                element) + "occurs in the text only once. Consider using its full name instead of the symbol." + "\n"))
-        if occurance > 1 and occurance < 6:
-            output(str("The element" + str(element) + "occurs in the text only " + str(
-                occurance) + " times. Consider using its full name instead of the symbol." + "\n"))
-
-    # Checking how many times various abbreviations occur in the text
-    for abbreviation in dict_abbreviations:
-        occurance = 0
-        for index, line in enumerate(text):
-            occurance += line.count(abbreviation)
-        if occurance == 1:
-            output(str("The abbreviation " + str(
-                abbreviation) + " occurs in the text only once. Since abbreviations are hard to read, consider just spelling it out." + "\n"))
-        if occurance > 1 and occurance < 6:
-            output(str("The abbreviation " + str(abbreviation) + " occurs in the text only " + str(
-                occurance) + " times. Since abbreviations are hard to read, consider just spelling it out." + "\n"))
+    elements(text)
+    abbreviations(text)
 
 
 if __name__ == "__main__":
