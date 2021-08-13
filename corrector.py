@@ -1,4 +1,4 @@
-YOUR_FILE = 'Manuscript.tex'
+YOUR_FILE = 'Manuscript.txt'
 
 
 def bad_patterns(line, index):
@@ -21,8 +21,8 @@ def bad_patterns(line, index):
         ' never ': 'The word "never" could be considered a hype or exaggeration in instances like "never shown before", thus it is better to avoid such statements. Consider alternatives: "rarely", "seldom", "remains unclear", "remains challenging".',
         'certainly': 'Consider if this sentence needs the word "certainly". According to The Elements of Style: "Used indiscriminately by some speakers, much as others use very, to intensify any and every statement. A mannerism of this kind, bad in speech, is even worse in writing".',
         ' fact ': 'Check if the word "fact" is actually applied to a fact. According to The Elements of Style: "Use this word only of matters of a kind capable of direct verification, not of matters of judgment."',
-        'highly': 'The word "highly" rarely highly contributes to reader"s understanding. Consider removing it or if important quantifying it.',
-        'greatly': 'The word "greatly" rarely greatly contributes to reader"s understanding. Consider removing it or if important quantifying it.',
+        'highly': 'The word "highly" rarely highly contributes to better understanding. Consider removing it or if important quantifying it.',
+        'greatly': 'The word "greatly" rarely contributes to better understanding. Consider removing it or if important quantifying it.',
         'literally': 'The word "literally" is often misused to support an exaggeration, which is hardly appropriate for a scientific paper. Consider if its use is appropriate.',
         'literal ': 'The word "literal" is often misused to support an exaggeration, which is hardly appropriate for a scientific paper. Consider if use is appropriate.',
         'One of the most': 'Consider rewriting it without "One of the most". According to the Elements of Style: "There is nothing wrong in this; it is simply threadbare and forcible-feeble."',
@@ -61,6 +61,8 @@ def bad_patterns(line, index):
         'Therefore': 'Consider replacing "Therefore" with shorter "Thus" or "Hence".',
         'therefore': 'Consider replacing "therefore" with shorter "thus" or "hence".',
         'Nevertheless': 'Consider replacing "Nevertheless" with shorter "Yet" or "But".',
+        'However': 'You may consider replacing "However" with shorter "Yet" or "But".',
+        'In addition': 'You may consider replacing "In addition" with shorter "Also" or "But".',
         'For this reason': 'Consider replacing "For this reason" with shorter "Thus" or "Hence".',
         'For these reasons': 'Consider replacing "For these reasons" with shorter "Thus" or "Hence".',
         'similarly': 'Consider replacing "similarly" with "alike", e.g. "A and B look alike".',
@@ -89,16 +91,16 @@ def bad_patterns(line, index):
         'as to whether': 'Consider shortening "as to whether" as just "whether".',
         'In order to': 'Consider shortening "In order to" as just "To".',
         'in order to': 'Consider shortening "in order to" as just "to".',
-        'utilize': 'Consider replacing "utilize" with simple "use".',
-        'utilise': 'Consider replacing "utilise" with simple "use".',
+        'utilize': 'Replace "utilize" with simple "use".',
+        'utilise': 'Replace "utilise" with simple "use".',
         'conception': 'Consider replacing "conception" with "concept".',
         'the ways in which': 'Consider replacing "the ways in which" with simple "how".',
-        'on the other hand': 'In some cases, might be appropriate to replace "on the other hand" with shorter "however".',
-        'On the other hand': 'In some cases, might be appropriate to replace "On the other hand" with shorter "However".',
+        'on the other hand': 'In some cases, might be appropriate to replace "on the other hand" with shorter "however" or "but".',
+        'On the other hand': 'In some cases, might be appropriate to replace "On the other hand" with shorter "However" or "But".',
         'for the purpose of': 'Consider replacing "for the purpose of" with shorter "for".',
         'For the purpose of': 'Consider replacing "For the purpose of" with shorter "For".',
-        'For the reason that': 'Consider replacing "For the reason that" with shorter "Because".',
-        'for the reason that': 'Consider replacing "for the reason that" with shorter "because".',
+        'For the reason that': 'Consider replacing "For the reason that" with shorter "Because" or "As".',
+        'for the reason that': 'Consider replacing "for the reason that" with shorter "because" or "as".',
         'not only': 'If you use a construction "not only...but also", there might be a better way to phrase it.',
         'in light of the fact that': 'Consider replacing "in light of the fact that" with simple "because".',
         'In light of the fact that': 'Consider replacing "In light of the fact that" with simple "Because".',
@@ -188,6 +190,14 @@ def bad_patterns(line, index):
         'have a preference for': 'Consider replacing "have a preference for" with shorter "prefer".',
         'has a preference for': 'Consider replacing "has a preference for" with shorter "prefers".',
         'had a preference for': 'Consider replacing "had a preference for" with shorter "preferred".',
+        'methodology': 'Consider replacing "methodology" with shorter "method".',
+        'subsequent': 'Consider replacing "subsequent" with shorter "later".',
+        'modify': 'Consider replacing "modify" with simpler "change".',
+        'modified': 'Consider replacing "modified" with simpler "changed".',
+        'modifies': 'Consider replacing "modifies" with simpler "changes".',
+        'modifications': 'Consider replacing "modifications" with simpler "changes".',
+        'modification ': 'Consider replacing "modification" with simpler "change".',
+        'indication': 'Consider replacing word "indication" with simpler "sign".',
 
         # Negatives
 
@@ -245,8 +255,8 @@ def bad_patterns(line, index):
 
         # Overused words
 
-        'clearly': 'The word "clearly" is clearly overused in science and often points to things that actually aren"t so clear. Consider removing it.',
-        'clear ': 'The word "clear" is overused in science and often points to things that actually aren"t so clear. Consider if it is necessary here.',
+        'clearly': 'The word "clearly" is clearly overused in science and often points to things that actually are not so clear. Consider removing it.',
+        'clear ': 'The word "clear" is overused in science and often points to things that actually are not so clear. Consider if it is necessary here.',
         'obviously': 'The word "obviously" is often misused in science and might describe something that is not so obvious. Consider removing it.',
         'Obviously': 'The word "Obviously" is often misused in science and might describe something that is not so obvious. Obviously, consider removing it.',
         'Basically': 'The word "Basically" is basically not very appropriate for academic writing. Basically, consider removing it.',
@@ -291,7 +301,7 @@ def bad_patterns(line, index):
         'Mr.': 'Full stop is not required after Mr, i.e. just "Mr Smith" is fine.',
         'Ms.': 'Full stop is not required after Ms, i.e. just "Ms Smith" is fine.',
         'Co.': 'Full stop is not required after Co, i.e. just "and Co" is fine.',
-        ' --- ': 'Usually, m-dash does not have spaces around it. e.g. "Photons---quanta of light---have no mass."',
+        ' --- ': 'Usually, m-dash does not have spaces around it. e.g. "Photons---quanta of light---have no mass.", but it is a matter of style.',
         ' allow': 'Check is the verb "allow" here is related to some permissions. Otherwise, if you mean "make it possible", use the verb "enable".',
 
         # Increases as temperature is increased
@@ -616,8 +626,8 @@ def main():
             phrases_with_very(line, index)
             in_conclusions(line, index, text)
             comma_after(line, index)
-            figure_references(line, index)   
-            start_with_numbers(line, index)   
+            figure_references(line, index)
+            start_with_numbers(line, index)
             numbers_next_to_units(line, index)
         elements(text)
         abbreviations(text)
