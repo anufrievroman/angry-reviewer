@@ -129,7 +129,7 @@ def rules_page():
                 <li> <i>Avoid rare words and latinisms.</i> Non credo all readers know the meaning.</li>
                 <li> <i>Keep abbreviations to minimum.</i> Abbreviations are hard to read, consider just spelling it out.</li>
                 </ul>
-                <p>Beside these and many smaller rules, Angry Reviewer checks for typical typographic mistakes like spaces between a number and its units, references to Figures and Supplementary materials, chemical elements, abbreviations and other details. Full list of rules can be found the the source code in the <a href="https://github.com/anufrievroman/Academic-Style-Corrector">github repository</a>.</p>
+                <p>Beside these and many smaller rules, Angry Reviewer checks for typical typographic mistakes like spaces between a number and its units, references to Figures and Supplementary materials, chemical elements, abbreviations and other details. Full list of rules can be found the the source code in the <a href="https://github.com/anufrievroman/Angry-Reviewer">github repository</a>.</p>
                 <h2>Literature</h2>
                 <p>To learn more about the rules used by Angry Reviewer, see the literature below.
                 <h3>Books</h3>
@@ -186,7 +186,7 @@ def about_page():
                 <p>This website does not save or store your text, as you can verify in the source code. If you still worry about privacy of your super secret project, you can download the python code of this alghorithm with the link below, verify it, and run it locally on your computer.</p>
                 <h2>Contacts</h2>
                 <p>For suggestions and issues regarding the alghorithm, feel free to open an issue on github. If you wish to discuss this website or some of the rules, you can find current contacts of the author with the link below.
-                <p><a href="https://github.com/anufrievroman/Academic-Style-Corrector" class="buttons">Soucre code</a> <a href="https://anufrievroman.com" class="buttons">Author</a> <a href="https://buymeacoffee.com/angryprofessor" class="buttons">Buy me a coffee</a></p>
+                <p><a href="https://github.com/anufrievroman/Angry-Reviewer" class="buttons">Soucre code</a> <a href="https://anufrievroman.com" class="buttons">Author</a> <a href="https://buymeacoffee.com/angryprofessor" class="buttons">Buy me a coffee</a></p>
                 <br>
                 <br>
                 </div>
