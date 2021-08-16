@@ -1,4 +1,4 @@
-YOUR_FILE = 'Example.txt'
+YOUR_FILE = 'example.txt'
 
 
 def bad_patterns(line, index):
