@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  background-color: #ffffff;
+}
+* {box-sizing: border-box;}
+
+h1 {
+  color: #006AE5;
+  margin: auto;
+  font-size: 140%;
+  font-weight: bold;
+  font-family: 'Jost', sans-serif;
+}
+
+h2 {
+  color: #1a1e2a;
+  margin: auto;
+  font-size: 150%;
+  font-weight: normal;
+}
+
+h3 {
+  font-size: 120%;
+  font-weight: normal;
+}
+
+p {
+  font-size: 100%;
+}
+
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover {text-decoration: none;}
+a:active {text-decoration: none;}
+
+.nicetext a:link{color: #006AE5;}
+.nicetext a:visited{color: #006AE5;}
+.nicetext a:hover{color: #006AE5;}
+.nicetext a:active{color: #006AE5;}
+
+.content {
+  max-width: 920px;
+  margin: auto;
+}
+
+.buttons {
+  float: left;
+  display: block;
+  border: none;
+  background-color: #006AE5;
+  color: #ffffff;
+  padding: 6px 18px;
+  margin-right: 7px;
+  font-size: 100%;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+  font-family: 'Jost', sans-serif;
+}
+
+
+ul {
+  margin-left: -15px;
+}
+
+input[type=text], select, textarea {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 100%;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #006AE5;
+  color: white;
+  font-size: 100%;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #5294e2;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+/* Style the header with a grey background and some padding */
+.header {
+  overflow: hidden;
+  background-color: #ffffff;
+  padding: 20px 10px;
+}
+
+/* Style the header links */
+.header a {
+  float: left;
+  color: #006AE5;
+  text-align: center;
+  padding: 12px 18px;
+  margin-top: 10px;
+  text-decoration: none;
+  font-size: 100%;
+  line-height: 14px;
+  border-radius: 4px;
+  font-family: 'Jost', sans-serif;
+}
+
+.header img {
+  float: left;
+  padding-bottom: 13px;
+}
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.header a.logo {
+  font-size: 30px;
+  font-weight: normal;
+  color: #006AE5;
+  padding: 12px 12px;
+}
+
+/* Change the background color on mouse-over */
+.header a:hover {
+  color: #006AE5;
+}
+
+/* Style the active/current link*/
+.header a.active {
+  background-color: #006AE5;
+  color: white;
+}
+
+/* Float the link section to the right */
+.header-right {
+  float: right;
+  padding: 0px 18px;
+}
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 900px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}

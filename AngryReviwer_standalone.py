@@ -1,4 +1,4 @@
-YOUR_FILE = 'Manuscript.txt'
+YOUR_FILE = 'Example.txt'
 
 
 def bad_patterns(line, index):
@@ -536,9 +536,7 @@ def phrases_with_very(line, index):
         }
     for word in dictionary:
         if word in line:
-            output(str(
-                'Line ' + str(index + 1) + '. Consider replacing "' + word + '" with words like ' + dict_very[
-                    word] + ' etc.'))
+            output(str( 'Line ' + str(index + 1) + '. Consider replacing "' + word + '" with words like ' + dict_very[ word] + ' etc.'))
 
 
 def start_with_numbers(line, index):
