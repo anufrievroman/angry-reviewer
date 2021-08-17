@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-size: 18px;
   background-color: #ffffff;
 }
 * {box-sizing: border-box;}
@@ -10,7 +11,7 @@ body {
 h1 {
   color: #006AE5;
   margin: auto;
-  font-size: 140%;
+  font-size: 150%;
   font-weight: bold;
   font-family: 'Jost', sans-serif;
 }
@@ -18,7 +19,7 @@ h1 {
 h2 {
   color: #1a1e2a;
   margin: auto;
-  font-size: 150%;
+  font-size: 140%;
   font-weight: normal;
 }
 
@@ -46,33 +47,17 @@ a:active {text-decoration: none;}
   margin: auto;
 }
 
-.buttons {
-  float: left;
-  display: block;
-  border: none;
-  background-color: #006AE5;
-  color: #ffffff;
-  padding: 6px 18px;
-  margin-right: 7px;
-  font-size: 100%;
-  cursor: pointer;
-  text-align: center;
-  border-radius: 5px;
-  font-family: 'Jost', sans-serif;
-}
-
-
 ul {
   margin-left: -15px;
 }
 
 input[type=text], select, textarea {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   font-size: 100%;
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
   box-sizing: border-box;
   margin-top: 6px;
   margin-bottom: 16px;
@@ -82,11 +67,12 @@ input[type=text], select, textarea {
 input[type=submit] {
   background-color: #006AE5;
   color: white;
-  font-size: 100%;
-  padding: 8px 18px;
+  font-size: 120%;
+  padding: 6px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  font-family: 'Jost', sans-serif;
 }
 
 input[type=submit]:hover {
@@ -96,7 +82,7 @@ input[type=submit]:hover {
 .container {
   border-radius: 5px;
   background-color: #f2f2f2;
-  padding: 20px;
+  padding: 7px 20px;
 }
 
 /* Style the header with a grey background and some padding */
@@ -114,20 +100,20 @@ input[type=submit]:hover {
   padding: 12px 18px;
   margin-top: 10px;
   text-decoration: none;
-  font-size: 100%;
+  font-size: 120%;
   line-height: 14px;
-  border-radius: 4px;
+  border-radius: 5px;
   font-family: 'Jost', sans-serif;
 }
 
 .header img {
   float: left;
   padding-bottom: 13px;
+  width: 75px;
 }
 
 /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
 .header a.logo {
-  font-size: 30px;
   font-weight: normal;
   color: #006AE5;
   padding: 12px 12px;
@@ -151,7 +137,7 @@ input[type=submit]:hover {
 }
 
 /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 700px) {
   .header a {
     float: none;
     display: block;
@@ -159,5 +145,34 @@ input[type=submit]:hover {
   }
   .header-right {
     float: none;
+    padding-top: 15px;
+  }
+  .logo {
+    margin: 12px 17px;
   }
 }
+
+.buttons a {
+  float: left;
+  border: none;
+  background-color: #006AE5;
+  color: #ffffff;
+  padding: 6px 18px;
+  margin-right: 10px;
+  font-size: 120%;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+  font-family: 'Jost', sans-serif;
+}
+
+@media screen and (max-width: 700px) {
+  .buttons a {
+    float: none;
+    display: block;
+    text-align: left;
+    margin-top: 7px;
+  }
+}
+
+

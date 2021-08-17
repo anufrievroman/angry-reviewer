@@ -193,6 +193,10 @@ def bad_patterns(line, index):
         'modifications': 'Consider replacing "modifications" with simpler "changes".',
         'modification ': 'Consider replacing "modification" with simpler "change".',
         'indication': 'Consider replacing word "indication" with simpler "sign".',
+        'although it is': 'Consider replacing "although it is" with shorter "albeit".',
+        'although it was': 'Consider replacing "although it was" with shorter "albeit".',
+        'although it becomes': 'Consider replacing "although it becomes" with shorter "albeit".',
+        'two times': 'You may replace "two time" with shorter "twice".',
 
         # Negatives
 
@@ -272,8 +276,8 @@ def bad_patterns(line, index):
         'This is': 'It might be unclear what "This is" points to if previous phrase was complicated. Rewrite with more specific subject, e.g. "This result is".',
         'This leads': 'It might be unclear what "This leads" points to if previous phrase was complicated. Rewrite with more specific subject, e.g. "This result leads".',
         'et al ': 'Needs period after "et al", i.e. "et al.".',
-        ' while': 'Usually, it is better to replace "while" with "whereas", unless something is really happening at the same time.',
-        ', while': 'Constructions like "A is white, while B is red" can be simplified as "A is white; B is red."',
+        ' while': 'It might be better to replace "while" with "whereas", unless it really happens simultaneously.',
+        ', while': 'Simple constructions like "A is white, while B is red" can be simplified as "A is white; B is red."',
         'e.g. ': 'In American English "e.g." should be followed by a comma.',
         'i.e. ': 'In American English "i.e." should be followed by a comma.',
 
@@ -300,6 +304,7 @@ def bad_patterns(line, index):
         ' the the ': 'Seems like "the" is repeated twice,',
         ' a a ': 'Seems like "a" is repeated twice,',
         ' an an ': 'Seems like "a" is repeated twice,',
+        'Eq. (': 'Brackets around the equation number are unnecessary, e.g. Eq. 1.',
         'Dr.': 'Full stop is not required after Dr, i.e. just "Dr Smith" is fine.',
         'Mr.': 'Full stop is not required after Mr, i.e. just "Mr Smith" is fine.',
         'Ms.': 'Full stop is not required after Ms, i.e. just "Ms Smith" is fine.',
@@ -307,6 +312,35 @@ def bad_patterns(line, index):
         ' --- ': 'Usually, m-dash does not have spaces around it. e.g. "Photons---quanta of light---have no mass.", but it is a matter of style.',
         ' allow': 'Check if the verb "allow" is related to some permissions. If you mean "make it possible", use the verb "enable".',
         ' insure': 'Check if "insure" is not mistaken for "ensure". If you mean "make sure" use "ensure".',
+        'propagate as long': 'Verify that you do not mean "propagate as far" instead of "propagate as long".',
+        'propagates as long': 'Verify that you do not mean "propagates as far" instead of "propagates as long".',
+        'propagated as long': 'Verify that you do not mean "propagated as far" instead of "propagated as long".',
+        'propagating as long': 'Verify that you do not mean "propagating as far" instead of "propagating as long".',
+        'travel as long': 'Verify that you do not mean "travel as far" instead of "travel as long".',
+        'travels as long': 'Verify that you do not mean "travels as far" instead of "travels as long".',
+        'traveled as long': 'Verify that you do not mean "traveled as far" instead of "traveled as long".',
+        'traveling as long': 'Verify that you do not mean "traveling as far" instead of "traveling as long".',
+        '$\hslash$ is the reduced Planck': 'It is safe to assume that all physicists know the meaninig of h-bar.',
+        '$\hslash$ is the Planck': 'It is safe to assume that all physicists know the meaninig of h-bar.',
+        '$\hslash$ is Planck': 'It is safe to assume that all physicists know the meaninig of h-bar.',
+        '$\hbar$ is the reduced Planck': 'It is safe to assume that all physicists know the meaninig of h-bar.',
+        '$\hbar$ is the Planck': 'It is safe to assume that all physicists know the meaninig of h-bar.',
+        '$\hbar$ is Planck': 'It is safe to assume that all physicists know the meaninig of h-bar.',
+
+        # Numbers next to words
+
+         '2-layer': 'Spell out simple numbers like "two-layer".',
+         '3-layer': 'Spell out simple numbers like "three-layer".',
+         '4-layer': 'Spell out simple numbers like "four-layer".',
+         '2-beam': 'Spell out simple numbers like "two-beam".',
+         '3-beam': 'Spell out simple numbers like "three-beam".',
+         '4-beam': 'Spell out simple numbers like "four-beam".',
+         '2-fold': 'Spell out simple numbers like "two-fold".',
+         '3-fold': 'Spell out simple numbers like "three-fold".',
+         '4-fold': 'Spell out simple numbers like "four-fold".',
+         '5-fold': 'Spell out simple numbers like "five-fold".',
+         '2-body': 'Spell out simple numbers like "two-body".',
+         '3-body': 'Spell out simple numbers like "three-body".',
 
         # Increases as temperature is increased
 
@@ -323,9 +357,13 @@ def bad_patterns(line, index):
         '[Fig': 'Most journals prefer regular brackets for figure references, e.g. (Fig. 1).',
         '(see Fig': 'You can omit the word "see" in the figure reference, e.g. (Fig. 1).',
         '(see fig': 'You can omit the word "see" in the figure reference, e.g. (Fig. 1).',
-        '(see SI': 'You can omit the word "see" in the figure reference, e.g. (Supplementry Figure S1).',
+        '(as shown in Fig': 'You can omit the words "as shown in" in the figure reference, e.g. (Fig. 1).',
+        '(shown in Fig': 'You can omit the words "shown in" in the figure reference, e.g. (Fig. 1).',
+        '(see SI': 'You can omit the word "see" in the SI reference, e.g. (Supplementry Information S1).',
         '(see Supp': 'You can omit the word "see" in the figure reference, e.g. (Supplementry Figure S1).',
         '(see SM': 'You can omit the word "see" in the figure reference, e.g. (Supplementry Figure S1).',
+        '(see Methods': 'You can omit the word "see" in the Methods reference and just write (Methods).',
+        '(see Appendix': 'You can omit the word "see" in the Appendix reference and just write (Appendix 1).',
 
         # Shortened units
 
@@ -378,13 +416,10 @@ def bad_patterns(line, index):
         'was investigated': 'Consider rewriting the sentence with "was investigated" in active voice, e.g. "researchers investigated the effect".',
         'were studied': 'Consider rewriting the sentence with "were studied" in active voice, e.g. "researchers studied the effect".',
         'was studied': 'Consider rewriting the sentence with "was studied" in active voice, e.g. "researchers studied the effect".',
-        'has been attracting a great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
-        'has attracted a great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
-        'have attracted a great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
-        'has attracted great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
-        'have attracted great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
-        'has attracted attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
-        'have attracted attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
+        'been attracting a great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
+        'attracted a great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
+        'attracted great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
+        'attracted attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
 
         # Inappropriate language
 
@@ -395,12 +430,12 @@ def bad_patterns(line, index):
         ' less ': 'Verify that "less" is not misused for "fewer" (e.g. "less time", but "fewer samples") or cannot be replace with a more precise word like "thinner", "shorter", "weaker" etc.',
         ' very ': 'Consider if the word "very" is very very necessary. If emphasis is necessary, use words strong in themselves or quantify the statement.',
         'viewpoint': 'Consider replacing with "point of view".',
-        "don't": 'Most academic journals prefer "do not" instead of "don"t".',
-        "isn't": 'Most academic journals prefer "is not" instead of "isn"t".',
-        "wasn't": 'Most academic journals prefer "was not" instead of "wasn"t".',
-        "doesn't": 'Most academic journals prefer "does not" instead of "doesn"t".',
-        "wouldn't": 'Most academic journals prefer "would not" instead of "wouldn"t".',
-        "shouldn't": 'Most academic journals prefer "should not" instead of "shouldn"t".',
+        "don't": "Most academic journals prefer do not instead of don't.",
+        "isn't": "Most academic journals prefer is not instead of isn't.",
+        "wasn't": "Most academic journals prefer was not instead of wasn't.",
+        "doesn't": "Most academic journals prefer does not instead of doesn't.",
+        "wouldn't": "Most academic journals prefer would not instead of wouldn't.",
+        "shouldn't": "Most academic journals prefer should not instead of shouldn't.",
         'it is': 'Avoid constructions with "it is", since they obscure the main subject and action of a sentence.',
         'there is': 'Avoid constructions with "there is", since they obscure the main subject and action of a sentence.',
         'there are': 'Avoid constructions with "there are", since they obscure the main subject and action of a sentence.',
@@ -459,10 +494,12 @@ def bad_patterns(line, index):
         ' p.a. ': 'Consider replacing "p.a." with "per year" for clarity.',
 
         # Latex
-        '$\mu$m': 'You may replace latex expression "$\mu$m" with "{\\textmu}m" for better looking letter mu.',
-        '$\mu$s': 'You may replace latex expression "$\mu$m" with "{\\textmu}s" for better looking letter mu.',
-        '$\mu$g': 'You may replace latex expression "$\mu$m" with "{\\textmu}g" for better looking letter mu.',
-        '$\mu$TDTR': 'You may replace latex expression "$\mu$TDTR" with "{\`textmu}TDTR" for better looking letter mu.',
+        '$\mu$m': 'You may replace LaTeX expression "$\mu$m" with "{\\textmu}m" for better looking letter mu.',
+        '$\mu$s': 'You may replace LaTeX expression "$\mu$m" with "{\\textmu}s" for better looking letter mu.',
+        '$\mu$g': 'You may replace LaTeX expression "$\mu$m" with "{\\textmu}g" for better looking letter mu.',
+        '$\mu$TDTR': 'You may replace LaTeX expression "$\mu$TDTR" with "{\`textmu}TDTR" for better looking letter mu.',
+        '\hslash': 'If by "\hslash" you mean the reduced Plack constant, use "\hbar".',
+        '+/-': 'If you are in LaTeX, use "\pm" instead of "+/-". Otherwise, find proper mlus-minux symbol.',
     }
     mistakes = ''
     for word in dictionary:
@@ -577,9 +614,9 @@ def figure_references(line, index):
     mistakes = ''
     if len(line) > 5:
         if 'Fig.' in line[0:4] or 'Figs.' in line[0:4]:
-            mistakes += str('<p>Line ' + str(index + 1) + '. The word Fig. in the beginning of a sentence can usually be spelled out, e.g. "Figure 1 shows...".</p>')
+            mistakes += str('<p>Line ' + str(index + 1) + '. The word "Fig." in the beginning of a sentence can usually be spelled out, e.g. "Figure 1 shows...".</p>')
         if 'Figure ' in line[7:]:
-            mistakes += str('<p>Line ' + str(index + 1) + '. Most journals prefer shortening the word Figure as Fig. if it is not opening the sentence.</p>')
+            mistakes += str('<p>Line ' + str(index + 1) + '. Most journals prefer shortening the word "Figure" as "Fig." if it is not opening the sentence.</p>')
     return mistakes
 
 
@@ -619,7 +656,7 @@ def abbreviations(text):
     abbreviations = ['MFP', 'TC', 'TDTR', 'TEM', 'AFM', 'SEM', 'SPP', 'SPhP', 'XRD',
             'DOS', 'CNT', 'NW', 'PnC', 'RMS', 'BG', 'SAW', 'AMM', 'RF', 'NP',
             'BTU', '1D', '2D', '3D', 'HD', 'LOC', 'JSAP', 'PL', 'BLS', 'RIE',
-            'EBL', 'FIB', 'FEM', 'MD', 'LD', 'AF', 'TEG',]
+            'EBL', 'FIB', 'FEM', 'MD', 'LD', 'AF', 'TEG', 'TCR', 'BOX',]
     mistakes = ''
     for abbreviation in abbreviations:
         occurance = 0

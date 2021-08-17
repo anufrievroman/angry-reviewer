@@ -18,6 +18,7 @@ def corrector_page():
                 <head>
                     <link rel="stylesheet" href="/static/style.css">
                     <link rel="shortcut icon" href="static/favicon.ico">
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
                     <meta property="og:site_name" content="Angry Reviewer">
                     <meta property="og:url" content="https://www.angryreviewer.com">
                     <meta property="og:title" content="Angry Reviewer - Academic style editor">
@@ -28,7 +29,7 @@ def corrector_page():
                 <body>
                 <div class="content">
                     <div class="header">
-                        <img src="/static/logo.png" alt="Angry Reviewer">
+                        <img src="/static/logo.svg" alt="Angry Reviewer">
                         <a href="/" class="logo"><h1>Angry Reviewer</h1></a>
                         <div class="header-right">
                         <a class="active" href="/">Corrector</a>
@@ -40,7 +41,9 @@ def corrector_page():
                     <p><b>Reviewer's suggestions for your text:</b></p>
                     <p>{result}</p>
                     <br>
-                    <p><a href="/" class="buttons">Back</a> <a href="https://buymeacoffee.com/angryprofessor" class="buttons">Buy me a coffee</a></p>
+                    <div class="buttons">
+                        <a href="/" class="buttons">Back</a> <a href="https://buymeacoffee.com/angryprofessor" class="buttons">Buy me a coffee</a>
+                    </div>
                     <br>
                     <br>
                     </div>
@@ -54,6 +57,7 @@ def corrector_page():
             <head>
                 <link rel="stylesheet" href="/static/style.css">
                 <link rel="shortcut icon" href="static/favicon.ico">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
                 <meta property="og:site_name" content="Angry Reviewer">
                 <meta property="og:url" content="https://www.angryreviewer.com">
                 <meta property="og:title" content="Angry Reviewer - Academic style editor">
@@ -64,7 +68,7 @@ def corrector_page():
             <body>
             <div class="content">
                 <div class="header">
-                    <img src="/static/logo.png" alt="Angry Reviewer">
+                    <img src="/static/logo.svg" alt="Angry Reviewer">
                     <a href="/" class="logo"><h1>Angry Reviewer</h1></a>
                     <div class="header-right">
                     <a class="active" href="/">Corrector</a>
@@ -95,6 +99,7 @@ def rules_page():
             <head>
                 <link rel="stylesheet" href="/static/style.css">
                 <link rel="shortcut icon" href="static/favicon.ico">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
                 <meta property="og:site_name" content="Angry Reviewer">
                 <meta property="og:url" content="https://www.angryreviewer.com">
                 <meta property="og:title" content="Angry Reviewer - Academic style editor">
@@ -105,7 +110,7 @@ def rules_page():
             <body>
             <div class="content">
                 <div class="header">
-                    <img src="/static/logo.png" alt="Angry Reviewer">
+                    <img src="/static/logo.svg" alt="Angry Reviewer">
                     <a href="/" class="logo"><h1>Angry Reviewer</h1></a>
                     <div class="header-right">
                     <a href="/">Corrector</a>
@@ -145,7 +150,9 @@ def rules_page():
                 <li><i>The Elements of Style</i> - <a href="https://faculty.washington.edu/heagerty/Courses/b572/public/StrunkWhite.pdf">Collection of rules by Strunk, W., Jr. and White, E.B.</a></li>
                 </ul>
                 </div>
-                <p><a href="https://buymeacoffee.com/angryprofessor" class="buttons">Buy me a coffee</a></p>
+                <div class="buttons">
+                    <a href="https://buymeacoffee.com/angryprofessor" class="buttons">Buy me a coffee</a>
+                </div>
                 <br>
                 <br>
                 </div>
@@ -161,6 +168,7 @@ def about_page():
             <head>
                 <link rel="stylesheet" href="/static/style.css">
                 <link rel="shortcut icon" href="static/favicon.ico">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
                 <meta property="og:site_name" content="Angry Reviewer">
                 <meta property="og:url" content="https://www.angryreviewer.com">
                 <meta property="og:title" content="Angry Reviewer - Academic style editor">
@@ -171,7 +179,7 @@ def about_page():
             <body>
             <div class="content">
                 <div class="header">
-                    <img src="/static/logo.png" alt="Angry Reviewer">
+                    <img src="/static/logo.svg" alt="Angry Reviewer">
                     <a href="/" class="logo"><h1>Angry Reviewer</h1></a>
                     <div class="header-right">
                     <a href="/">Corrector</a>
@@ -180,13 +188,14 @@ def about_page():
                     </div>
                 </div>
                 <div class="container">
-                <h2>Author</h2>
-                <p>The Angry Reviewer is a free and open-source project. These alghoritms were gathered and implemented by Dr. Roman Anufriev based on <a href="/rules">articles, books</a>, and lectures on scintific writing as well as his experience in academia.</p>
+                <p>The Angry Reviewer is a free and open-source project. These alghoritms were gathered and implemented by Roman Anufriev based on <a href="/rules">articles, books</a>, and lectures on scintific writing as well as his experience in academia.</p>
                 <h2>Privacy</h2>
                 <p>This website does not save or store your text, as you can verify in the source code. If you still worry about privacy of your super secret project, you can download the python code of this alghorithm with the link below, verify it, and run it locally on your computer.</p>
                 <h2>Contacts</h2>
                 <p>For suggestions and issues regarding the alghorithm, feel free to open an issue on github. If you wish to discuss this website or some of the rules, you can find current contacts of the author with the link below.
-                <p><a href="https://github.com/anufrievroman/Angry-Reviewer" class="buttons">Soucre code</a> <a href="https://anufrievroman.com" class="buttons">Author</a> <a href="https://buymeacoffee.com/angryprofessor" class="buttons">Buy me a coffee</a></p>
+                <div class="buttons">
+                <a href="https://github.com/anufrievroman/Angry-Reviewer">Soucre code</a> <a href="https://anufrievroman.com">Author</a> <a href="https://buymeacoffee.com/angryprofessor">Buy me a coffee</a>
+                </div>
                 <br>
                 <br>
                 </div>
