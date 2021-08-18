@@ -2,6 +2,7 @@ import re
 
 YOUR_FILE = 'example.txt'
 
+ENGLISH = 'american' # or 'british'
 
 def bad_patterns(line, index):
     '''Check in general dictionary of known errors and suggestions of how to fix them'''
@@ -276,8 +277,6 @@ def bad_patterns(line, index):
         'et al ': 'Needs period after "et al", i.e. "et al.".',
         ' while': 'Usually, it is better to replace "while" with "whereas", unless something is really happening at the same time.',
         ', while': 'Constructions like "A is white, while B is red" can be simplified as "A is white; B is red."',
-        'e.g. ': 'In American English "e.g." should be followed by a comma.',
-        'i.e. ': 'In American English "i.e." should be followed by a comma.',
 
         # Random rules
 
@@ -557,9 +556,9 @@ def figure_references(line, index):
 
 def numbers_next_to_units(line, index):
     '''Check if there are units not separated from numbers with a space or % sign is separated'''
-    units = ["m.", "m ", "mm", "um", "nm", "km", "cm", "W", "V", "K", "s ", "s.", "ps", "us ", "Pa", "min", "h.", "h,", "h ", "Hz", "GHz", "THz", "MHz", "g"] 
-    for number in range(9): 
-        for unit in units: 
+    units = ["m.", "m ", "mm", "um", "nm", "km", "cm", "W", "V", "K", "s ", "s.", "ps", "us ", "Pa", "min", "h.", "h,", "h ", "Hz", "GHz", "THz", "MHz", "g"]
+    for number in range(9):
+        for unit in units:
             if str(number)+unit in line:
                 output('Line ' + str(index + 1) + '. Put a space between the number ' + str(number) + ' and the unit ' + unit + '.')
         if (str(number)+' %' in line) or (str(number)+' \%' in line):
@@ -614,6 +613,93 @@ def abbreviations_advanced(text):
             output('The abbreviation ' + str(unique_abbreviation) + ' occurs only ' + str(occurance) + ' times. Because abbreviations are hard to read, consider just spelling it out.' + '')
 
 
+def british_spelling(line, index):
+    '''Check if spelling of some words is american/british'''
+    british_dictionary = {
+        'vapour': 'vapor',
+        'colour': 'color',
+        'favourite': 'favorite',
+        'flavour': 'flavor',
+        'behaviour': 'behavior',
+        'neighbour': 'neighbor',
+        'honour': 'honor',
+        ' metre': 'meter',
+        'nanometre': 'nanometer',
+        'centimetre': 'centimeter',
+        'kilometre': 'kilometer',
+        'labour': 'labor',
+        'centre': 'center',
+        'spectre': 'specter',
+        'calibre': 'caliber',
+        'theatre': 'theater',
+        'litre': 'liter',
+        'tumour': 'tumor',
+        'fibre': 'fiber',
+        'analogue': 'analog',
+        'catalogue': 'catalog',
+        'dialogue': 'dialog',
+        'homologue': 'homolog',
+        'analyse': 'analyze',
+        'catalyse': 'catalyze',
+        'hydrolyse': 'hydrolyze',
+        'haemolyse': 'hemolyze',
+        'anatomical': 'anatomic',
+        'biological': 'biologic',
+        'morphological': 'morphologic',
+        'serological': 'serologic',
+        'defence': 'defense',
+        'offence': 'offense',
+        'pretence': 'pretense',
+        'fulfil': 'fulfill',
+        'enrol': 'enroll',
+        'distil': 'distill',
+        'instalment': 'installment',
+        'labelled': 'labeled',
+        'labelling': 'labeling',
+        'modelled': 'modeled',
+        'modelling': 'modeling',
+        'modeller': 'modeler',
+        'travelled': 'traveled',
+        'travelling': 'traveling',
+        'traveller': 'traveler',
+        'adrenocorticotrophic': 'adrenocorticotropic',
+        'gonadotrophin': 'gonadotropin',
+        'thyrotrophin': 'thyrotropin',
+        'e.g. ': 'e.g.,',
+        'i.g. ': 'i.g.,',
+        'aluminium': 'aluminum',
+        'anti-clockwise': 'counterclockwise',
+        'grey': 'gray',
+        'plough': 'plow',
+        'programme': 'program',
+        'tyre': 'tire',
+        'towards': 'toward',
+        'ageing': 'aging',
+        'anaesthetic': 'anesthetic',
+        'haemoglobin': 'hemoglobin',
+        'leukaemia': 'leukemia',
+        'oestrogen': 'estrogen',
+        'oesophagus': 'esophagus',
+        'oedema': 'edema',
+        'diarrhoea': 'diarrhea',
+        'dyspnoea': 'dyspnea',
+        'manoeuvre': 'maneuver',
+        'Mr ': 'Mr.',
+        'Dr ': 'Dr.',
+        'Mrs ': 'Mrs.',
+        'St ': 'St.',
+        }
+    if ENGLISH == 'american':
+        for word in british_dictionary:
+            if word in line:
+                output('Line ' + str(index + 1) + '. In American English, word "' + word + '" is spelled as "' + british_dictionary[word] + '".')
+    if ENGLISH == 'british':
+        for word in british_dictionary:
+            if british_dictionary[word] in line:
+                output('Line ' + str(index + 1) + '. In British English, word "' + british_dictionary[word] + '" is spelled as "' + word + '".')
+    return
+
+
 def in_conclusions(line, index, text):
     '''Check if we can skip In conclusions because there is already a title Conclusions'''
     if ('In conclusion') in line:
@@ -645,6 +731,7 @@ def main():
             figure_references(line, index)
             start_with_numbers(line, index)
             numbers_next_to_units(line, index)
+            british_spelling(line, index)
         elements(text)
         abbreviations_advanced(text)
 

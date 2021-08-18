@@ -152,6 +152,14 @@ input[type=submit]:hover {
   }
 }
 
+.language_selection {
+  float: right;
+  width: 193px;
+  height: 43px;
+  padding: 4px 13px;
+  margin-top: 18px;
+}
+
 .buttons a {
   float: left;
   border: none;
@@ -174,5 +182,3 @@ input[type=submit]:hover {
     margin-top: 7px;
   }
 }
-
-

@@ -9,10 +9,12 @@ app.config["DEBUG"] = True
 def corrector_page():
     errors = ""
     text = None
+    english = None
     if request.method == "POST":
         text = str(request.form["text"])
         text_split = text.split('\r\n')
-        result = main(text_split)
+        english = str(request.form.get("language"))
+        result = main(text_split, english)
         return '''
             <html>
                 <head>
@@ -81,8 +83,13 @@ def corrector_page():
                 <p>Free academic style corrector for modern scientific writing. To get style suggestion for your abstacts, papers, theses, and applications, paste the text below:</p>
                 <form method="post" action=".">
                     <textarea id="subject" name="text" placeholder="Paste your text here..." style="height:300px">Despite the fact that quantity of new scientific output clearly increased significantly in the past years, it is known that the quality of academic writing has been declining as never before. Click the button below to check this text!</textarea>
-                    <p><input type="submit" class="block" value="Check" /></p>
 
+                    <select class="language_selection" id="language" name="language">
+                        <option value="american" selected>American English</option>
+                        <option value="british">British English</option>
+                    </select>
+
+                    <p><input type="submit" class="block" value="Check" /></p>
                 </form>
                 </div>
                 </div>
@@ -194,7 +201,7 @@ def about_page():
                 <h2>Contacts</h2>
                 <p>For suggestions and issues regarding the alghorithm, feel free to open an issue on github. If you wish to discuss this website or some of the rules, you can find current contacts of the author with the link below.
                 <div class="buttons">
-                <a href="https://github.com/anufrievroman/Angry-Reviewer">Soucre code</a> <a href="https://anufrievroman.com">Author</a> <a href="https://buymeacoffee.com/angryprofessor">Buy me a coffee</a>
+                <a href="https://github.com/anufrievroman/Angry-Reviewer">Source code</a> <a href="https://anufrievroman.com">Author</a> <a href="https://buymeacoffee.com/angryprofessor">Buy me a coffee</a>
                 </div>
                 <br>
                 <br>

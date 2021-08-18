@@ -1,5 +1,89 @@
 import re
 
+elements_list = [' Al ', ' Si ', ' Cr ', ' Ga ', ' Ti ', ' InP ', ' GaAs ', ' SiC ', ' Cu ', ' He ',
+    ' Li ', ' Ne ', ' Na ', ' Cl ', ' Ar ', ' Au ', ' VO2 ', ' Sc ', ' Fe ', ' Nb ', ' Ni ',
+    ' Sr ', ' Zr ', ' Ag ', ' Ta ', ' Pt ', ' Hg ', ' U ', ' O2 ', ' H2O ', ' Sn ', ' Sb ',
+    ' SiN ', ' SiO2 ', ' H ', ' N ', ' GaN ', ' InP ', ' InAs ', ' SiO$_2$ ']
+
+units_list = ["m.", "m ", "mm", "um", "nm", "km", "cm", "W", "V", "K", "s ", "s.", "ps", "us ", "Pa", "min", "h.", "h,", "h ", "Hz", "GHz", "THz", "MHz", "g"]
+
+british_dictionary = {
+    'vapour': 'vapor',
+    'colour': 'color',
+    'favourite': 'favorite',
+    'flavour': 'flavor',
+    'behaviour': 'behavior',
+    'neighbour': 'neighbor',
+    'honour': 'honor',
+    ' metre': ' meter',
+    'nanometre': 'nanometer',
+    'centimetre': 'centimeter',
+    'kilometre': 'kilometer',
+    'labour': 'labor',
+    'centre': 'center',
+    'spectre': 'specter',
+    'calibre': 'caliber',
+    'theatre': 'theater',
+    'litre': 'liter',
+    'tumour': 'tumor',
+    'fibre': 'fiber',
+    'analogue': 'analog',
+    'catalogue': 'catalog',
+    'dialogue': 'dialog',
+    'homologue': 'homolog',
+    'analyse': 'analyze',
+    'catalyse': 'catalyze',
+    'hydrolyse': 'hydrolyze',
+    'haemolyse': 'hemolyze',
+    'anatomical': 'anatomic',
+    'biological': 'biologic',
+    'morphological': 'morphologic',
+    'serological': 'serologic',
+    'defence': 'defense',
+    'offence': 'offense',
+    'pretence': 'pretense',
+    'fulfil': 'fulfill',
+    'enrol': 'enroll',
+    'distil': 'distill',
+    'instalment': 'installment',
+    'labelled': 'labeled',
+    'labelling': 'labeling',
+    'modelled': 'modeled',
+    'modelling': 'modeling',
+    'modeller': 'modeler',
+    'travelled': 'traveled',
+    'travelling': 'traveling',
+    'traveller': 'traveler',
+    'adrenocorticotrophic': 'adrenocorticotropic',
+    'gonadotrophin': 'gonadotropin',
+    'thyrotrophin': 'thyrotropin',
+    'e.g. ': 'e.g.,',
+    'i.g. ': 'i.g.,',
+    'aluminium': 'aluminum',
+    'anti-clockwise': 'counterclockwise',
+    'grey': 'gray',
+    'plough': 'plow',
+    'programme': 'program',
+    'tyre': 'tire',
+    'towards': 'toward',
+    'ageing': 'aging',
+    'anaesthetic': 'anesthetic',
+    'haemoglobin': 'hemoglobin',
+    'leukaemia': 'leukemia',
+    'oestrogen': 'estrogen',
+    'oesophagus': 'esophagus',
+    'oedema': 'edema',
+    'diarrhoea': 'diarrhea',
+    'dyspnoea': 'dyspnea',
+    'manoeuvre': 'maneuver',
+    'Mr ': 'Mr.',
+    'Dr ': 'Dr.',
+    'Mrs ': 'Mrs.',
+    'St ': 'St.',
+    }
+
+
+
 def bad_patterns(line, index):
     '''Check in general dictionary of known errors and suggestions of how to fix them'''
     dictionary = {
@@ -631,10 +715,9 @@ def figure_references(line, index):
 
 def numbers_next_to_units(line, index):
     '''Check if there are units not separated from numbers with a space or % sign is separated'''
-    units = ["m.", "m ", "mm", "um", "nm", "km", "cm", "W", "V", "K", "s ", "s.", "ps", "us ", "Pa", "min", "h.", "h,", "h ", "Hz", "GHz", "THz", "MHz", "g"]
     mistakes = ''
     for number in range(9):
-        for unit in units:
+        for unit in units_list:
             if (str(number)+unit in line) and (str(number)+unit+"}" not in line):
                 mistakes += str('<p>Line ' + str(index + 1) + '. Put a space between the number ' + str(number) + ' and the unit ' + unit + '.</p>')
         if (str(number)+' %' in line) or (str(number)+' \%' in line):
@@ -644,37 +727,14 @@ def numbers_next_to_units(line, index):
 
 def elements(text):
     '''Check how many times chemical elements occur in the text'''
-    elements = [' Al ', ' Si ', ' Cr ', ' Ga ', ' Ti ', ' InP ', ' GaAs ', ' SiC ', ' Cu ', ' He ',
-                     ' Li ', ' Ne ', ' Na ', ' Cl ', ' Ar ', ' Au ', ' VO2 ', ' Sc ', ' Fe ', ' Nb ', ' Ni ',
-                     ' Sr ', ' Zr ', ' Ag ', ' Ta ', ' Pt ', ' Hg ', ' U ', ' O2 ', ' H2O ', ' Sn ', ' Sb ',
-                     ' SiN ', ' SiO2 ', ' H ', ' N ', ' GaN ', ' InP ', ' InAs ', ' SiO$_2$ ']
     mistakes = ''
-    for element in elements:
-        occurance = 0
-        for index, line in enumerate(text):
-            occurance += line.count(element)
+    entire_text = ' '.join(text)
+    for element in elements_list:
+        occurance = entire_text.count(element)
         if occurance == 1:
             mistakes += str('<p>The element' + str(element) + 'occurs only once. Consider using its full name instead of the symbol.</p>')
         if occurance > 1 and occurance < 4:
             mistakes += str('<p>The element' + str(element) + 'occurs only ' + str(occurance) + ' times. Consider using its full name instead of the symbol.</p>')
-    return mistakes
-
-
-def abbreviations_old(text):
-    '''Check how many times common abbreviations occur in the text'''
-    abbreviations = ['MFP', 'TC', 'TDTR', 'TEM', 'AFM', 'SEM', 'SPP', 'SPhP', 'XRD',
-            'DOS', 'CNT', 'NW', 'PnC', 'RMS', 'BG', 'SAW', 'AMM', 'RF', 'NP',
-            'BTU', '1D', '2D', '3D', 'HD', 'LOC', 'JSAP', 'PL', 'BLS', 'RIE',
-            'EBL', 'FIB', 'FEM', 'MD', 'LD', 'AF', 'TEG', 'TCR', 'BOX', 'BHF',]
-    mistakes = ''
-    for abbreviation in abbreviations:
-        occurance = 0
-        for index, line in enumerate(text):
-            occurance += line.count(abbreviation)
-        if occurance == 1:
-            mistakes += str('<p>The abbreviation ' + str(abbreviation) + ' occurs only once. Since abbreviations are hard to read, consider just spelling it out.</p>')
-        if occurance > 1 and occurance < 5:
-            mistakes += str('<p>The abbreviation ' + str(abbreviation) + ' occurs only ' + str(occurance) + ' times. Because abbreviations are hard to read, consider just spelling it out.</p>')
     return mistakes
 
 
@@ -688,12 +748,14 @@ def abbreviations(text):
         filtered_abbreviations.append(trimmed_abbreviation)
     mistakes = ''
     for unique_abbreviation in set(filtered_abbreviations):
-        occurance = filtered_abbreviations.count(unique_abbreviation)
-        if occurance == 1:
-            mistakes += str('<p>The abbreviation ' + str(unique_abbreviation) + ' occurs only once. Since abbreviations are hard to read, consider just spelling it out.</p>')
-        if occurance > 1 and occurance < 5:
-            mistakes += str('<p>The abbreviation ' + str(unique_abbreviation) + ' occurs only ' + str(occurance) + ' times. Because abbreviations are hard to read, consider just spelling it out.</p>')
+        if unique_abbreviation not in elements_list:
+            occurance = filtered_abbreviations.count(unique_abbreviation)
+            if occurance == 1:
+                mistakes += str('<p>Abbreviation ' + str(unique_abbreviation) + ' occurs only once. Since abbreviations are hard to read, consider just spelling it out.</p>')
+            if occurance > 1 and occurance < 5:
+                mistakes += str('<p>Abbreviation ' + str(unique_abbreviation) + ' occurs only ' + str(occurance) + ' times. Since abbreviations are hard to read, consider just spelling it out.</p>')
     return mistakes
+
 
 def in_conclusions(line, index, text):
     '''Check if we can skip In conclusions because there is already a title Conclusions'''
@@ -704,7 +766,21 @@ def in_conclusions(line, index, text):
     return mistakes
 
 
-def main(text):
+def british_spelling(line, index, english):
+    '''Check if spelling of some words is american/british'''
+    mistakes = ''
+    if english == 'american':
+        for word in british_dictionary:
+            if word in line:
+                mistakes += str('<p>Line ' + str(index + 1) + '. In American English, word "' + word + '" is spelled as "' + british_dictionary[word] + '".</p>')
+    if english == 'british':
+        for word in british_dictionary:
+            if british_dictionary[word] in line:
+                mistakes += str('<p>Line ' + str(index + 1) + '. In British English, word "' + british_dictionary[word] + '" is spelled as "' + word + '".</p>')
+    return mistakes
+
+
+def main(text, english):
     '''This is the main function that runs the program and outputs the results'''
     results = ''
     for index, line in enumerate(text):
@@ -715,6 +791,7 @@ def main(text):
         results += figure_references(line, index)
         results += start_with_numbers(line, index)
         results += numbers_next_to_units(line, index)
+        results += british_spelling(line, index, english)
     results += elements(text)
     results += abbreviations(text)
     if len(results) == 0:
