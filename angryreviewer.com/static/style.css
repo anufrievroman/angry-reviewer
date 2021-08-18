@@ -156,9 +156,21 @@ input[type=submit]:hover {
   float: right;
   width: 193px;
   height: 43px;
-  padding: 4px 13px;
+  padding: 3px 13px;
   margin-top: 18px;
 }
+
+select {
+  border: 1px solid #CCC;
+  width: 193px;
+  height: 43px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(/static/arrow.png) 98% / 10% no-repeat #ddd;
+  background-color: white;
+}
+
 
 .buttons a {
   float: left;
