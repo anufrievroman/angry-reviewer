@@ -1,3 +1,5 @@
+import re
+
 def bad_patterns(line, index):
     '''Check in general dictionary of known errors and suggestions of how to fix them'''
     dictionary = {
@@ -197,6 +199,11 @@ def bad_patterns(line, index):
         'although it was': 'Consider replacing "although it was" with shorter "albeit".',
         'although it becomes': 'Consider replacing "although it becomes" with shorter "albeit".',
         'two times': 'You may replace "two time" with shorter "twice".',
+        'based on the assumption': 'Consider replacing "based on the assumption" with simpler "assuming" or just "if".',
+        'under the assumption': 'Consider replacing "under the assumption" with simpler "assuming" or just "if".',
+        'Based on the assumption': 'Consider replacing "Based on the assumption" with simpler "Assuming" or just "If".',
+        'have long been known to be': 'Consider replacing "have long been known to be" with simple "are".',
+        'has long been known to be': 'Consider replacing "has long been known to be" with simple "is".',
 
         # Negatives
 
@@ -491,7 +498,7 @@ def bad_patterns(line, index):
         'vs.': 'Consider if your readers know the Latin expressions "vs.". It might be better to replace with "against" or "as a function of".',
         'a.k.a.': 'Consider replacing "a.k.a." with "also known as" for clarity.',
         ' aka ': 'Consider replacing "aka" with "also known as" for clarity.',
-        ' p.a. ': 'Consider replacing "p.a." with "per year" for clarity.',
+        ' p.a.': 'Consider replacing "p.a." with "per year" for clarity.',
 
         # Latex
         '$\mu$m': 'You may replace LaTeX expression "$\mu$m" with "{\\textmu}m" for better looking letter mu.',
@@ -500,6 +507,8 @@ def bad_patterns(line, index):
         '$\mu$TDTR': 'You may replace LaTeX expression "$\mu$TDTR" with "{\`textmu}TDTR" for better looking letter mu.',
         '\hslash': 'If by "\hslash" you mean the reduced Plack constant, use "\hbar".',
         '+/-': 'If you are in LaTeX, use "\pm" instead of "+/-". Otherwise, find proper mlus-minux symbol.',
+        ' $^\circ$C': 'Degrees Celcius should not be separated from the number with a space',
+        ' $^\circ$C': 'Degrees Fahrenheit should not be separated from the number with a space.',
     }
     mistakes = ''
     for word in dictionary:
@@ -651,12 +660,12 @@ def elements(text):
     return mistakes
 
 
-def abbreviations(text):
+def abbreviations_old(text):
     '''Check how many times common abbreviations occur in the text'''
     abbreviations = ['MFP', 'TC', 'TDTR', 'TEM', 'AFM', 'SEM', 'SPP', 'SPhP', 'XRD',
             'DOS', 'CNT', 'NW', 'PnC', 'RMS', 'BG', 'SAW', 'AMM', 'RF', 'NP',
             'BTU', '1D', '2D', '3D', 'HD', 'LOC', 'JSAP', 'PL', 'BLS', 'RIE',
-            'EBL', 'FIB', 'FEM', 'MD', 'LD', 'AF', 'TEG', 'TCR', 'BOX',]
+            'EBL', 'FIB', 'FEM', 'MD', 'LD', 'AF', 'TEG', 'TCR', 'BOX', 'BHF',]
     mistakes = ''
     for abbreviation in abbreviations:
         occurance = 0
@@ -668,6 +677,23 @@ def abbreviations(text):
             mistakes += str('<p>The abbreviation ' + str(abbreviation) + ' occurs only ' + str(occurance) + ' times. Because abbreviations are hard to read, consider just spelling it out.</p>')
     return mistakes
 
+
+def abbreviations(text):
+    '''Check how many times abbreviations occur in the text'''
+    entire_text = ' '.join(text)
+    all_abbreviations = re.findall(r"\b(?:[A-Z][a-z]*){2,}", entire_text)
+    filtered_abbreviations = []
+    for abbreviation in all_abbreviations:
+        trimmed_abbreviation = abbreviation[:-1] if abbreviation[-1] == 's' else abbreviation
+        filtered_abbreviations.append(trimmed_abbreviation)
+    mistakes = ''
+    for unique_abbreviation in set(filtered_abbreviations):
+        occurance = filtered_abbreviations.count(unique_abbreviation)
+        if occurance == 1:
+            mistakes += str('<p>The abbreviation ' + str(unique_abbreviation) + ' occurs only once. Since abbreviations are hard to read, consider just spelling it out.</p>')
+        if occurance > 1 and occurance < 5:
+            mistakes += str('<p>The abbreviation ' + str(unique_abbreviation) + ' occurs only ' + str(occurance) + ' times. Because abbreviations are hard to read, consider just spelling it out.</p>')
+    return mistakes
 
 def in_conclusions(line, index, text):
     '''Check if we can skip In conclusions because there is already a title Conclusions'''

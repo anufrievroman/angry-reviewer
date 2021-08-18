@@ -1,3 +1,5 @@
+import re
+
 YOUR_FILE = 'example.txt'
 
 
@@ -596,6 +598,22 @@ def abbreviations(text):
             output('The abbreviation ' + str(abbreviation) + ' occurs only ' + str(occurance) + ' times. Because abbreviations are hard to read, consider just spelling it out.' + '')
 
 
+def abbreviations_advanced(text):
+    '''Check how many times common abbreviations occur in the text'''
+    entire_text = ' '.join(text)
+    all_abbreviations = re.findall(r"\b(?:[A-Z][a-z]*){2,}", entire_text)
+    filtered_abbreviations = []
+    for abbreviation in all_abbreviations:
+        trimmed_abbreviation = abbreviation[:-1] if abbreviation[-1] == 's' else abbreviation
+        filtered_abbreviations.append(trimmed_abbreviation)
+    for unique_abbreviation in set(filtered_abbreviations):
+        occurance = filtered_abbreviations.count(unique_abbreviation)
+        if occurance == 1:
+            output('The abbreviation ' + str(unique_abbreviation) + ' occurs only once. Since abbreviations are hard to read, consider just spelling it out.' + '')
+        if occurance > 1 and occurance < 5:
+            output('The abbreviation ' + str(unique_abbreviation) + ' occurs only ' + str(occurance) + ' times. Because abbreviations are hard to read, consider just spelling it out.' + '')
+
+
 def in_conclusions(line, index, text):
     '''Check if we can skip In conclusions because there is already a title Conclusions'''
     if ('In conclusion') in line:
@@ -628,7 +646,7 @@ def main():
             start_with_numbers(line, index)
             numbers_next_to_units(line, index)
         elements(text)
-        abbreviations(text)
+        abbreviations_advanced(text)
 
     except(FileNotFoundError):
         print('Looks like there is no file ' + YOUR_FILE + ' Check that it is in the same folder as this code and that the name is correct.')
