@@ -1,4 +1,5 @@
 import re
+from datetime import date
 
 YOUR_FILE = 'example.txt'
 
@@ -537,7 +538,7 @@ def phrases_with_very(line, index):
         }
     for word in dictionary:
         if word in line:
-            output(str( 'Line ' + str(index + 1) + '. Consider replacing "' + word + '" with words like ' + dict_very[ word] + ' etc.'))
+            output(str( 'Line ' + str(index + 1) + '. Consider replacing "' + word + '" with words like ' + dictionary[ word] + ' etc.'))
 
 
 def start_with_numbers(line, index):
@@ -599,6 +600,11 @@ def abbreviations(text):
 
 def abbreviations_advanced(text):
     '''Check how many times common abbreviations occur in the text'''
+    exceptions_list = ['RESULTS', 'DISCUSSION', 'DISCUSSIONS','METHODS','INTRODUCTION','LIMMS','DNA','RNA','IIS']
+    elements_list = [' Al ', ' Si ', ' Cr ', ' Ga ', ' Ti ', ' InP ', ' GaAs ', ' SiC ', ' Cu ', ' He ',
+                     ' Li ', ' Ne ', ' Na ', ' Cl ', ' Ar ', ' Au ', ' VO2 ', ' Sc ', ' Fe ', ' Nb ', ' Ni ',
+                     ' Sr ', ' Zr ', ' Ag ', ' Ta ', ' Pt ', ' Hg ', ' U ', ' O2 ', ' H2O ', ' Sn ', ' Sb ',
+                     ' SiN ', ' SiO2 ', ' H ', ' N ', ' GaN ', ' InP ', ' InAs ', ' SiO$_2$ ']
     entire_text = ' '.join(text)
     all_abbreviations = re.findall(r"\b(?:[A-Z][a-z]*){2,}", entire_text)
     filtered_abbreviations = []
@@ -607,10 +613,11 @@ def abbreviations_advanced(text):
         filtered_abbreviations.append(trimmed_abbreviation)
     for unique_abbreviation in set(filtered_abbreviations):
         occurance = filtered_abbreviations.count(unique_abbreviation)
-        if occurance == 1:
-            output('The abbreviation ' + str(unique_abbreviation) + ' occurs only once. Since abbreviations are hard to read, consider just spelling it out.' + '')
-        if occurance > 1 and occurance < 5:
-            output('The abbreviation ' + str(unique_abbreviation) + ' occurs only ' + str(occurance) + ' times. Because abbreviations are hard to read, consider just spelling it out.' + '')
+        if (unique_abbreviation not in elements_list) and (unique_abbreviation not in exceptions_list):
+            if occurance == 1:
+                output('The abbreviation ' + str(unique_abbreviation) + ' occurs only once. Since abbreviations are hard to read, consider just spelling it out.' + '')
+            if occurance > 1 and occurance < 5:
+                output('The abbreviation ' + str(unique_abbreviation) + ' occurs only ' + str(occurance) + ' times. Because abbreviations are hard to read, consider just spelling it out.' + '')
 
 
 def british_spelling(line, index):
@@ -709,6 +716,61 @@ def in_conclusions(line, index, text):
                 index + 1) + '. This section seems to be already titled "Conclusions", thus you may omit "In conclusion" at the beginning.'))
 
 
+def abstract_lenght(text):
+    '''Check the abstract of the title and advise if it's too long'''
+    entire_text = ' '.join(text)
+    pattern = '+++'
+    try:
+        abstract = entire_text.replace("begin{abstract", pattern).split('+++')
+        abstract = abstract[1].replace("end{abstract", pattern).split('+++')
+        abstract = abstract[0][1:-1]
+    except:
+        abstract = ""
+        pass
+    words = len(abstract.split())
+    symbols = len(abstract)
+    if len(abstract) > 1:
+        if words > 150:
+            output("Your abstract has "+str(words)+" words or "+str(symbols)+" characters. Some jounals, for example Nature Communications, limit abstracts by 150 words only. Check if this is within limitations of your journal.")
+        else:
+            output("Your abstract has "+str(words)+" words or "+str(symbols)+" characters. Check if this is within limitations of your journal.")
+
+def title_lenght(text):
+    '''Check the length of the abstract and advise if it's too long'''
+    title = ""
+    for line in text:
+        if "title{" in line:
+            title  = line[6:-1]
+    words = len(title.split())
+    symbols = len(title)
+    if words > 15 and words > 1:
+        output("Your title has "+str(words)+" words or "+str(symbols)+" characters. Consider making it shorter. Some jounals, for example Nature Communications, limit the title by 15 words only.")
+
+
+def references(text):
+    '''Check the number and years of the references'''
+    entire_text = ' '.join(text)
+    all_citations = re.findall(r'cite\{[^\}]+}', entire_text)
+    references = []
+    for citation in all_citations:
+        citation_splitted = citation.split(',')
+        for reference in citation_splitted:
+            reference = re.sub(r'cite\{', '', reference)
+            reference = re.sub(r'\}', '', reference)
+            reference = re.sub(r' ', '', reference)
+            references.append(reference)
+    references = list(set(references))
+    years = [int(re.findall(r'\d\d\d\d', ref)[0]) for ref in references]
+    if len(years) > 0:
+        this_year = int(date.today().year)
+        reference_ages = [this_year - year for year in years]
+        older_than_ten = 100*len([age for age in reference_ages if age > 10])//len(years)
+        older_than_five = 100*len([age for age in reference_ages if age > 5])//len(years)
+        if older_than_five > 30:
+            output("Looks like "+str(older_than_five)+"% of your references are older than five years and "+str(older_than_ten)+"% are older than ten years. Mostly old references might signal poor actuality of your work to journal editors. Consider if you can use newer references.")
+    return
+
+
 def output(message):
     '''Print messages in the terminal and in the "corrections.txt" file'''
     print(message)
@@ -723,6 +785,9 @@ def main():
     try:
         with open(YOUR_FILE, 'r') as manuscript:
             text = manuscript.readlines()
+
+        title_lenght(text)
+        abstract_lenght(text)
         for index, line in enumerate(text):
             bad_patterns(line, index)
             phrases_with_very(line, index)
@@ -734,6 +799,7 @@ def main():
             british_spelling(line, index)
         elements(text)
         abbreviations_advanced(text)
+        references(text)
 
     except(FileNotFoundError):
         print('Looks like there is no file ' + YOUR_FILE + ' Check that it is in the same folder as this code and that the name is correct.')

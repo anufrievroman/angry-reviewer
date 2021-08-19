@@ -1,11 +1,14 @@
 import re
+from datetime import date
 
-elements_list = [' Al ', ' Si ', ' Cr ', ' Ga ', ' Ti ', ' InP ', ' GaAs ', ' SiC ', ' Cu ', ' He ',
-    ' Li ', ' Ne ', ' Na ', ' Cl ', ' Ar ', ' Au ', ' VO2 ', ' Sc ', ' Fe ', ' Nb ', ' Ni ',
-    ' Sr ', ' Zr ', ' Ag ', ' Ta ', ' Pt ', ' Hg ', ' U ', ' O2 ', ' H2O ', ' Sn ', ' Sb ',
-    ' SiN ', ' SiO2 ', ' H ', ' N ', ' GaN ', ' InP ', ' InAs ', ' SiO$_2$ ']
+elements_list = ['Al', 'Si', 'Cr', 'Ga', 'Ti', 'InP', 'GaAs', 'SiC', 'Cu', 'He',
+    'Li', 'Ne', 'Na', 'Cl', 'Ar', 'Au', 'VO2', 'Sc', 'Fe', 'Nb', 'Ni',
+    'Sr', 'Zr', 'Ag', 'Ta', 'Pt', 'Hg', 'U', 'O2', 'H2O', 'Sn', 'Sb',
+    'SiN', 'SiO', 'H', 'N', 'GaN', 'InP', 'InAs', 'GaP', 'AlP']
 
 units_list = ["m.", "m ", "mm", "um", "nm", "km", "cm", "W", "V", "K", "s ", "s.", "ps", "us ", "Pa", "min", "h.", "h,", "h ", "Hz", "GHz", "THz", "MHz", "g"]
+
+exceptions_list = ['RESULTS', 'DISCUSSION', 'DISCUSSIONS','METHODS','INTRODUCTION','LIMMS','DNA','RNA','IIS']
 
 british_dictionary = {
     'vapour': 'vapor',
@@ -62,11 +65,11 @@ british_dictionary = {
     'aluminium': 'aluminum',
     'anti-clockwise': 'counterclockwise',
     'grey': 'gray',
-    'plough': 'plow',
+    ' plough': ' plow',
     'programme': 'program',
-    'tyre': 'tire',
+    ' tyre': ' tire',
     'towards': 'toward',
-    'ageing': 'aging',
+    ' ageing': ' aging',
     'anaesthetic': 'anesthetic',
     'haemoglobin': 'hemoglobin',
     'leukaemia': 'leukemia',
@@ -108,10 +111,8 @@ def bad_patterns(line, index):
         'greatly': 'The word "greatly" rarely contributes to better understanding. Consider removing it or if important quantifying it.',
         'literally': 'The word "literally" is often misused to support an exaggeration, which is hardly appropriate for a scientific paper. Consider if its use is appropriate.',
         'literal ': 'The word "literal" is often misused to support an exaggeration, which is hardly appropriate for a scientific paper. Consider if use is appropriate.',
-        'One of the most': 'Consider rewriting it without "One of the most". According to the Elements of Style: "There is nothing wrong in this; it is simply threadbare and forcible-feeble."',
-        'one of the most': 'Consider rewriting it without "one of the most". According to the Elements of Style: "There is nothing wrong in this; it is simply threadbare and forcible-feeble."',
-        'respectively': 'Consider if "respectively" is necessary. In clear cases, you can omit it, e.g. "A and B are equal to 1 and 2."',
-        'correspondingly': 'Consider if "correspondingly" is necessary. In clear cases, you can omit it, e.g. "A and B are equal to 1 and 2."',
+        'respectively': 'Consider if "respectively" is necessary. In clear cases, you can omit it, e.g. "A and B are equal to 1 and 2". Or simplify as "A = 1 and B = 2".',
+        'correspondingly': 'Consider if "correspondingly" is necessary. In clear cases, you can omit it, e.g. "A and B are equal to 1 and 2". Or simplify as "A = 1 and B = 2".',
         'hallmark': 'Phrases like "A is a hallmark of B" are considered a cliche.',
         'paradigm shift': 'Phrases like "paradigm shift" are considered a cliche.',
         'Holy Grail': 'Phrases like "A is the Holy Grail of B" are considered a cliche.',
@@ -124,10 +125,19 @@ def bad_patterns(line, index):
         'At the end of the day': 'Phrases like "At the end of the day" are considered a cliche.',
         'It is known': 'It is known that phrases like "It is known" are often inappropriate. Often it is not known to the readers. Consider rewriting or at least suppling the references.',
         'it is known': 'It is known that phrases like "it is known" are often inappropriate. Often it is not known to the readers. Consider rewriting or at least suppling the references.',
-        'It is well known': 'It is well known that phrases like "It is well known" are often inappropriate. Usually, is it not so well known to the readers. Consider rewriting or at least suppling the references.',
-        'it is well known': 'It is well known that phrases like "it is well known" are often inappropriate. Usually, is it not so well known to the readers. Consider rewriting or at least suppling the references.',
+        'are well known': 'It is well known that phrases with "are well known" are considered arrogant. Usually, is it not so well known to the reader. Consider removing it or at least suppling the references.',
+        'is well known': 'It is well known that phrases with "is well known" are considered arrogant. Usually, is it not so well known to the reader. Consider removing it or at least suppling the references.',
         'the first time': 'If "the first time" reffers to the findings, consider if there is a better way to claim novelty of the work, because such expressions are often considered hype and discurraged by journals. Try using verbs already suggesting the novelty, like "uncover", "invent", "resolve", "solve", "propose" etc.',
         'the very first time': 'If "the very first time" reffers to the findings, consider if there is a better way to claim novelty of the work, because such expressions are often considered hype and discurraged by journals. Try using verbs already suggesting the novelty, like "uncover", "invent", "resolve", "solve", "propose" etc.',
+
+        # Qustionable patterns
+
+        'been attracting a great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
+        'attracted a great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
+        'attracted great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
+        'attracted attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
+        'One of the most': 'Consider rewriting it without "One of the most". According to the Elements of Style: "There is nothing wrong in this; it is simply threadbare and forcible-feeble."',
+        'one of the most': 'Consider rewriting it without "one of the most". According to the Elements of Style: "There is nothing wrong in this; it is simply threadbare and forcible-feeble."',
 
         # Inconcise expressions
 
@@ -177,6 +187,9 @@ def bad_patterns(line, index):
         'in order to': 'Consider shortening "in order to" as just "to".',
         'utilize': 'Replace "utilize" with simple "use".',
         'utilise': 'Replace "utilise" with simple "use".',
+        'utilization': 'Replace "utilization" with simple "use".',
+        'utilisation': 'Replace "utilisation" with simple "use".',
+        'elevated temperature': 'Replace "elevated" with simpler "higher".',
         'conception': 'Consider replacing "conception" with "concept".',
         'the ways in which': 'Consider replacing "the ways in which" with simple "how".',
         'on the other hand': 'In some cases, might be appropriate to replace "on the other hand" with shorter "however" or "but".',
@@ -185,7 +198,7 @@ def bad_patterns(line, index):
         'For the purpose of': 'Consider replacing "For the purpose of" with shorter "For".',
         'For the reason that': 'Consider replacing "For the reason that" with shorter "Because" or "As".',
         'for the reason that': 'Consider replacing "for the reason that" with shorter "because" or "as".',
-        'not only': 'If you use a construction "not only...but also", there might be a better way to phrase it.',
+        'not only': 'If you use a construction "A is not only B but also C", there might be a better way to phrase it, e.g. "A is B. Moreover, A is also C".',
         'in light of the fact that': 'Consider replacing "in light of the fact that" with simple "because".',
         'In light of the fact that': 'Consider replacing "In light of the fact that" with simple "Because".',
         'indications of': 'Rewrite using the verb "indicate" instead of construction with "indications of".',
@@ -226,9 +239,10 @@ def bad_patterns(line, index):
         'At the same time as': 'Consider replacing "At the same time as" with simple "As".',
         'simultaneously with': 'Consider replacing "simultaneously with" with simple "as".',
         'Simultaneously with': 'Consider replacing "Simultaneously with" with simple "As".',
-        'facilitate': 'Consider replacing verb "facilitate" with just "help".',
-        'great many': 'Consider replacing "great many" with just "many".',
-        'Great many': 'Consider replacing "Great many" with just "Many".',
+        'facilitate': 'Replace "facilitate" with simple "help". According to The Craft Of Scientific Writing: "Words such as facilitate are pretentious".',
+        'implement': 'Consider replacing "implement" with simple "cary out".',
+        'great many': 'Replace "great many" with just "many".',
+        'Great many': 'Replace "Great many" with just "Many".',
         'large number of': 'Consider replacing "large number of" with just "many".',
         'great number of': 'Consider replacing "great number of" with just "many".',
         'Great number of': 'Consider replacing "Great number of" with just "Many".',
@@ -278,13 +292,15 @@ def bad_patterns(line, index):
         'modifies': 'Consider replacing "modifies" with simpler "changes".',
         'modifications': 'Consider replacing "modifications" with simpler "changes".',
         'modification ': 'Consider replacing "modification" with simpler "change".',
-        'indication': 'Consider replacing word "indication" with simpler "sign".',
+        'indication': 'Consider replacing word "indication" with simpler "sign". "Short words are best" - W. Churchill"',
         'although it is': 'Consider replacing "although it is" with shorter "albeit".',
         'although it was': 'Consider replacing "although it was" with shorter "albeit".',
         'although it becomes': 'Consider replacing "although it becomes" with shorter "albeit".',
         'two times': 'You may replace "two time" with shorter "twice".',
         'based on the assumption': 'Consider replacing "based on the assumption" with simpler "assuming" or just "if".',
         'under the assumption': 'Consider replacing "under the assumption" with simpler "assuming" or just "if".',
+        'assuming that': 'Consider replacing "assuming that" with simple "if". "Short words are best" - W. Churchill',
+        'Assuming that': 'Consider replacing "Assuming that" with simple "if". "Short words are best" - W. Churchill',
         'Based on the assumption': 'Consider replacing "Based on the assumption" with simpler "Assuming" or just "If".',
         'have long been known to be': 'Consider replacing "have long been known to be" with simple "are".',
         'has long been known to be': 'Consider replacing "has long been known to be" with simple "is".',
@@ -310,7 +326,7 @@ def bad_patterns(line, index):
         'non-symmetric': 'Consider replacing negative "non symmetric" with more positive "asymmetric".',
         'not symmetric': 'Consider replacing negative "non symmetric" with more positive "asymmetric".',
         'non polarized': 'Consider replacing negative "non polarized" with more positive "unpolarized".',
-
+        'not important': 'Consider replacing negative "not important" with more positive "unimportant" or "trifling".',
 
         # Redundant words
 
@@ -334,7 +350,7 @@ def bad_patterns(line, index):
         'longer in length': 'Consider replacing redundant "longer in length" with just "longer".',
         'summarize briefly': 'Consider replacing redundant "summarize briefly" with just "summarize".',
         'briefly summarize': 'Consider replacing redundant "briefly summarize" with just "summarize".',
-        'a total of': 'In phrases like "a total of ten samples", you can just write "Ten samples".',
+        'a total of': 'In phrases like "a total of ten samples", you can just write "ten samples".',
         'A total of': 'In phrases like "A total of ten samples", you can just write "Ten samples".',
         'close proximity': 'Consider replacing redundant "close proximity" with just "proximity".',
         'each and every': 'Consider replacing redundant "each and every" with just "each".',
@@ -352,12 +368,14 @@ def bad_patterns(line, index):
 
         'clearly': 'The word "clearly" is clearly overused in science and often points to things that actually are not so clear. Consider removing it.',
         'clear ': 'The word "clear" is overused in science and often points to things that actually are not so clear. Consider if it is necessary here.',
+        'clearly demonstrate': 'According to The Craft Of Scientific Writing: "When someone uses "clearly demonstrate" more often than not those results do not clearly demonstrate anything at all".',
+        'unambiguous': 'According to The Craft Of Scientific Writing: "The word "unambiguous" is arrogant; it defies the reader to question the figure".',
         'obviously': 'The word "obviously" is often misused in science and might describe something that is not so obvious. Consider removing it.',
         'Obviously': 'The word "Obviously" is often misused in science and might describe something that is not so obvious. Obviously, consider removing it.',
         'Basically': 'The word "Basically" is basically not very appropriate for academic writing. Basically, consider removing it.',
         'basically': 'The word "basically" is basically not very appropriate for academic writing. Basically, consider removing it.',
         'obvious ': 'The word "obvious" is often misused in science and might describe something that is not so obvious. It also annoys readers. Consider removing it.',
-        'strongly': 'The word "strongly" is often strongly misused to describe not so strong things. Consider removing it and expressing the strength quantitatively, e.g. "50% stronger" or "increased by 50%".',
+        'strongly': 'The word "strongly" is often strongly misused to describe not so strong things. Strongly consider removing it and expressing the strength quantitatively, e.g. "42% stronger".',
         'strong ': 'The word "strong" is often misused to describe not so strong things. Consider if the usage here is appropriate.',
         'significantly': 'The word "significantly" is often significantly misused in science. It might mean statistically significant or significant to the author, so the meaning is unclear. Consider removing it and describe significance quantitatively, e.g. "increased by 50%" or "50% different". Other alternatives: "substantially, notably"',
         'significant ': 'The word "significant" is often misused in science. It might mean statistically significant or significant to the author, so the meaning is unclear. Consider removing it and writing about significance more quantitatively, e.g. "by 50%". Other alternatives: "substantial, notable"',
@@ -366,7 +384,7 @@ def bad_patterns(line, index):
         'This proves': 'It might be unclear what "This" points to if previous phrase was complicated. Rewrite with more specific subject, e.g. "This experiment proves".',
         'This is': 'It might be unclear what "This is" points to if previous phrase was complicated. Rewrite with more specific subject, e.g. "This result is".',
         'This leads': 'It might be unclear what "This leads" points to if previous phrase was complicated. Rewrite with more specific subject, e.g. "This result leads".',
-        'et al ': 'Needs period after "et al", i.e. "et al.".',
+        'et al ': 'Needs a period after "et al", i.e. "et al.".',
         ' while': 'It might be better to replace "while" with "whereas", unless it really happens simultaneously.',
         ', while': 'Simple constructions like "A is white, while B is red" can be simplified as "A is white; B is red."',
         'e.g. ': 'In American English "e.g." should be followed by a comma.',
@@ -381,11 +399,11 @@ def bad_patterns(line, index):
         'bigger then': 'Probably "then" should be changed to "than" if this is a comparison.',
         'smaller then': 'Probably "then" should be changed to "than" if this is a comparison.',
         'larger then': 'Probably "then" should be changed to "than" if this is a comparison.',
+        'better then': 'Probably "then" should be changed to "than" if this is a comparison.',
         ' data is': 'The word "data" is plural, double check sure if "data is" is correct.',
         ' data has': 'The word "data" is plural, double check sure if "data has" is correct.',
         ' data shows': 'The word "data" is plural, double check sure if "data shows" is correct.',
         ' 0 ': 'Simple numbers 0-10 are better to be spelled out, e.g. "five samples", "above zero", "equal to one".',
-        'not important': 'Consider using a more positive form and replace "not important" with "unimportant" or "trifling".',
         'and/or': 'Try to say it without "and/or". Often, just "and" or "or" is enough.',
         'or/and': 'Try to say it without "or/end". Often, just "and" or "or" is enough.',
         'generate ': 'Verify that the verb "generate" really describes a generation process. Otherwise, consider replacing it with "cause".',
@@ -395,10 +413,7 @@ def bad_patterns(line, index):
         ' the the ': 'Seems like "the" is repeated twice,',
         ' a a ': 'Seems like "a" is repeated twice,',
         ' an an ': 'Seems like "a" is repeated twice,',
-        'Eq. (': 'Brackets around the equation number are unnecessary, e.g. Eq. 1.',
-        'Dr.': 'Full stop is not required after Dr, i.e. just "Dr Smith" is fine.',
-        'Mr.': 'Full stop is not required after Mr, i.e. just "Mr Smith" is fine.',
-        'Ms.': 'Full stop is not required after Ms, i.e. just "Ms Smith" is fine.',
+        'Eq. (': 'Brackets around the equation number are usually unnecessary, e.g. Eq. 1., check guidelines for your journal.',
         'Co.': 'Full stop is not required after Co, i.e. just "and Co" is fine.',
         ' --- ': 'Usually, m-dash does not have spaces around it. e.g. "Photons---quanta of light---have no mass.", but it is a matter of style.',
         ' allow': 'Check if the verb "allow" is related to some permissions. If you mean "make it possible", use the verb "enable".',
@@ -496,7 +511,6 @@ def bad_patterns(line, index):
         'has been investigated': 'Consider rewriting the sentence with "has been investigated" in active voice, e.g. "researchers investigated the effect".',
         'have been studied': 'Consider rewriting the sentence with "have been studied" in active voice, e.g. "researchers studied the effect".',
         'has been studied': 'Consider rewriting the sentence with "has been studied" in active voice, e.g. "researchers studied the effect".',
-
         'was observed': 'Consider rewriting the sentence with "was observed" in active voice, e.g. "we observed that".',
         'were observed': 'Consider rewriting the sentence with "were observed" in active voice, e.g. "we observed that".',
         'were demonstrated': 'Consider rewriting the sentence with "were demonstrated" in active voice, e.g. "we demonstrated that".',
@@ -507,10 +521,6 @@ def bad_patterns(line, index):
         'was investigated': 'Consider rewriting the sentence with "was investigated" in active voice, e.g. "researchers investigated the effect".',
         'were studied': 'Consider rewriting the sentence with "were studied" in active voice, e.g. "researchers studied the effect".',
         'was studied': 'Consider rewriting the sentence with "was studied" in active voice, e.g. "researchers studied the effect".',
-        'been attracting a great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
-        'attracted a great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
-        'attracted great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
-        'attracted attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
 
         # Inappropriate language
 
@@ -590,9 +600,9 @@ def bad_patterns(line, index):
         '$\mu$g': 'You may replace LaTeX expression "$\mu$m" with "{\\textmu}g" for better looking letter mu.',
         '$\mu$TDTR': 'You may replace LaTeX expression "$\mu$TDTR" with "{\`textmu}TDTR" for better looking letter mu.',
         '\hslash': 'If by "\hslash" you mean the reduced Plack constant, use "\hbar".',
-        '+/-': 'If you are in LaTeX, use "\pm" instead of "+/-". Otherwise, find proper mlus-minux symbol.',
+        '+/-': 'If you are in LaTeX, use "\pm" instead of "+/-". Otherwise, find proper plus-minus symbol.',
         ' $^\circ$C': 'Degrees Celcius should not be separated from the number with a space',
-        ' $^\circ$C': 'Degrees Fahrenheit should not be separated from the number with a space.',
+        ' $^\circ$F': 'Degrees Fahrenheit should not be separated from the number with a space.',
     }
     mistakes = ''
     for word in dictionary:
@@ -730,11 +740,13 @@ def elements(text):
     mistakes = ''
     entire_text = ' '.join(text)
     for element in elements_list:
-        occurance = entire_text.count(element)
+        occurance = entire_text.count(" "+element+" ")
         if occurance == 1:
-            mistakes += str('<p>The element' + str(element) + 'occurs only once. Consider using its full name instead of the symbol.</p>')
-        if occurance > 1 and occurance < 4:
-            mistakes += str('<p>The element' + str(element) + 'occurs only ' + str(occurance) + ' times. Consider using its full name instead of the symbol.</p>')
+            mistakes += str('<p>The element ' + str(element) + ' occurs only once. Consider using its full name instead of the symbol.</p>')
+        if occurance == 2:
+            mistakes += str('<p>The element ' + str(element) + ' occurs only twice. Consider using its full name instead of the symbol.</p>')
+        if occurance > 2 and occurance < 5:
+            mistakes += str('<p>The element ' + str(element) + ' occurs only ' + str(occurance) + ' times. Consider using its full name instead of the symbol.</p>')
     return mistakes
 
 
@@ -748,11 +760,13 @@ def abbreviations(text):
         filtered_abbreviations.append(trimmed_abbreviation)
     mistakes = ''
     for unique_abbreviation in set(filtered_abbreviations):
-        if unique_abbreviation not in elements_list:
+        if (unique_abbreviation not in elements_list) and (unique_abbreviation not in exceptions_list):
             occurance = filtered_abbreviations.count(unique_abbreviation)
             if occurance == 1:
                 mistakes += str('<p>Abbreviation ' + str(unique_abbreviation) + ' occurs only once. Since abbreviations are hard to read, consider just spelling it out.</p>')
-            if occurance > 1 and occurance < 5:
+            if occurance == 2:
+                mistakes += str('<p>Abbreviation ' + str(unique_abbreviation) + ' occurs only twice. Since abbreviations are hard to read, consider just spelling it out.</p>')
+            if occurance > 2 and occurance < 5:
                 mistakes += str('<p>Abbreviation ' + str(unique_abbreviation) + ' occurs only ' + str(occurance) + ' times. Since abbreviations are hard to read, consider just spelling it out.</p>')
     return mistakes
 
@@ -780,9 +794,79 @@ def british_spelling(line, index, english):
     return mistakes
 
 
+def abstract_lenght(text):
+    '''Check the abstract length and advise if it's too long'''
+    try:
+        entire_text = ' '.join(text)
+        pattern = '+++'
+        abstract = entire_text.replace("begin{abstract", pattern).split('+++')
+        abstract = abstract[1].replace("end{abstract", pattern).split('+++')
+        abstract = abstract[0][1:-1]
+    except:
+        abstract = ""
+        pass
+    if abstract == "":
+        for line in text:
+            if "abstract{" in line:
+                abstract  = line[9:-1]
+    words = len(abstract.split())
+    symbols = len(abstract)
+    mistakes = ''
+    if len(abstract) > 1:
+        if words > 150:
+            mistakes += str("<p>Your abstract has "+str(words)+" words or "+str(symbols)+" characters. Many journals limit abstracts by 150 words only. Check if this is within limitations of your journal.</p>")
+        elif words < 50:
+            mistakes += str("<p>Your abstract has "+str(words)+" words or "+str(symbols)+" characters. Seems a bit short.</p>")
+        else:
+            mistakes += str("<p>Your abstract has "+str(words)+" words or "+str(symbols)+" characters. It seems fine, but double-check if this is within limitations of your journal.</p>")
+    return mistakes
+
+
+def title_lenght(text):
+    '''Check the length of the abstract and advise if it's too long'''
+    title = ""
+    for line in text:
+        if "title{" in line:
+            title  = line[6:-1]
+    words = len(title.split())
+    symbols = len(title)
+    mistakes = ''
+    if words > 15 and words > 1:
+        mistakes += str("<p>Your title has "+str(words)+" words or "+str(symbols)+" characters. Consider making it shorter. Some journals (e.g. Nature Communications) limit the title by 15 words only.</p>")
+    return mistakes
+
+
+def references(text):
+    '''Check the number and years of the references'''
+    entire_text = ' '.join(text)
+    all_citations = re.findall(r'cite\{[^\}]+}', entire_text)
+    references = []
+    for citation in all_citations:
+        citation_splitted = citation.split(',')
+        for reference in citation_splitted:
+            reference = re.sub(r'cite\{', '', reference)
+            reference = re.sub(r'\}', '', reference)
+            reference = re.sub(r' ', '', reference)
+            references.append(reference)
+    references = list(set(references))
+    years = [int(re.findall(r'\d\d\d\d', ref)[0]) for ref in references]
+    mistakes = ''
+    if len(years) > 0:
+        this_year = int(date.today().year)
+        reference_ages = [this_year - year for year in years]
+        older_than_ten = 100*len([age for age in reference_ages if age > 10])//len(years)
+        older_than_five = 100*len([age for age in reference_ages if age > 5])//len(years)
+        if older_than_five > 30:
+            mistakes += str("<p>Looks like "+str(older_than_five)+"% of your references are older than five years and "+str(older_than_ten)+"% are older than ten years. Mostly old references might signal poor actuality of your work to journal editors. Consider if you can use newer references.</p>")
+    return mistakes
+
+
 def main(text, english):
     '''This is the main function that runs the program and outputs the results'''
     results = ''
+    results += title_lenght(text)
+    results += abstract_lenght(text)
+    results += references(text)
     for index, line in enumerate(text):
         results += bad_patterns(line, index)
         results += phrases_with_very(line, index)
@@ -795,5 +879,5 @@ def main(text, english):
     results += elements(text)
     results += abbreviations(text)
     if len(results) == 0:
-        results = "Looks like it is a perfect (or an empty) text!"
+        results = "Looks like this text is perfect!"
     return results

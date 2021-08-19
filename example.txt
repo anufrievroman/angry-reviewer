@@ -1,1 +1,224 @@
 Despite the fact that quantity of new scientific output clearly increased significantly in the past years, it is known that the quality of academic writing has been declining as never before. Click the button below to check this text! 
+\documentclass[
+ aip,
+% jmp,
+% bmf,
+% sd,
+% rsi,
+ amsmath,amssymb,
+%preprint,%
+ reprint,%
+%author-year,%
+%author-numerical,%
+% Conference Proceedings
+]{revtex4-1}
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage{cancel}
+
+\begin{document}
+
+\preprint{AIP/123-QED}
+
+\title{Ballistic heat conduction in semiconductor nanowires}
+
+\author{Roman Anufriev}
+% \email{anufriev@iis.u-tokyo.ac.jp}
+\affiliation{Institute of Industrial Science, The University of Tokyo, Tokyo 153-8505, Japan}
+
+\author{Yunhui Wu}
+\affiliation{Institute of Industrial Science, The University of Tokyo, Tokyo 153-8505, Japan}
+
+\author{Masahiro Nomura}
+\affiliation{Institute of Industrial Science, The University of Tokyo, Tokyo 153-8505, Japan}
+
+\date{\today}
+
+\begin{abstract}
+Ballistic thermal transport is a remarkable nanoscale phenomenon with possible applications in microelectronics. In the past decade, research on ballistic thermal transport focused on the measurements of length-dependent thermal conductivity in semiconductor nanowires. In this perspective article, we review the experimental demonstrations of this phenomenon in nanowires of various materials and sizes and at different temperatures. Our literature analysis reveals a controversy between works reporting two distinct pictures of ballistic conduction: perfectly ballistic conduction even at room temperature and weak quasi-ballistic conduction mainly below room temperature. Simulations seem to support the weaker version of the effect. Thus, future experiments are expected to resolve this controversy.
+\end{abstract}
+
+\maketitle
+
+\section*{Introduction}
+
+Heat conduction at the macro scale is a diffusive process that drives dissipation of heat from hot to cold.
+However, at nanoscale, heat conduction can become non-diffusive if the conductor is sufficiently small.
+The non-diffusive thermal transport in nanostructures suggests that phonons carrying the thermal energy can experience no diffuse scattering in the structure and hence no additional resistance caused by this scattering.
+Thus, the thermal resistance of such nanostructures turns out to be lower than it should, which might be useful for heat dissipation applications \cite{Pop2010}.
+Such non-diffusive transport is known as ballistic or quasi-ballistic, if some degree of diffusive transport is still present.
+In the literature, the quasi-ballistic regime is sometimes also called semi-ballistic or superdiffusive.
+For consistency, here we will use the term quasi-ballistic.
+
+In nanostructures supporting the quasi-ballistic heat conduction, the thermal conductivity is no longer an intrinsic property of the material but becomes structure specific.
+Consider phonon transport in a nanowire shown in Fig. \ref{fig_methods}a.
+Provided that nanowire diameter is much shorter than phonon mean free path in bulk, phonons mainly experience scattering on the nanowire surface.
+The surface scattering can be either diffuse or specular, depending on the surface roughness \cite{Maurer2015, Lim2012, Xie2013}, as illustrated in Fig. \ref{fig_methods}b.
+Diffuse scattering events cause reduction of the phonon mean free path, thus resulting in diffusive heat conduction \cite{Malhotra2016, Maurer2015}.
+In this case, the thermal resistance of the wire is proportional to its length ($R \propto L$)
+Conversely, specular (elastic) scattering events do not affect phonon mean free path. 
+Propagation of phonons with long mean free path through a short nanostructure is then perceived as reduced thermal resistance of this structure. 
+In that case, the thermal resistance is no longer proportional to the structure length ($R \cancel{\propto} L$).
+
+Since the thermal conductivity is proportional to the thermal resistance as $\kappa \propto L/R$, in case of ballistic conduction, the thermal conductivity becomes merely proportional to the length.
+The proportionality is often described as $\kappa \propto L^{\alpha}$.
+The divergence rate $\alpha$ takes values between zero and one and roughly describes the strength of ballistic heat conduction.
+For example, $\alpha = 0$ simply means diffusive transport, $\alpha = 1$ implies ballistic transport, and the intermediate values indicate the quasi-ballistic regime.
+Essentially, the quasi-ballistic regime means that a significant portion of all phonons can traverse the entire nanostructure or at least its substantial parts without diffuse scattering.
+
+Such length-dependent thermal conductivity is one of the most obvious signs of ballistic heat conduction that can be observed experimentally.
+For this reason, measurements of the thermal conductivity as a function of length became a standard experiment for probing ballistic thermal transport in nanostructures \cite{Zhang2020d}.
+Nanowires seem to be perfect samples for such measurements due to their one-dimensional nature and a variety of sample preparation methods \cite{Malhotra2019}.
+In this perspective article, we review the past several years of the experimental studies of ballistic heat conduction in nanowires.
+
+\section*{Experimental methods}
+
+To better understand the experimental results, it is important to clarify the difference between the experimental methods used in the literature.
+Two main techniques used for the thermal characterization of nanowires are the thermal bridge method and micro time-domain thermoreflectance (\textmu TDTR) method, illustrated in Fig. \ref{fig_methods}c-d.
+In the thermal bridge method, Joule heating is supplied to the heater side, and temperatures of both hot and cold sides are measured \cite{Hsiao2013, Wingert2012}.
+While this method offers straightforward data analysis and high instrumental precision, it suffers from the low throughput, complex sample preparation, and issues with contact resistance between the nanowire and the pads \cite{Huang2015}.
+On the other hand, the \textmu TDTR is a contactless photothermal method \cite{Anufriev2020d} where heating is achieved via laser absorption, and only the temperature of the heating pad is measured using the second laser and thermoreflectance effect \cite{Maire2014,Sandell2020, Anufriev2018a}.
+This method is free from the sample preparation and throughput issues and offers quick contactless measurements of a large number of samples fabricated on the same wafer. 
+However, while \textmu TDTR offers better statistics and reproducibility, it suffers from generally lower accuracy and complex data analysis that requires finite element method simulations.
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.95\textwidth]{Figures/Fig_methods.pdf}
+    \caption{Illustration of (a) a nanowire with (b) two types of surface scattering. Schemes of (c) thermal bridge and (d) $\mu$TDTR methods used for the thermal conductivity measurements of nanowires.}
+\label{fig_methods}
+\end{figure*}
+
+\section*{Perfectly ballistic conduction}
+
+Pioneering attempt to measure ballistic heat conduction in nanowires were reported in 2013 when Hsiao et al. \cite{Hsiao2013} measured the thermal conductivity of as-grown SiGe nanowires using the thermal bridge method.
+First, they found that the thermal conductivity is independent of the nanowire diameter and Ge concentration, contrary to previous observations \cite{Li2003, Hochbaum2008}.
+Second, the experiments showed that the thermal conductivity scales in proportion to the nanowire length as $\kappa \propto L^{\alpha}$ with $\alpha = 1$ (Fig. \ref{fig_sige}a).
+Both observations signaled not just a presence of quasi-ballistic conduction but the purely ballistic heat conduction at room temperature.
+The $\alpha = 1$ trend was observed for dozens of measured nanowires except for two nanowires with $L >$ 8.3 \textmu m.
+Later, Hsiao et al. \cite{Hsiao2015} observed similar behaviour on core-shell SiGe nanowires, albeit not as perfectly ballistic and at shorter lengths.
+These experiments set the first record for an unexpectedly long ballistic thermal transport at room temperature in nanowires.
+
+However, simulations \cite{Zhang2015, Upadhyaya2016} could not replicate nor explain these experimental results. 
+In contrast, they predicted a much weaker length dependence of the thermal conductivity in SiGe nanowires even for the negligible surface roughness (Fig. \ref{fig_sige}a).
+Recent theoretical calculations by Smith et al. \cite{Smith2020} agreed with earlier simulations on the much weaker length dependence in SiGe nanowires even at low temperatures.
+
+Yet, Zhang et al. \cite{Zhang2018} challenged the previous record for the longest ballistic conduction in nanowires with the thermal bridge measurements of Ta$_2$Pd$_3$Se$_8$ nanowires.
+They demonstrated the length-dependent thermal conductivity in nanowires up to 13 $\mu$m in length at room temperature. 
+Recently, Vakulov et al. \cite{Vakulov2020} claimed even longer ballistic heat conduction at room temperature in GaP nanowires of up to 15 $\mu$m in length.
+Remarkably, the observed length dependence suggested ballistic heat conduction with $\alpha = 1$ for the nanowires with the diameter of 25 nm, as shown in Fig. \ref{fig_sige}b.
+But, the nanowires of 50 nm in diameter showed a completely flat dependence with $\alpha = 0$ corresponding to the diffusive conduction.
+
+\section*{Quasi-ballistic conduction}
+
+In contrast with these reports of perfectly ballistic conduction over several micrometers, many experiments failed to observe any signs of ballistic conduction even at shorter length scales.
+For example, several studies\cite{Hippalgaonkar2010, Hertzberg2014, Raja2016, Maire2017a} of silicon nanowires and other one-dimensional structures reported a diffusive heat transport at room temperature with possibly only a very weak ballistic contribution at short length scales \cite{Anufriev2018a, Park2017} (Fig. \ref{fig_si}a).
+The diffusive heat conduction in silicon nanowires is well explained by the reduction of the phonon mean free path due to the diffuse surface scattering of phonons \cite{Malhotra2016, Maurer2015, Raja2016, Xie2013}.
+Indeed, even in nanowires with low surface roughness the mean free path is not expected to exceed few hundred nanometers at room temperature \cite{Malhotra2016, Smith2020}.
+However, in another room temperature study, Zhuge et al. \cite{Zhuge2018} measured a length-dependent thermal conductivity in doped silicon nanowires (Fig. \ref{fig_si}a) but explained it by additional resistive processes.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{Figures/Fig_SiGe.pdf}
+    \caption{Thermal conductivity as a function of nanowire length in (a) SiGe nanowires \cite{Hsiao2013, Hsiao2015, Okamoto2019, Upadhyaya2016} and (b) GaP nanowires of different diameters \cite{Vakulov2020}.}
+\label{fig_sige}
+\end{figure}
+
+Further $\mu$TDTR experiments demonstrated that quasi-ballistic heat conduction in silicon nanowires occurs only below room temperature.
+Maire et al. \cite{Maire2017a} compared heat conduction in silicon nanowires at 4 and 300 K (Fig. \ref{fig_si}b).
+Whereas at 300 K, the heat conduction seemed diffusive, they observed the length-dependent thermal conductivity at 4 K with $\kappa \propto L^{0.3}$, for the nanowires shorter than two microns.
+
+In a later and more systematic study, Anufriev et al. \cite{Anufriev2018a} demonstrated how this length dependence gradually weakens as the temperature is increased from 4 to 300 K.
+They measured length dependencies with divergence rates $\alpha$ = 0.30, 0.25, 0.15, and 0.13 on 1-$\mu$m-long nanowires at temperatures of 4, 100, 200, and 300 K, respectively.
+In other words, even at 4 K, heat conduction in micron-long silicon nanowires was only about 30\% ballistic (Fig. \ref{fig_si}b).
+In a subsequent study \cite{Anufriev2019a}, they used a different experimental approach to confirm these findings for even shorter nanowires of 400 nm in length.
+
+Nevertheless, previous observations \cite{Hsiao2013} of perfectly ballistic heat conduction at 300 K in SiGe nanowires, independent of the Ge composition, motivated researchers to study SiGe nanowires more closely.
+Okamoto et al. \cite{Okamoto2019} studied polycrystalline SiGe nanowires of various material compositions, lengths, and temperatures using the $\mu$TDTR method.
+In contrast with Hsiao et al. \cite{Hsiao2013}, they found a weak length dependence of the thermal conductivity with the highest divergence rate $\alpha = 0.4$ for the very best case of nanowires with 50\% Ge composition at 40 K.
+Moreover, they found a correlation between the Ge composition and the length dependence.
+
+Similarly, Smith et al. \cite{Smith2020} measured almost no length dependence of the thermal conductivity in crystalline SiGe nanowires longer than 2 $\mu$m at 150 and 300 K in agreement with their and prior \cite{Upadhyaya2016} simulations.
+In that work, they employed the eight-probe thermal bridge method to measure different segments of the same nanowire, in contrast with the previously used-two probe method.
+
+To better understand the experimental observations, researchers simulated phonon transport using the Monte Carlo technique and statistically analyzed stochastic phonon motion in nanowires \cite{Anufriev2018a, Upadhyaya2016}.
+In silicon nanowires at room temperature \cite{Upadhyaya2016}, they found that phonon trajectories generally resemble a Brownian motion typical for diffusive transport.
+Yet, in SiGe nanowires \cite{Upadhyaya2016} at room temperature, as well as in silicon nanowires at 4 K \cite{Anufriev2018a}, the distribution of lengths of phonon flights resembled a heavy-tailed distribution characteristic of a L\'evy walk process rather than a Brownian motion.
+Indeed, the L\'evy walk has already been invoked \cite{Cipriani2005} to explain quasi-ballistic heat conduction in one-dimensional systems.
+Remarkably, the L\'evy walk picture of phonon transport predicts \cite{Cipriani2005, Upadhyaya2016} the quasi-ballistic conduction with the divergence rate $\alpha = 1/3$ in agreement with the experimentally observed values \cite{Anufriev2018a, Okamoto2019, Maire2017a}.
+Most recently, the thermal transport with $\alpha = 1/3$ was experimentally observed in one-dimensional atomic chains at room temperature \cite{Yang2021}.
+    
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{Figures/Fig_Si.pdf}
+    \caption{Thermal conductivity of silicon nanowires as a function of their length measured at (a) 300 K \cite{Maire2017a, Anufriev2018a, Zhuge2018} and (b) 4 K \cite{Maire2017a, Anufriev2018a, Anufriev2019a}.}
+    \label{fig_si}
+\end{figure}
+
+\section*{Alternative experiments}
+
+However, the length-dependent measurements of the thermal conductivity can often be compromised by parasitic thermal contact resistance.
+Indeed, the non-perfect contacts between nanowire and measurement platforms can noticeably increase measured thermal conductance and thus affect the perceived thermal conductivity to the point of invalidating the result.
+A comprehensive analysis of this problem is given by Huang et al. \cite{Huang2015}.
+This issue seems less prominent in the $\mu$TDTR experiments due to the absence of the actual boundary between the nanowire and the heater or sensor \cite{Anufriev2018a, Anufriev2019a}.
+However, the thermal bridge experiments often struggle with this problem, trying to minimize the contact resistance \cite{Vakulov2020, Huang2015, Zhuge2018}.
+
+To avoid this issue, researchers devised a comparative study design that allows cancelling any external impacts.
+In this approach, a straight nanowire is compared to a serpentine nanowire of the same length but with several turns. 
+The turns are designed to block the ballistic phonon flights in straight lines along the nanowire axis and thus suppress the overall thermal conductance in the nanowires if some degree of ballistic transport is present.
+
+Indeed, at ultra-low temperatures, Heron et al. \cite{Heron2010} measured 30\% higher thermal conductance in the straight nanowire as compared to that of a serpentine nanowire.
+At higher temperatures, Anufriev et al. \cite{Anufriev2018a, Anufriev2019a} demonstrated how the 30\% difference at 4 K gradually disappears as the temperature is increased to about 200 K.
+A similar trend was confirmed by Zhao et al. \cite{Zhao2019}. 
+This experimental approach enabled probing the minimal length of 400 nm at which the quasi-ballistic thermal transport was still observable in silicon nanowires at 150 K \cite{Anufriev2019a}.
+Simulations \cite{Park2017} suggest that at the minimal length of 225 nm, the difference between straight and serpentine nanowires should be observable even at room temperature.
+
+\section*{Sub-kelvin experiments}
+
+In general, the experimental data suggest that ballistic heat conduction becomes stronger at lower temperatures due to the longer wavelengths and phonon mean free paths.
+Following this trend, heat conduction at sub-kelvin temperatures should be almost perfectly ballistic \cite{Tavakoli2017} as the phonon wavelength far exceeds any surface roughness and phonon mean free path exceeds structure size, thus excluding any possibility of diffuse scattering events.
+Indeed, at sub-kelvin temperatures, Tavakoli et al. \cite{Tavakoli2018} measured the same thermal conductance in silicon nitride nanowires of 1, 3, and 7 $\mu$m in length, which suggests strongly ballistic heat conduction.
+
+Remarkably, thermal conductance in dielectric wires at ultra-low temperatures is expected to be quantized \cite{Rego1998, Prasher2008}.
+Schwab et al. \cite{Schwab2000} measured such quantized conduction in silicon nitride nanowires below 1 K.
+However, later experiments by Tavakoli et al. \cite{Tavakoli2018} could not reproduce this result.
+At ultra-low temperatures, when mechanical vibration nearly reach the quantum ground state, precise thermal conductivity measurements may suffer from the mode mismatch between thermal baths and nanowires. 
+
+\section*{Conclusions}
+
+To summarize, ballistic heat conduction is a remarkable nanoscale phenomenon that enables better heat dissipation in microelectronics.
+This phenomenon has been widely observed in nanowires in the past several years.
+However, the experimental works do not seem to agree neither about the strength of this effect nor about the length and temperature ranges where this effect is prominent.
+
+This controversy seems correlating with the used experimental methods, albeit not perfectly.
+Experiments using the thermal bridge method tend to observe perfectly ballistic conduction in nanowires up to several micrometers in length, even at room temperature.
+Moreover, the observed transition from diffusive to ballistic regime tends to occur immediately as soon as the nanowire length \cite{Hsiao2013} or diameter \cite{Vakulov2020} is reduced below a certain value.
+Conversely, $\mu$TDTR experiments show much weaker quasi-ballistic conduction even in shorter nanowires and at lower temperatures.
+The transition from the diffusive to quasi-ballistic regime occurs gradually as the contribution of ballistic conduction weakens with an increase in temperature \cite{Okamoto2019, Anufriev2019a, Anufriev2018a} and length \cite{Anufriev2018a, Maire2017a, Okamoto2019}.
+
+Indeed, thermal phonons generally have wide and continuous distributions of their wavelengths and mean free paths \cite{Malhotra2016}.
+Therefore, as the structure length shrinks towards the lower end of the mean free path spectrum, ballistic effects should emerge gradually.
+Likewise, as phonon wavelengths are lengthening and exceeding surface roughness with decrease in temperature, specular surface scattering gradually becomes more likely \cite{Ravichandran2018, Maire2017a}.
+For these reasons, simulations seem to support the observations of weak quasi-ballistic conduction rather than perfectly ballistic conduction at room temperature with sharp transition to diffusive regime.
+
+Future experiments are expected to resolve the apparent controversy in the literature.
+The measurements should be designed to observe a transition from the diffusive to ballistic conduction with the decrease of both length and temperature.
+Surface roughness and phonon mean free path should also be considered in the design of these experiments.
+Rough or oxidized nanowire surfaces may not only cause the diffuse surface scattering, but also introduce the phonon trapping and backscattering effects \cite{Shao2018, Lim2012, Maurer2015, Xie2013}.
+Thus, fabrication should aim to achieve atomically flat surface roughness without surface oxide.
+Moreover, phonon mean free path in most materials at 300 K does not exceed several micrometers even in bulk \cite{Freedman2013, Regner2015} and is only limited further by the surface scattering \cite{Malhotra2016, Malhotra2016a, Anufriev2020}.
+Thus, choosing materials with longer mean free path \cite{Kang2018, Freedman2013} might be a promising strategy for future observations of ballistic heat conduction at the micron scale.
+
+\section*{Acknowledgments}
+
+This work was supported by PRESTO JST (No. JPMJPR19I1) and CREST JST (No. JPMJCR19Q3).
+\section*{Data availability}
+The data that support the findings of this study are available from the corresponding author upon reasonable request.
+\bibliography{Library.bib}
+\end{document}
+

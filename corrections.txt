@@ -1,0 +1,59 @@
+Your abstract has 105 words or 807 characters. Check if this is within limitations of your journal.
+Line 1. If the word "new" refers to the results or methods, editors and reviewers often dislike such claims. Consider explaining novelty in some other way. Some helpful words are "innovative", "original", "alternative", "previously unknown".
+Line 1. The word "never" could be considered a hype or exaggeration in instances like "never shown before", thus it is better to avoid such statements. Consider alternatives: "rarely", "seldom", "remains unclear", "remains challenging".
+Line 1. Check if the word "fact" is actually applied to a fact. According to The Elements of Style: "Use this word only of matters of a kind capable of direct verification, not of matters of judgment."
+Line 1. It is known that phrases like "it is known" are often inappropriate. Often it is not known to the readers. Consider rewriting or at least suppling the references.
+Line 1. Consider replacing "Despite the fact that" with simple "Although".
+Line 1. Consider replacing "the fact that" with just "that".
+Line 1. The word "clearly" is clearly overused in science and often points to things that actually are not so clear. Consider removing it.
+Line 1. The word "significantly" is often significantly misused in science. It might mean statistically significant or significant to the author, so the meaning is unclear. Consider removing it and describe significance quantitatively, e.g. "increased by 50%" or "50% different". Other alternatives: "substantially, notably"
+Line 1. Avoid constructions with "it is", since they obscure the main subject and action of a sentence.
+Line 1. Instead of "years", it might be better to give the exact year of event.
+Line 52. You may consider replacing "However" with shorter "Yet" or "But".
+Line 73. The word "significant" is often misused in science. It might mean statistically significant or significant to the author, so the meaning is unclear. Consider removing it and writing about significance more quantitatively, e.g. "by 50%". Other alternatives: "substantial, notable"
+Line 75. Consider rewriting it without "one of the most". According to the Elements of Style: "There is nothing wrong in this; it is simply threadbare and forcible-feeble."
+Line 75. The word "obvious" is often misused in science and might describe something that is not so obvious. It also annoys readers. Consider removing it.
+Line 76. Consider replacing "For this reason" with shorter "Thus" or "Hence".
+Line 78. Instead of "years", it might be better to give the exact year of event.
+Line 82. Avoid constructions with "it is", since they obscure the main subject and action of a sentence.
+Line 86. In some cases, might be appropriate to replace "On the other hand" with shorter "However" or "But".
+Line 87. Consider replacing "large number of" with just "many".
+Line 88. You may consider replacing "However" with shorter "Yet" or "But".
+Line 88. Usually, it is better to replace "while" with "whereas", unless something is really happening at the same time.
+Line 88. Constructions like "A is white, while B is red" can be simplified as "A is white; B is red."
+Line 103. Consider rewriting the sentence with "was observed" in active voice, e.g. "we observed that".
+Line 104. In American English, word "behaviour" is spelled as "behavior".
+Line 107. You may consider replacing "However" with shorter "Yet" or "But".
+Line 119. Consider replacing "In contrast with" with shorter "Unlike".
+Line 120. Consider if the word "very" is very very necessary. If emphasis is necessary, use words strong in themselves or quantify the statement.
+Line 120. Consider replacing "very weak" with words like feeble, frail, delicate, debilitated, fragile etc.
+Line 123. You may consider replacing "However" with shorter "Yet" or "But".
+Line 137. Consider if "respectively" is necessary. In clear cases, you can omit it, e.g. "A and B are equal to 1 and 2."
+Line 139. Consider replacing "subsequent" with shorter "later".
+Line 141. Consider replacing "Nevertheless" with shorter "Yet" or "But".
+Line 143. If the word "best" serves here to qualify results or methods, it will be considered a hype and should be avoided. Consider replacing it with "optimal" or "reasonable" or just removing it.
+Line 143. Consider replacing "In contrast with" with shorter "Unlike".
+Line 143. Consider if the word "very" is very very necessary. If emphasis is necessary, use words strong in themselves or quantify the statement.
+Line 146. Consider replacing "Similarly" with "Likewise".
+Line 165. You may consider replacing "However" with shorter "Yet" or "But".
+Line 168. It might be unclear what "This is" points to if previous phrase was complicated. Rewrite with more specific subject, e.g. "This result is".
+Line 168. Verify that "less" is not misused for "fewer" (e.g. "less time", but "fewer samples") or cannot be replace with a more precise word like "thinner", "shorter", "weaker" etc.
+Line 169. You may consider replacing "However" with shorter "Yet" or "But".
+Line 171. Check is the verb "allow" here is related to some permissions. Otherwise, if you mean "make it possible", use the verb "enable".
+Line 185. The word "strongly" is often strongly misused to describe not so strong things. Consider removing it and expressing the strength quantitatively, e.g. "50% stronger" or "increased by 50%".
+Line 189. You may consider replacing "However" with shorter "Yet" or "But".
+Line 195. Instead of "years", it might be better to give the exact year of event.
+Line 196. You may consider replacing "However" with shorter "Yet" or "But".
+Line 205. Consider replacing "Therefore" with shorter "Thus" or "Hence".
+Line 205. In American English, word "towards" is spelled as "toward".
+Line 207. Consider replacing "For these reasons" with shorter "Thus" or "Hence".
+Line 212. If you use a construction "not only...but also", there might be a better way to phrase it.
+The abbreviation QED occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation JST occurs only 2 times. Because abbreviations are hard to read, consider just spelling it out.
+The abbreviation CREST occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation JPMJCR occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation AIP occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation JPMJPR occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation GaP occurs only 2 times. Because abbreviations are hard to read, consider just spelling it out.
+The abbreviation PRESTO occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+Looks like 45% of your references are older than five years and 19% are older than ten years. Mostly old references might signal poor actuality of your work to journal editors. Consider if you can use newer references.
