@@ -735,6 +735,7 @@ def abstract_lenght(text):
         else:
             output("Your abstract has "+str(words)+" words or "+str(symbols)+" characters. Check if this is within limitations of your journal.")
 
+
 def title_lenght(text):
     '''Check the length of the abstract and advise if it's too long'''
     title = ""
@@ -784,13 +785,20 @@ def references(text):
                 name = re.sub(r' ', '', name)
                 names.append(name)
     selfcitations = 0
-    print(names)
     for name in names:
         for reference in references:
             if name.upper() in reference.upper():
                 selfcitations += 1
-    output("Out of "+str(len(references))+" references, at least "+str(selfcitations)+" seems to be selfcitations.")
-    return
+    output(f"Out of {len(references)} references, at least {selfcitations} seems to be selfcitations.")
+
+
+def overcitation(line, index):
+    '''Check if there are too many citations in one place'''
+    all_citations = re.findall(r'\\cite{[^}]+}', line)
+    for citation in all_citations:
+        number_of_references = len(citation.split(','))
+        if number_of_references > 4:
+            output(f"Line {index}. There are {number_of_references} references in one place. Bloated references neither help the reader nor make the statement stronger. Consider reducing citations or just citing one review instead.")
 
 
 def output(message):
@@ -810,6 +818,7 @@ def main():
 
         title_lenght(text)
         abstract_lenght(text)
+        references(text)
         for index, line in enumerate(text):
             bad_patterns(line, index)
             phrases_with_very(line, index)
@@ -819,9 +828,9 @@ def main():
             start_with_numbers(line, index)
             numbers_next_to_units(line, index)
             british_spelling(line, index)
+            overcitation(line, index)
         elements(text)
         abbreviations_advanced(text)
-        references(text)
 
     except(FileNotFoundError):
         print('Looks like there is no file ' + YOUR_FILE + ' Check that it is in the same folder as this code and that the name is correct.')
