@@ -750,7 +750,7 @@ def title_lenght(text):
 def references(text):
     '''Check the number and years of the references'''
     entire_text = ' '.join(text)
-    all_citations = re.findall(r'cite\{[^\}]+}', entire_text)
+    all_citations = re.findall(r'cite{[^}]+}', entire_text)
     references = []
     for citation in all_citations:
         citation_splitted = citation.split(',')
@@ -770,6 +770,26 @@ def references(text):
             output("Looks like "+str(older_than_five)+"% of your references are older than five years and "+str(older_than_ten)+"% are older than ten years. Mostly old references might signal poor actuality of your work to journal editors. Consider if you can use newer references.")
         if len(references) > 50:
             output("You have "+str(len(references))+" references, while most journals limit the number of references at around 50. Check the guidelines to see how many your journal allows.")
+
+    #Self-citation
+    all_authors_lines = re.findall(r'\\author[\[\]abcdefg\* ,\d]*{[^}]+}', entire_text)
+    names = []
+    for author_line in all_authors_lines:
+        author_line = re.sub(r'\\author[\[\]abcdefg,\d]*{', '', author_line)
+        author_line_splitted = author_line.split(',')
+        for each_author in author_line_splitted:
+            each_author_splitter = each_author.split(' ')
+            for name in each_author_splitter:
+                name = re.sub(r'\}', '', name)
+                name = re.sub(r' ', '', name)
+                names.append(name)
+    selfcitations = 0
+    print(names)
+    for name in names:
+        for reference in references:
+            if name.upper() in reference.upper():
+                selfcitations += 1
+    output("Out of "+str(len(references))+" references, at least "+str(selfcitations)+" seems to be selfcitations.")
     return
 
 
@@ -809,6 +829,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-# if __name__ == '__main__':
-#     import timeit
-#     print(timeit.timeit("main()"))

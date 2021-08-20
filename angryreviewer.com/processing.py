@@ -206,6 +206,29 @@ def references(text):
             mistakes += str("<p>Looks like "+str(older_than_five)+"% of your references are older than five years and "+str(older_than_ten)+"% are older than ten years. Mostly old references might signal poor actuality of your work to journal editors. Consider if you can use newer references.</p>")
         if len(references) > 50:
             mistakes += str("<p>You have "+str(len(references))+" references, while most journals allow maximum of 50. Check the guidelines to see how many your journal allows.</p>")
+
+        # Analyse self-citation. Find authors and cross-check with references.
+        all_authors_lines = re.findall(r'\\author[\[\]abcdefg\* ,\d]*{[^}]+}', entire_text)
+        names = []
+        for author_line in all_authors_lines:
+            author_line = re.sub(r'\\author[\[\]abcdefg,\d]*{', '', author_line)
+            author_line_splitted = author_line.split(',')
+            for each_author in author_line_splitted:
+                each_author_splitter = each_author.split(' ')
+                for name in each_author_splitter:
+                    name = re.sub(r'\}', '', name)
+                    name = re.sub(r' ', '', name)
+                    names.append(name)
+        selfcitations = 0
+        for name in names:
+            for reference in references:
+                if name.upper() in reference.upper():
+                    selfcitations += 1
+        selfcitation_percentage = 100*selfcitations//len(references)
+        if selfcitation_percentage > 0 and selfcitation_percentage < 20:
+            mistakes += str("<p>At least "+str(selfcitations)+" out of "+str(len(references))+" of your references appears to be self-citations. This is acceptable, but keep it in check.</p>")
+        if selfcitation_percentage >= 20:
+            mistakes += str("<p>At least "+str(selfcitations)+" out of "+str(len(references))+" of your references appears to be self-citations. Consider if you need so many self references, it might not look good.</p>")
     return mistakes
 
 

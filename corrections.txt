@@ -1,0 +1,70 @@
+Your abstract has 174 words or 1319 characters. Some jounals, for example Nature Communications, limit abstracts by 150 words only. Check if this is within limitations of your journal.
+Line 1. If the word "new" refers to the results or methods, editors and reviewers often dislike such claims. Consider explaining novelty in some other way. Some helpful words are "innovative", "original", "alternative", "previously unknown".
+Line 1. The word "never" could be considered a hype or exaggeration in instances like "never shown before", thus it is better to avoid such statements. Consider alternatives: "rarely", "seldom", "remains unclear", "remains challenging".
+Line 1. Check if the word "fact" is actually applied to a fact. According to The Elements of Style: "Use this word only of matters of a kind capable of direct verification, not of matters of judgment."
+Line 1. It is known that phrases like "it is known" are often inappropriate. Often it is not known to the readers. Consider rewriting or at least suppling the references.
+Line 1. Consider replacing "Despite the fact that" with simple "Although".
+Line 1. Consider replacing "the fact that" with just "that".
+Line 1. The word "clearly" is clearly overused in science and often points to things that actually are not so clear. Consider removing it.
+Line 1. The word "significantly" is often significantly misused in science. It might mean statistically significant or significant to the author, so the meaning is unclear. Consider removing it and describe significance quantitatively, e.g. "increased by 50%" or "50% different". Other alternatives: "substantially, notably"
+Line 1. Avoid constructions with "it is", since they obscure the main subject and action of a sentence.
+Line 1. Instead of "years", it might be better to give the exact year of event.
+Line 28. If the word "new" refers to the results or methods, editors and reviewers often dislike such claims. Consider explaining novelty in some other way. Some helpful words are "innovative", "original", "alternative", "previously unknown".
+Line 28. The word "highly" rarely highly contributes to better understanding. Consider removing it or if important quantifying it.
+Line 28. If "the first time" reffers to the findings, consider if there is a better way to claim novelty of the work, because such expressions are often considered hype and discurraged by journals. Try using verbs already suggesting the novelty, like "uncover", "invent", "resolve", "solve", "propose" etc.
+Line 28. Consider writing what you believe directly, without starting with "we believe".
+Line 44. You may consider replacing "However" with shorter "Yet" or "But".
+Line 46. You may replace "In this work" with shorter "Here" or just start with "We show that".
+Line 63. Consider if your readers know the Latin expressions "i.e.". It might be better to write "that is".
+Line 66. You may consider replacing "However" with shorter "Yet" or "But".
+Line 68. Consider replacing "Therefore" with shorter "Thus" or "Hence".
+Line 70. Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.
+Line 72. Verify that the verb "generated" really describes a generation process. Otherwise, consider replacing it with "caused".
+Line 75. You may consider replacing "However" with shorter "Yet" or "But".
+Line 77. You may replace "In this work" with shorter "Here" or just start with "We show that".
+Line 85. The word Fig. in the beginning of a sentence can usually be spelled out, e.g. "Figure 1 shows...".
+Line 87. Most journals prefer shortening the word Figure as Fig. if it is not opening the sentence.
+Line 95. Verify that the verb "generate" really describes a generation process. Otherwise, consider replacing it with "cause".
+Line 99. Most journals prefer shortening the word Figure as Fig. if it is not opening the sentence.
+Line 100. Consider if "respectively" is necessary. In clear cases, you can omit it, e.g. "A and B are equal to 1 and 2."
+Line 100. In American English, word "labelled" is spelled as "labeled".
+Line 109. Consider if "respectively" is necessary. In clear cases, you can omit it, e.g. "A and B are equal to 1 and 2."
+Line 113. The word "significant" is often misused in science. It might mean statistically significant or significant to the author, so the meaning is unclear. Consider removing it and writing about significance more quantitatively, e.g. "by 50%". Other alternatives: "substantial, notable"
+Line 127. In American English, word "behaviour" is spelled as "behavior".
+Line 135. Consider if "respectively" is necessary. In clear cases, you can omit it, e.g. "A and B are equal to 1 and 2."
+Line 136. The word "strongly" is often strongly misused to describe not so strong things. Consider removing it and expressing the strength quantitatively, e.g. "50% stronger" or "increased by 50%".
+Line 136. Verify that the verb "generated" really describes a generation process. Otherwise, consider replacing it with "caused".
+Line 148. You may consider replacing "However" with shorter "Yet" or "But".
+Line 150. Most journals prefer shortening the word Figure as Fig. if it is not opening the sentence.
+Line 152. In American English, word "behaviour" is spelled as "behavior".
+Line 156. You may consider replacing "However" with shorter "Yet" or "But".
+Line 156. The word "significant" is often misused in science. It might mean statistically significant or significant to the author, so the meaning is unclear. Consider removing it and writing about significance more quantitatively, e.g. "by 50%". Other alternatives: "substantial, notable"
+Line 163. Avoid constructions with "it is", since they obscure the main subject and action of a sentence.
+Line 180. In American English, word "analogue" is spelled as "analog".
+Line 182. In American English, word "analogue" is spelled as "analog".
+Line 189. Check is the verb "allow" here is related to some permissions. Otherwise, if you mean "make it possible", use the verb "enable".
+Line 189. In American English, word "analogue" is spelled as "analog".
+The element Si occurs only once. Consider using its full name instead of the symbol.
+The element Cr occurs only once. Consider using its full name instead of the symbol.
+The element SiC occurs only once. Consider using its full name instead of the symbol.
+The element Au occurs only 2 times. Consider using its full name instead of the symbol.
+The element SiO$_2$ occurs only once. Consider using its full name instead of the symbol.
+The abbreviation EX occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation CREST occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation PNAS occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation DC occurs only 3 times. Because abbreviations are hard to read, consider just spelling it out.
+The abbreviation SiO occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation MPa occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation CNRS occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation IRL occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation JPMJCR occurs only 2 times. Because abbreviations are hard to read, consider just spelling it out.
+The abbreviation JANIS occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation SiC occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation ST occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation JST occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation XXXXXXXXXX occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation TC occurs only 3 times. Because abbreviations are hard to read, consider just spelling it out.
+The abbreviation KAKENHI occurs only once. Since abbreviations are hard to read, consider just spelling it out.
+The abbreviation AC occurs only 3 times. Because abbreviations are hard to read, consider just spelling it out.
+Looks like 52% of your references are older than five years and 38% are older than ten years. Mostly old references might signal poor actuality of your work to journal editors. Consider if you can use newer references.
+Out of 34 references, at least 6 seems to be selfcitations.
