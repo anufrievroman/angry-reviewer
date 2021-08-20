@@ -569,8 +569,8 @@ def numbers_next_to_units(line, index):
 def elements(text):
     '''Check how many times chemical elements occur in the text'''
     elements = [' Al ', ' Si ', ' Cr ', ' Ga ', ' Ti ', ' InP ', ' GaAs ', ' SiC ', ' Cu ', ' He ',
-                     ' Li ', ' Ne ', ' Na ', ' Cl ', ' Ar ', ' Au ', ' VO2 ', ' Sc ', ' Fe ', ' Nb ', ' Ni ', 
-                     ' Sr ', ' Zr ', ' Ag ', ' Ta ', ' Pt ', ' Hg ', ' U ', ' O2 ', ' H2O ', ' Sn ', ' Sb ',
+                     ' Li ', ' Ne ', ' Na ', ' Cl ', ' Ar ', ' Au ', ' VO2 ', ' Sc ', ' Fe ', ' Nb ', ' Ni ',
+                     ' Sr ', ' Zr ', ' SiGe ', ' GaP ', ' Ag ', ' Ta ', ' Pt ', ' Hg ', ' U ', ' O2 ', ' H2O ', ' Sn ', ' Sb ',
                      ' SiN ', ' SiO2 ', ' H ', ' N ', ' GaN ', ' InP ', ' InAs ', ' SiO$_2$ ']
     for element in elements:
         occurance = 0
@@ -768,6 +768,8 @@ def references(text):
         older_than_five = 100*len([age for age in reference_ages if age > 5])//len(years)
         if older_than_five > 30:
             output("Looks like "+str(older_than_five)+"% of your references are older than five years and "+str(older_than_ten)+"% are older than ten years. Mostly old references might signal poor actuality of your work to journal editors. Consider if you can use newer references.")
+        if len(references) > 50:
+            output("You have "+str(len(references))+" references, while most journals limit the number of references at around 50. Check the guidelines to see how many your journal allows.")
     return
 
 
@@ -807,3 +809,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+# if __name__ == '__main__':
+#     import timeit
+#     print(timeit.timeit("main()"))
