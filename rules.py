@@ -147,10 +147,10 @@ very_dictionary = {
     'very recent': 'the latest, current, fresh, up-to-date',
     'very rough': 'coarse, jagged, rugged, craggy, gritty, broken',
     'very severe': 'acute, grave, critical, serious, brutal, relentless',
-    'very significant': 'key, notable, substatial, noteworthy, momentous, major, vital',
+    'very significant': 'key, notable, substantial, noteworthy, momentous, major, vital',
     'very similar': 'alike, akin, analogous, comparable, equivalent',
     'very simple': 'easy, straightforward, effortless, uncomplicated',
-    'very small': 'tiny, miniscule, infinitesimal, microscopic, wee',
+    'very small': 'tiny, minuscule, infinitesimal, microscopic, wee',
     'very smooth': 'flat, glassy, polished, level, even, unblemished',
     'very specific': 'precise, exact, explicit, definite, unambiguous',
     'very strange': 'weird, eerie, bizarre, uncanny, peculiar, odd',
@@ -165,7 +165,7 @@ very_dictionary = {
 
 bad_patterns_dictionary = {
 
-    # Hype and cliches
+    # Hype and clichés
 
     'excellent agreement': 'Usually, the agreement is actually not so excellent. Consider replacing with "good agreement" or better yet, quantify the agreement, e.g. "A agrees with B within 5%".',
     'excellent fit': 'Sometimes the fit is actually not so excellent. Consider quantifying the fit, e.g. "Line fits the data within 5% of uncertainty".',
@@ -187,18 +187,18 @@ bad_patterns_dictionary = {
     'literal ': 'The word "literal" is often misused to support an exaggeration, which is hardly appropriate for a scientific paper. Consider if use is appropriate.',
     'respectively': 'Consider if "respectively" is necessary. In clear cases, you can omit it, e.g. "A and B are equal to 1 and 2". Or simplify it as "A = 1 and B = 2".',
     'correspondingly': 'Consider if "correspondingly" is necessary. In clear cases, you can omit it, e.g. "A and B are equal to 1 and 2". Or simplify it as "A = 1 and B = 2".',
-    'hallmark': 'Phrases like "A is a hallmark of B" are considered a cliche.',
-    'paradigm shift': 'Phrases like "paradigm shift" are considered a cliche.',
-    'Holy Grail': 'Phrases like "A is the Holy Grail of B" are considered a cliche.',
-    'holy grail': 'Phrases like "A is the holy grail of B" are considered a cliche.',
+    'hallmark': 'Phrases like "A is a hallmark of B" are considered a cliché.',
+    'paradigm shift': 'Phrases like "paradigm shift" are considered a cliché.',
+    'Holy Grail': 'Phrases like "A is the Holy Grail of B" are considered a cliché.',
+    'holy grail': 'Phrases like "A is the holy grail of B" are considered a cliché.',
     'best': 'If the word "best" serves here to qualify results or methods, it will be considered hype and should be avoided. Consider replacing it with "optimal" or "reasonable" or just removing it.',
     'Best': 'If the word "best" serves here to qualify results or methods, it will be considered hype and should be avoided. Consider replacing it with "optimal" or "reasonable" or just removing it.',
-    'In a nutshell': 'In a nutshell, phrases like "In a nutshell" are a cliche and should be avoided.',
-    'in a nutshell': 'In a nutshell, phrases like "in a nutshell" are a cliche and should be avoided.',
-    'at the end of the day': 'Phrases like "at the end of the day" are considered a cliche.',
-    'At the end of the day': 'Phrases like "At the end of the day" are considered a cliche.',
+    'In a nutshell': 'In a nutshell, phrases like "In a nutshell" are a cliché and should be avoided.',
+    'in a nutshell': 'In a nutshell, phrases like "in a nutshell" are a cliché and should be avoided.',
+    'at the end of the day': 'Phrases like "at the end of the day" are considered a cliché.',
+    'At the end of the day': 'Phrases like "At the end of the day" are considered a cliché.',
     'It is known': 'It is known that phrases like "It is known" should be avoided. Often, it is not actually known to the readers. Just state the fact and supply a reference.',
-    'it is known': 'It is known that phrases like "it is known" should be avoide. Often, it is not actually known to the readers. Just state the fact and supply a reference.',
+    'it is known': 'It is known that phrases like "it is known" should be avoided. Often, it is not actually known to the readers. Just state the fact and supply a reference.',
     'are well known': 'It is well known that phrases with "are well known" are considered arrogant. Usually, is it not so well known to the reader. Consider removing it or at least supplying the references.',
     'is well known': 'It is well known that phrases with "is well known" are considered arrogant. Usually, is it not so well known to the reader. Consider removing it or at least supplying the references.',
     'the first time': 'If "the first time" refers to the findings, consider if there is a better way to claim novelty of the work because such expressions are often considered hype and discouraged by journals. Try using verbs already suggesting the novelty, like "uncover", "invent", "resolve", "solve", "propose" etc.',
@@ -575,11 +575,11 @@ bad_patterns_dictionary = {
     'tens of nm': 'Consider spelling our the units as nanometers instead of nm',
     'few nm': 'Consider spelling our the units as nanometers instead of mm',
     'several nm': 'Consider spelling our the units as nanometers instead of nm',
-    'thousands of mm': 'Consider spelling our the units as milimeters instead of mm',
-    'hundreds of mm': 'Consider spelling our the units as milimeters instead of nm',
-    'tens of mm': 'Consider spelling our the units as milimeters instead of mm',
-    'few mm': 'Consider spelling our the units as milimeters instead of mm',
-    'several mm': 'Consider spelling our the units as milimeters instead of mm',
+    'thousands of mm': 'Consider spelling our the units as millimeters instead of mm',
+    'hundreds of mm': 'Consider spelling our the units as millimeters instead of nm',
+    'tens of mm': 'Consider spelling our the units as millimeters instead of mm',
+    'few mm': 'Consider spelling our the units as millimeters instead of mm',
+    'several mm': 'Consider spelling our the units as millimeters instead of mm',
 
     # Passive voice
 
@@ -606,12 +606,12 @@ bad_patterns_dictionary = {
 
     # Inappropriate language
 
-    "it's": 'If you mean "it is", it"s better to just write "it is". Otherwise, it might need to be corrected as "its", e.g. "material and its properties".',
+    "it's": 'If you mean "it is", it is better just to write "it is". Otherwise, it might need to be corrected as "its", e.g. "material and its properties".',
     'kind of': 'Consider kind of replacing "kind of" with "rather" or kind of avoiding it completely.',
     'pretty much': 'Consider pretty much deleting "pretty much".',
     'sort of': 'Consider sort of replacing "sort of" with "rather" or sort of avoiding it completely.',
     ' less ': 'Verify that "less" is not misused for "fewer" (e.g. "less time", but "fewer samples") or cannot be replaced with a more precise word like "thinner", "shorter", "weaker" etc.',
-    ' very ': 'Consider if the word "very" is very very necessary. If emphasis is necessary, use words strong in themselves or quantify the statement.',
+    ' very ': 'Consider if the word "very" is very very necessary. If the emphasis is necessary, use words strong in themselves or quantify the statement.',
     'viewpoint': 'Consider replacing with "point of view".',
     "don't": "Most academic journals prefer do not instead of don't.",
     "isn't": "Most academic journals prefer is not instead of isn't.",
@@ -684,6 +684,6 @@ bad_patterns_dictionary = {
     '$\mu$TDTR': 'You may replace LaTeX expression "$\mu$TDTR" with "{\`textmu}TDTR" for better looking letter mu.',
     '\hslash': 'If by "\hslash" you mean the reduced Plack constant, use "\hbar".',
     '+/-': 'If you are in LaTeX, use "\pm" instead of "+/-". Otherwise, find proper plus-minus symbol.',
-    ' $^\circ$C': 'Degrees Celcius should not be separated from the number with a space',
+    ' $^\circ$C': 'Degrees Celsius should not be separated from the number with a space',
     ' $^\circ$F': 'Degrees Fahrenheit should not be separated from the number with a space.',
     }
