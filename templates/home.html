@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content">
+        <div class="header">
+            <img src="/static/logo.svg" alt="Angry Reviewer">
+            <a href="/" class="logo"><h1>Angry Reviewer</h1></a>
+            <div class="header-right">
+            <a class="active" href="/">Corrector</a>
+            <a href="/rules">Rules</a>
+            <a href="/about">About</a>
+            </div>
+        </div>
+        <div class="container">
+        <div class="nicetext">
+        <p>Free academic style corrector for modern scientific writing. To get style suggestion for your abstacts, papers, theses, and applications, paste the text below:</p>
+        <form method="post" action=".">
+            <textarea id="subject" name="text" placeholder="Paste your text here..." style="height:300px">Despite the fact that quantity of new scientific output clearly increased significantly in the past years, it is known that the quality of academic writing has been declining as never before. Click the button below to check this text!</textarea>
+
+            <select class="language_selection" id="language" name="language">
+                <option value="american" selected>American English</option>
+                <option value="british">British English</option>
+            </select>
+
+            <p><input type="submit" class="block" value="Check" /></p>
+        </form>
+        </div>
+        </div>
+    </div>
+{% endblock content %}

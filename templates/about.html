@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content">
+        <div class="header">
+            <img src="/static/logo.svg" alt="Angry Reviewer">
+            <a href="/" class="logo"><h1>Angry Reviewer</h1></a>
+            <div class="header-right">
+            <a href="/">Corrector</a>
+            <a href="/rules">Rules</a>
+            <a class="active" href="/about">About</a>
+            </div>
+        </div>
+        <div class="container">
+        <p>The Angry Reviewer is a free and open-source project. These alghoritms were gathered and implemented by Roman Anufriev based on <a href="/rules">articles, books</a>, and lectures on scintific writing as well as his experience in academia.</p>
+        <h2>Privacy</h2>
+        <p>This website does not save or store your text, as you can verify in the source code. If you still worry about privacy of your super secret project, you can download the python code of this alghorithm with the link below, verify it, and run it locally on your computer.</p>
+        <h2>Contacts</h2>
+        <p>For suggestions and issues regarding the alghorithm, feel free to open an issue on github. If you wish to discuss this website or some of the rules, you can find current contacts of the author with the link below.
+        <div class="buttons">
+        <a href="https://github.com/anufrievroman/Angry-Reviewer">Source code</a> <a href="https://anufrievroman.com">Author</a> <a href="https://buymeacoffee.com/angryprofessor">Buy me a coffee</a>
+        </div>
+        <br>
+        <br>
+        </div>
+    </div>
+    </body>
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content">
+        <div class="header">
+            <img src="/static/logo.svg" alt="Angry Reviewer">
+            <a href="/" class="logo"><h1>Angry Reviewer</h1></a>
+            <div class="header-right">
+            <a class="active" href="/">Corrector</a>
+            <a href="/rules">Rules</a>
+            <a href="/about">About</a>
+            </div>
+        </div>
+        <div class="container">
+        <p><b>Reviewer's suggestions for your text:</b></p>
+        {% for line in results %}
+            <p>{{ line }}</p>
+        {% endfor %}
+        <br>
+        <div class="buttons">
+            <a href="/" class="buttons">Back</a> <a href="https://buymeacoffee.com/angryprofessor" class="buttons">Buy me a coffee</a>
+        </div>
+        <br>
+        <br>
+        </div>
+    </div>
+{% endblock content %}
