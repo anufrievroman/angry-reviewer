@@ -1,13 +1,16 @@
 elements_list = set(['Al', 'Si', 'Cr', 'Ga', 'Ti', 'InP', 'GaAs', 'SiC', 'Cu',
     'Li', 'Ne', 'Na', 'Cl', 'Ar', 'Au', 'VO2', 'Sc', 'Fe', 'Nb', 'Ni', 'SiGe',
     'Sr', 'Zr', 'Ag', 'Ta', 'Pt', 'Hg', 'U', 'O2', 'H2O', 'Sn', 'Sb',
-    'SiN', 'SiO', 'H', 'N', 'GaN', 'InP', 'InAs', 'GaP', 'AlP', 'He',])
+    'SiN', 'SiO', 'H', 'N', 'GaN', 'InP', 'InAs', 'GaP', 'AlP', 'He',
+    'BAs', 'BN', 'AlN'])
 
 units_list = set(["m.", "m ", "mm", "um", "nm", "km", "cm", "W", "V", "K", "s ",
-    "s.", "ps", "us ", "Pa", "min", "h.", "h,", "h ", "Hz", "GHz", "THz", "MHz", "g"])
+    "s.", "ps", "us ", "Pa", "min", "h.", "h,", "h ", "Hz", "GHz", "THz", "MHz",
+    "g", 'mg', 'ml', 'nV', 'mV', 'mW', 'nW', ])
 
 exceptions_list = ['RESULTS', 'DISCUSSION', 'DISCUSSIONS','METHODS', 'JST',
-    'INTRODUCTION', 'LIMMS', 'DNA', 'RNA', 'IIS', 'CREST', 'PRESTO']
+    'INTRODUCTION', 'LIMMS', 'DNA', 'RNA', 'IIS', 'CREST', 'PRESTO', 'PNAS',
+    'APL', 'ZT', 'LaTeX', 'MEMS', 'NEMS', 'AIP',]
 
 comma_after_list = [
     'However ',
