@@ -10,7 +10,7 @@ units_list = set(["m.", "m ", "mm", "um", "nm", "km", "cm", "W", "V", "K", "s ",
 
 exceptions_list = ['RESULTS', 'DISCUSSION', 'DISCUSSIONS','METHODS', 'JST',
     'INTRODUCTION', 'LIMMS', 'DNA', 'RNA', 'IIS', 'CREST', 'PRESTO', 'PNAS',
-    'APL', 'ZT', 'LaTeX', 'MEMS', 'NEMS', 'AIP',]
+    'APL', 'ZT', 'LaTeX', 'MEMS', 'NEMS', 'AIP', 'AM', 'PM',]
 
 overused_intro_dictionary = {
     'However': 'But or Yet',
@@ -22,6 +22,7 @@ overused_intro_dictionary = {
     'In addition': 'Also or But',
     'Moreover': 'Also',
     'Indeed': 'For example',
+    'Furthermore': 'Also or Moreover',
     }
 
 comma_after_list = [
@@ -49,6 +50,8 @@ comma_after_list = [
     'On the other hand ',
     'On the one hand ',
     'On one hand ',
+    'Furthermore ',
+    'In the meantime ',
     ]
 
 british_dictionary = {
@@ -173,6 +176,7 @@ very_dictionary = {
     'very visible': 'conspicuous, exposed, obvious, prominent',
     'very weak': 'feeble, frail, delicate, debilitated, fragile',
     'very wide': 'vast, expansive, sweeping, boundless',
+    'very afraid': 'terrified',
     }
 
 bad_patterns_dictionary = {
@@ -236,7 +240,9 @@ bad_patterns_dictionary = {
     'In recent years': 'Consider replacing "In recent years" with shorter "Recently" or more specific "Since 1999".',
     'make it possible': 'Consider replacing "make it possible" with shorter "enable".',
     'makes it possible': 'Consider replacing "makes it possible" with shorter "enables".',
+    'in a reliable manner': 'Consider replacing "in a reliable manner" with shorter "reliably".',
     'Consequently': 'Consider replacing "Consequently" with shorter "Thus" or "Hence".',
+    'In the meantime': 'Consider replacing "In the meantime" with shorter "Meanwhile".',
     # 'Therefore': 'Consider replacing "Therefore" with shorter "Thus" or "Hence".',
     'therefore': 'Consider replacing "therefore" with shorter "thus" or "hence".',
     'Nevertheless': 'You may consider replacing "Nevertheless" with shorter "Yet" or "But".',
@@ -268,6 +274,8 @@ bad_patterns_dictionary = {
     'Due to the fact that': 'Consider replacing "Due to the fact that" with simple "Because".',
     'due to the fact that': 'Consider replacing "due to the fact that" with simple "because".',
     ' the fact that': 'Consider replacing "the fact that" with just "that".',
+    ' PM in the afternoon': 'It is redundant to precise "in the afternoon" after "PM".',
+    ' AM in the morning': 'It is redundant to precise "in the morning" after "AM".',
     'as to whether': 'Consider shortening "as to whether" as just "whether".',
     'In order to': 'Consider shortening "In order to" as just "To".',
     'in order to': 'Consider shortening "in order to" as just "to".',
@@ -388,6 +396,7 @@ bad_patterns_dictionary = {
     'although it was': 'Consider replacing "although it was" with shorter "albeit".',
     'although it becomes': 'Consider replacing "although it becomes" with shorter "albeit".',
     'two times': 'You may replace "two times" with shorter "twice".',
+    'various different': 'You may replace "various different" with just "various".',
     'based on the assumption': 'Consider replacing "based on the assumption" with simpler "assuming" or just "if".',
     'under the assumption': 'Consider replacing "under the assumption" with simpler "assuming" or just "if".',
     'assuming that': 'Consider replacing "assuming that" with a simple "if". "Short words are best" - W. Churchill',
@@ -687,6 +696,7 @@ bad_patterns_dictionary = {
     'a.k.a.': 'Consider replacing "a.k.a." with "also known as" for clarity.',
     ' aka ': 'Consider replacing "aka" with "also known as" for clarity.',
     ' p.a.': 'Consider replacing "p.a." with "per year" for clarity.',
+    ' ad hoc': 'Consider replacing "ad hoc" with "improvised" for clarity.',
 
     # Latex best practices
 
