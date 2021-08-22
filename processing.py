@@ -47,9 +47,8 @@ def phrases_with_very(line, index):
 def start_with_numbers(line, index):
     '''Check if a non-empty line starts with a number'''
     mistakes = []
-    if len(line) > 5:
-        if line[0].isdigit():
-            mistakes.append(f'Line {index + 1}. Avoid starting sentences with numbers. Rewrite spelling out the number, e.g. "Five samples..."')
+    if line[0].isdigit():
+        mistakes.append(f'Line {index + 1}. Avoid starting sentences with numbers. Rewrite spelling out the number, e.g. "Five samples..."')
     return mistakes
 
 
@@ -203,7 +202,7 @@ def references(text):
         older_than_ten = 100*len([age for age in reference_ages if age > 10])//len(years)
         older_than_five = 100*len([age for age in reference_ages if age > 5])//len(years)
         if older_than_five > 50 or older_than_ten > 20 :
-            mistakes.append(f"Looks like {older_than_five}% of your references are older than five years and {older_than_ten}% are even older than ten years. Mostly old references might signal poor actuality of your work to journal editors. Consider if you can use newer references.")
+            mistakes.append(f"Looks like {older_than_five}% of your references are older than five years and {older_than_ten}% are even older than ten years. Mostly old references might signal poor actuality of your work to journal editors. Try to use newer references.")
         if len(references) > 50:
             mistakes.append(f"You have {len(references)} references, while most journals allow maximum of 50. Check the guidelines to see how many your journal allows.")
 
@@ -257,8 +256,17 @@ def intro_patterns(text):
     return mistakes
 
 
+def line_is_valid(line):
+    '''Check if the line is not empty and not a comment'''
+    validation = False
+    if len(line) > 1:
+        if line[0] != '%':
+            validation = True
+    return validation
+
+
 def main(text, english):
-    '''This is the main function that runs tall checks and returns the results to the web app'''
+    '''This is the main function that runs all checks and returns the results to the web app'''
 
     # General checks
     results = []
@@ -267,17 +275,18 @@ def main(text, english):
     results += references(text)
     results += intro_patterns(text)
 
-    # Checks for each line
+    # Checks for each line which is not a comment
     for index, line in enumerate(text):
-        results += bad_patterns(line, index)
-        results += phrases_with_very(line, index)
-        results += in_conclusions(line, index, text)
-        results += comma_after(line, index)
-        results += figure_references(line, index)
-        results += start_with_numbers(line, index)
-        results += numbers_next_to_units(line, index)
-        results += british_spelling(line, index, english)
-        results += overcitation(line, index)
+        if line_is_valid(line):
+            results += bad_patterns(line, index)
+            results += phrases_with_very(line, index)
+            results += in_conclusions(line, index, text)
+            results += comma_after(line, index)
+            results += figure_references(line, index)
+            results += start_with_numbers(line, index)
+            results += numbers_next_to_units(line, index)
+            results += british_spelling(line, index, english)
+            results += overcitation(line, index)
 
     # Additional checks
     results += elements(text)

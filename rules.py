@@ -491,7 +491,7 @@ bad_patterns_dictionary = {
     'smaller then': 'Probably "then" should be changed to "than" if this is a comparison.',
     'larger then': 'Probably "then" should be changed to "than" if this is a comparison.',
     'better then': 'Probably "then" should be changed to "than" if this is a comparison.',
-    'micrometer': 'To avoid confusion with the measurement device called "micrometer", you can use a shorter word "micron".',
+    'micrometer': 'To avoid confusion with a device called "micrometer", you can use "micron" for units.',
     ' data is': 'The word "data" is plural, double-check sure if "data is" is correct.',
     ' data has': 'The word "data" is plural, double-check sure if "data has" is correct.',
     ' data shows': 'The word "data" is plural, double-check sure if "data shows" is correct.',
