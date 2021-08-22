@@ -12,6 +12,18 @@ exceptions_list = ['RESULTS', 'DISCUSSION', 'DISCUSSIONS','METHODS', 'JST',
     'INTRODUCTION', 'LIMMS', 'DNA', 'RNA', 'IIS', 'CREST', 'PRESTO', 'PNAS',
     'APL', 'ZT', 'LaTeX', 'MEMS', 'NEMS', 'AIP',]
 
+overused_intro_dictionary = {
+    'However': 'But or Yet',
+    'Thus': 'Hence or Therefore',
+    'Hence': 'Thus or Therefore',
+    'Therefore': 'Thus or Hence',
+    'Since': 'Because or As',
+    'Yet': 'However or But',
+    'In addition': 'Also or But',
+    'Moreover': 'Also',
+    'Indeed': 'For example',
+    }
+
 comma_after_list = [
     'However ',
     'Therefore ',
@@ -204,7 +216,7 @@ bad_patterns_dictionary = {
     'the first time': 'If "the first time" refers to the findings, consider if there is a better way to claim novelty of the work because such expressions are often considered hype and discouraged by journals. Try using verbs already suggesting the novelty, like "uncover", "invent", "resolve", "solve", "propose" etc.',
     'the very first time': 'If "the very first time" refers to the findings, consider if there is a better way to claim novelty of the work because such expressions are often considered hype and discouraged by journals. Try using verbs already suggesting the novelty, like "uncover", "invent", "resolve", "solve", "propose" etc.',
 
-    # Qustionable patterns
+    # Questionable patterns
 
     'been attracting a great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
     'attracted a great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
@@ -225,10 +237,10 @@ bad_patterns_dictionary = {
     'make it possible': 'Consider replacing "make it possible" with shorter "enable".',
     'makes it possible': 'Consider replacing "makes it possible" with shorter "enables".',
     'Consequently': 'Consider replacing "Consequently" with shorter "Thus" or "Hence".',
-    'Therefore': 'Consider replacing "Therefore" with shorter "Thus" or "Hence".',
+    # 'Therefore': 'Consider replacing "Therefore" with shorter "Thus" or "Hence".',
     'therefore': 'Consider replacing "therefore" with shorter "thus" or "hence".',
     'Nevertheless': 'You may consider replacing "Nevertheless" with shorter "Yet" or "But".',
-    'However': 'You may consider replacing "However" with shorter "Yet" or "But".',
+    # 'However': 'You may consider replacing "However" with shorter "Yet" or "But".',
     'In addition,': 'You may consider replacing "In addition" with shorter "Also" or "But".',
     'For this reason': 'Consider replacing "For this reason" with shorter "Thus" or "Hence".',
     'For these reasons': 'Consider replacing "For these reasons" with shorter "Thus" or "Hence".',

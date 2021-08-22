@@ -1,7 +1,7 @@
 import re
 from datetime import date
 from rules import elements_list, units_list, exceptions_list, comma_after_list
-from rules import british_dictionary, very_dictionary, bad_patterns_dictionary
+from rules import british_dictionary, very_dictionary, bad_patterns_dictionary, overused_intro_dictionary
 
 
 def number_to_words(number):
@@ -243,6 +243,20 @@ def overcitation(line, index):
     return mistakes
 
 
+def intro_patterns(text):
+    '''Check if some introduction words occur too often times'''
+    mistakes = []
+    entire_text = ' '.join(text)
+    for word in overused_intro_dictionary:
+        occurance = entire_text.count(word)
+        occurance_percentage = occurance/len(entire_text.split(" "))
+        if occurance_percentage > 0.0012 and occurance_percentage < 0.002 and occurance > 1:
+            mistakes.append(f'Sentences often start with {word}. Try alternatives like {overused_intro_dictionary[word]}.')
+        if occurance_percentage > 0.002 and occurance > 1:
+            mistakes.append(f'Sentences start with {word} too often. Try alternatives like {overused_intro_dictionary[word]}.')
+    return mistakes
+
+
 def main(text, english):
     '''This is the main function that runs tall checks and returns the results to the web app'''
 
@@ -251,6 +265,7 @@ def main(text, english):
     results += title_lenght(text)
     results += abstract_lenght(text)
     results += references(text)
+    results += intro_patterns(text)
 
     # Checks for each line
     for index, line in enumerate(text):
