@@ -10,7 +10,7 @@ units_list = set(["m.", "m ", "mm", "um", "nm", "km", "cm", "W", "V", "K", "s ",
 
 exceptions_list = ['RESULTS', 'DISCUSSION', 'DISCUSSIONS','METHODS', 'JST',
     'INTRODUCTION', 'LIMMS', 'DNA', 'RNA', 'IIS', 'CREST', 'PRESTO', 'PNAS',
-    'APL', 'ZT', 'LaTeX', 'MEMS', 'NEMS', 'AIP', 'AM', 'PM',]
+    'APL', 'ZT', 'LaTeX', 'MEMS', 'NEMS', 'AIP', 'AM', 'PM', 'AIDS', ]
 
 overused_intro_dictionary = {
     'However': 'But or Yet',
@@ -273,6 +273,7 @@ bad_patterns_dictionary = {
     'given the fact that': 'Consider replacing "given the fact that" with simple "since" or "because".',
     'Due to the fact that': 'Consider replacing "Due to the fact that" with simple "Because".',
     'due to the fact that': 'Consider replacing "due to the fact that" with simple "because".',
+    'It is interesting to note that': 'Consider removing "It is interesting to note that". According to Craft of Scientific Writing: "If the detail is not interesting, then the writer should not include it".',
     ' the fact that': 'Consider replacing "the fact that" with just "that".',
     ' PM in the afternoon': 'It is redundant to precise "in the afternoon" after "PM".',
     ' AM in the morning': 'It is redundant to precise "in the morning" after "AM".',
@@ -321,6 +322,8 @@ bad_patterns_dictionary = {
     'have the capacity for': 'Consider replacing "have the capacity for" with simple "can".',
     'has the ability to': 'Consider replacing "has the ability to" with simple "can".',
     'have the ability to': 'Consider replacing "have the ability to" with simple "can".',
+    'has the potential to': 'Consider replacing "has the potential to" with simple "can".',
+    'have the potential to': 'Consider replacing "have the potential to" with simple "can".',
     'it is possible that': 'Consider rewriting the phrase with "it is possible that" using simple "may", "might", "can", or "could".',
     'It is possible that': 'Consider rewriting the phrase with "It is possible that" using simple "may", "might", "can", or "could".',
     'there is a chance that': 'Consider rewriting the phrase with "there is a chance that" using simple "may", "might", "can", or "could".',
@@ -336,6 +339,8 @@ bad_patterns_dictionary = {
     'subsequent to': 'Consider replacing "subsequent to" with simple "after".',
     'at the same time as': 'Consider replacing "at the same time as" with a simple "as".',
     'At the same time as': 'Consider replacing "At the same time as" with a simple "As".',
+    'the question as to whether': 'Consider replacing "the question as to whether" with a simple "whether".',
+    'The question as to whether': 'Consider replacing "The question as to whether" with a simple "Whether".',
     'simultaneously with': 'Consider replacing "simultaneously with" with a simple "as".',
     'Simultaneously with': 'Consider replacing "Simultaneously with" with a simple "As".',
     'facilitate': 'Replace "facilitate" with simple "help". According to The Craft Of Scientific Writing: "Words such as facilitate are pretentious".',
@@ -356,11 +361,16 @@ bad_patterns_dictionary = {
     'by way of': 'Consider replacing "by way of" with just "by" or "using".',
     'As a matter of fact': 'Consider replacing "As a matter of fact" with "In fact" or just omitting it.',
     'as a matter of fact': 'Consider replacing "as a matter of fact" with "in fact" or just omitting it.',
+    'the fact that': 'Consider omitting "the fact that".',
     'at all times': 'Consider replacing "at all times" with shorter "always".',
     'In the absence': 'Consider replacing "In the absence" with "Without".',
     'in the absence': 'Consider replacing "in the absence" with "without".',
     'Because of the fact that': 'Consider replacing "Because of the fact that" with just "Because".',
     'because of the fact that': 'Consider replacing "because of the fact that" with just "because".',
+    'Owing to the fact that': 'Consider replacing "Owing to the fact that" with just "Because".',
+    'owing to the fact that': 'Consider replacing "owing to the fact that" with just "because".',
+    'in the vicinity of': 'Consider replacing "in the vicinity of" with just "near".',
+    'in the event that': 'Consider replacing "in the event that" with just "if".',
     'we believe': 'Consider writing what you believe directly, without starting with "we believe".',
     'We believe': 'Consider writing what you believe directly, without starting with "We believe".',
     'I believe': 'Consider writing what you believe directly, without starting with "I believe".',
@@ -391,6 +401,7 @@ bad_patterns_dictionary = {
     'modifies': 'Consider replacing "modifies" with simpler "changes".',
     'modifications': 'Consider replacing "modifications" with simpler "changes".',
     'modification ': 'Consider replacing "modification" with simpler "change".',
+    'component': 'Consider replacing "component" with simpler "part".',
     'indication': 'Consider replacing word "indication" with simpler "sign". "Short words are best" - W. Churchill"',
     'although it is': 'Consider replacing "although it is" with shorter "albeit".',
     'although it was': 'Consider replacing "although it was" with shorter "albeit".',
@@ -404,6 +415,27 @@ bad_patterns_dictionary = {
     'Based on the assumption': 'Consider replacing "Based on the assumption" with simpler "Assuming" or just "If".',
     'have long been known to be': 'Consider replacing "have long been known to be" with simple "are".',
     'has long been known to be': 'Consider replacing "has long been known to be" with simple "is".',
+    'performed the measurement of': 'Consider replacing "performed the measurement of" with simple "measured".',
+    'made the measurement of': 'Consider replacing "made the measurement of" with simple "measured".',
+    'performed the measurements of': 'Consider replacing "performed the measurements of" with simple "measured".',
+    'made the measurements of': 'Consider replacing "made the measurements of" with simple "measured".',
+
+    # Replace to be with a verb
+
+    'is beginning': 'Consider replacing "is beginning" with simple "begins".',
+    'are beginning': 'Consider replacing "are beginning" with simple "begin".',
+    'is following': 'Consider replacing "is following" with simple "follows".',
+    'are following': 'Consider replacing "are following" with simple "follow".',
+    'is used to detect': 'Consider replacing "is used to detect" with simple "detects".',
+    'was used to detect': 'Consider replacing "was used to detect" with simple "detected".',
+    'is dependent': 'Consider replacing "is dependent" with simple "depends".',
+    'are dependent': 'Consider replacing "are dependent" with simple "depends".',
+
+    # Empty adjectives
+
+    'comprehensive': 'Consider if adjective "comprehensive" really adds anything here.',
+    'detailed': 'Consider if adjective "detailed" really adds anything here.',
+    'fundamental': 'Consider if adjective "fundamental" really adds anything here.',
 
     # Negatives
 
@@ -463,6 +495,23 @@ bad_patterns_dictionary = {
     'conducted an investigation of': 'Consider replacing "conducted an investigation of" with just "investigated".',
     'conducted investigation of': 'Consider replacing "conducted investigation of" with just "investigated".',
     'conducted the investigation of': 'Consider replacing "conducted the investigation of" with just "investigated".',
+    'already exist': 'Consider replacing "already exist " with just "exist".',
+    'alternative choice': 'Consider replacing "alternative choice" with just "choice".',
+    'basic fundamentals': 'Consider replacing "basic fundamentals" with just "fundamentals".',
+    'completely eliminate': 'Consider replacing "completely eliminate" with just "eliminate".',
+    'continue to remain': 'Consider replacing "continue to remain" with just "remain".',
+    'continue to remain': 'Consider replacing "continue to remain" with just "remain".',
+    'currently being': 'Consider replacing "currently being" with just "being".',
+    'currently underway': 'Consider replacing "currently underway" with just "underway".',
+    'empty space': 'Consider replacing "empty space" with just "space".',
+    'introduce a new': 'Consider replacing "introduce a new" with just "introduce".',
+    'introduced a new': 'Consider replacing "introduced a new" with just "introduced".',
+    'mix together': 'Consider replacing "mix together" with just "mix".',
+    'never before': 'Consider replacing "never before" with just "never".',
+    'period of time': 'Consider replacing "period of time" with just "period".',
+    'separate entities': 'Consider replacing "separate entities" with just "entities".',
+    'still persist': 'Consider replacing "still persisi" with just "persis".',
+
 
     # Overused words
 
