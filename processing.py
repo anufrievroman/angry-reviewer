@@ -1,7 +1,8 @@
 import re
 from datetime import date
 from rules import elements_list, units_list, exceptions_list, comma_after_list
-from rules import british_dictionary, very_dictionary, bad_patterns_dictionary, overused_intro_dictionary
+from rules import british_dictionary, very_dictionary, bad_patterns_dictionary
+from rules import overused_intro_dictionary, redundant_dictionary, negatives_dictionary
 
 
 def number_to_words(number):
@@ -265,6 +266,24 @@ def line_is_valid(line):
     return validation
 
 
+def redundancy(line, index):
+    '''Check for the redundancies'''
+    mistakes = []
+    for word in redundant_dictionary:
+        if word in line:
+            mistakes.append(f'Line {index + 1}. Replace likely redundant "{word}" with just "{redundant_dictionary[word]}".')
+    return mistakes
+
+
+def negatives(line, index):
+    '''Check for the negatives'''
+    mistakes = []
+    for word in negatives_dictionary:
+        if word in line:
+            mistakes.append(f'Line {index + 1}. Replace negative "{word}" with a more positive "{negatives_dictionary[word]}".')
+    return mistakes
+
+
 def main(text, english):
     '''This is the main function that runs all checks and returns the results to the web app'''
 
@@ -287,6 +306,8 @@ def main(text, english):
             results += numbers_next_to_units(line, index)
             results += british_spelling(line, index, english)
             results += overcitation(line, index)
+            results += redundancy(line, index)
+            results += negatives(line, index)
 
     # Additional checks
     results += elements(text)
