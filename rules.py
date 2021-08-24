@@ -11,7 +11,7 @@ units_list = set(["m.", "m ", "mm", "um", "nm", "km", "cm", "W", "V", "K", "s ",
 exceptions_list = ['RESULTS', 'DISCUSSION', 'DISCUSSIONS','METHODS', 'JST',
     'INTRODUCTION', 'LIMMS', 'DNA', 'RNA', 'IIS', 'CREST', 'PRESTO', 'PNAS',
     'APL', 'ZT', 'LaTeX', 'MEMS', 'NEMS', 'AIP', 'AM', 'PM', 'AIDS', 'AC', 'DC',
-    'CNRS', 'KAKENHI', 'APA', 'GaA', 'ErA', 'AlA',]
+    'CNRS', 'KAKENHI', 'APA', 'GaA', 'ErA', 'AlA', 'BA']
 
 overused_intro_dictionary = {
     'However': 'But or Yet',
@@ -195,7 +195,8 @@ bad_patterns_dictionary = {
     ' proved ': 'Phrases about "prove" should be considered with caution. Strict proof is possible only in math, whereas science usually operates with evidence. Consider replacing with words like "evidence", "demonstration", "confirmation" etc.',
     ' proof ': 'Phrases about "proof" should be considered with caution. Strict proof is possible only in math, whereas science usually operates with evidence. Consider replacing with words like "evidence", "demonstration", "confirmation" etc.',
     ' proves ': 'Phrases about "proves" should be considered with caution. Strict proof is possible only in math, whereas science usually operates with evidence. Consider replacing with verbs like "evidence", "demonstrate", "confirm" etc.',
-    ' never ': 'The word "never" could be considered hype or exaggeration in instances like "never shown before". Thus, it is better to avoid such statements. Consider alternatives: "rarely", "seldom", "remains unclear", "remains challenging".',
+    ' never ': 'According to Craft of Scientific Writing: "Never is a frightening word because it invites the readers to think of exceptions". Consider alternatives: "rarely", "seldom", "remains unclear", "remains challenging".',
+    'always': 'According to Craft of Scientific Writing: "Always is a frightening word because it invites the readers to think of exceptions. You should go in fear of absolutes".',
     'certainly': 'Consider if this sentence needs the word "certainly". According to The Elements of Style: "Used indiscriminately by some speakers, much as others use very, to intensify any and every statement. A mannerism of this kind, bad in speech, is even worse in writing".',
     ' fact ': 'Check if the word "fact" is actually applied to a fact. According to The Elements of Style: "Use this word only of matters of a kind capable of direct verification, not of matters of judgment."',
     'highly': 'The word "highly" rarely highly contributes to better understanding. Consider removing it or, if important quantifying it.',
@@ -229,6 +230,11 @@ bad_patterns_dictionary = {
     'attracted attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
     'One of the most': 'Consider rewriting it without "One of the most". According to the Elements of Style: "There is nothing wrong in this; it is simply threadbare and forcible-feeble."',
     'one of the most': 'Consider rewriting it without "one of the most". According to the Elements of Style: "There is nothing wrong in this; it is simply threadbare and forcible-feeble."',
+
+    # Spelling out the abbreviations
+    'FORTRAN': 'Uncapitalize "FORTRAN" as "Fortran" for clearer look.',
+    'COMSOL': 'Uncapitalize "COMSOL" as "Comsol" for clearer look.',
+    'APPOLO': 'Uncapitalize "APPOLO" as "Appolo" for clearer look.',
 
     # Inconcise expressions
 
@@ -507,6 +513,7 @@ bad_patterns_dictionary = {
     '$\hbar$ is the reduced Planck': 'It is safe to assume that all physicists know the meaning of h-bar.',
     '$\hbar$ is the Planck': 'It is safe to assume that all physicists know the meaning of h-bar.',
     '$\hbar$ is Planck': 'It is safe to assume that all physicists know the meaning of h-bar.',
+    'irregardless': 'Replace "irregardless" with "regardless".',
 
     # Numbers next to words
 
@@ -721,7 +728,7 @@ redundant_dictionary = {
     'basic fundamentals': 'fundamentals',
     'completely eliminate': 'eliminate',
     'continue to remain': 'remain',
-    'continue to remain': 'remain',
+    'continues to remain': 'remains',
     'currently being': 'being',
     'currently underway': 'underway',
     'empty space': 'space',
@@ -755,4 +762,6 @@ negatives_dictionary = {
     'not symmetric': 'asymmetric',
     'non polarized': 'unpolarized',
     'not important': 'unimportant',
+    'not known': 'unknown',
+    'not significant': 'negligible',
     }

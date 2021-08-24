@@ -258,7 +258,7 @@ def intro_patterns(text):
 
 
 def line_is_valid(line):
-    '''Check if the line is not empty and not a comment'''
+    '''Check if the line is not empty and not a Latex comment'''
     validation = False
     if len(line) > 1:
         if line[0] != '%':
