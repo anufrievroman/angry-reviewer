@@ -69,17 +69,17 @@ def numbers_next_to_units(line, index):
     mistakes = []
     for number in range(9):
         for unit in units_list:
-            if (str(number)+unit in line) and (str(number)+unit+"}" not in line):
-                mistakes.append(f'Line {index + 1}. Put a space between the number {number} and the unit {unit}')
+            if (f'{number}{unit} ' in line) or (f'{number}{unit}.' in line) or (f'{number}{unit},' in line):
+                mistakes.append(f'Line {index + 1}. Put a space between the digit {number} and the unit {unit}')
         if (str(number)+' %' in line) or (str(number)+' \%' in line):
-            mistakes.append(f'Line {index + 1}. Per cent signs "%" should follow numbers without a space, i.e. {number}%')
+            mistakes.append(f'Line {index + 1}. Percent sign "%" should follow numberals without a space, i.e. {number}%')
     return mistakes
 
 
 def elements(text):
     '''Check how many times chemical elements occur in the text'''
     mistakes = []
-    entire_text = ' '.join(text)
+    entire_text = unite_valid_lines(text)
     found_elements = []
     for element in elements_list:
         occurance = entire_text.count(" "+element+" ")
@@ -101,7 +101,7 @@ def elements(text):
 def abbreviations(text):
     '''Check how many times abbreviations occur in the text'''
     # Find abbreviations as ALLCAPS or ALLCaPs strings and cut "s" at the ends
-    entire_text = ' '.join(text)
+    entire_text = unite_valid_lines(text)
     all_abbreviations = re.findall(r"\b(?:[A-Z][a-z]?){2,}", entire_text)
     filtered_abbreviations = []
     for abbreviation in all_abbreviations:
@@ -119,13 +119,13 @@ def abbreviations(text):
 
     # Advise is constructed depending on how many abbreviations were found
     if len(found_abbreviations) == 1:
-        mistakes.append(f'The abbreviation {found_abbreviations[0]} occurs only a few times. Since abbreviations are hard to decrypt, just spell it out each time. It is easier to read a few words more than to search the text for the meaning.')
+        mistakes.append(f'The abbreviation {found_abbreviations[0]} occurs only a few times. Since abbreviations are hard to decrypt, just spell it out each time. It is easier to read a few words than to search for meanings of abbreviations.')
     if len(found_abbreviations) > 1:
         output_string = found_abbreviations[0]
         found_abbreviations[-1] = ' and ' + found_abbreviations[-1]
         for name in found_abbreviations[1:]:
             output_string += f', {name}'
-        mistakes.append(f'The abbreviations {output_string} occur only a few times each. Since abbreviations are hard to decrypt, just spell them out each time. It is easier to read a few words more than to search the text for the meaning.')
+        mistakes.append(f'The abbreviations {output_string} occur only a few times each. Since abbreviations are hard to decrypt, just spell them out each time. It is easier to read a few words than to search for meanings of abbreviations.')
     return mistakes
 
 
@@ -156,7 +156,7 @@ def abstract_lenght(text):
     '''Find the abstract, check its length and advise if it's too long'''
     # First search for begin{abstract}. If nothing, search for abstract{
     try:
-        entire_text = ' '.join(text)
+        entire_text = unite_valid_lines(text)
         pattern = '+++'
         abstract = entire_text.replace("begin{abstract", pattern).split(pattern)
         abstract = abstract[1].replace("end{abstract", pattern).split(pattern)
@@ -200,7 +200,7 @@ def title_lenght(text):
 def references(text):
     '''Find references and check their number and age. Comment if they are too old or too many'''
     # Find all unique references in the text as cite{...}
-    entire_text = ' '.join(text)
+    entire_text = unite_valid_lines(text)
     all_citations = re.findall(r'cite\{[^\}]+}', entire_text)
     references = []
     for citation in all_citations:
@@ -269,7 +269,7 @@ def overcitation(line, index):
 def intro_patterns(text):
     '''Check if some introduction words occur too often times'''
     mistakes = []
-    entire_text = ' '.join(text)
+    entire_text = unite_valid_lines(text)
     for word in overused_intro_dictionary:
         occurance = entire_text.count(word)
         occurance_percentage = occurance/len(entire_text.split(" "))
@@ -287,6 +287,16 @@ def line_is_valid(line):
         if line[0] != '%':
             validation = True
     return validation
+
+
+def unite_valid_lines(text):
+    '''Remove lines that are empty or a Latex comment and unite the rest'''
+    entire_text = ''
+    for line in text:
+        if len(line) > 1:
+            if line[0] != '%':
+                entire_text += line
+    return entire_text
 
 
 def redundancy(line, index):
@@ -309,7 +319,6 @@ def negatives(line, index):
 
 def main(text, english):
     '''This is the main function that runs all checks and returns the results to the web app'''
-
     # General checks
     results = []
     results += title_lenght(text)
@@ -326,7 +335,7 @@ def main(text, english):
             results += in_conclusions(line, index, text)
             results += comma_after(line, index)
             results += figure_references(line, index)
-            results += start_with_numbers(line, index)
+            # results += start_with_numbers(line, index)
             results += numbers_next_to_units(line, index)
             results += british_spelling(line, index, english)
             results += overcitation(line, index)

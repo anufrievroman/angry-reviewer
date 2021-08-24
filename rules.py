@@ -463,7 +463,7 @@ bad_patterns_dictionary = {
     'This proves': 'It might be unclear what "This" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This experiment proves".',
     'This is': 'It might be unclear what "This is" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This result is".',
     'This leads': 'It might be unclear what "This leads" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This result leads".',
-    'et al ': 'Needs a period after "et al", i.e. "et al.".',
+    'et al ': 'Needs a period after "et al". For example "Alferov et al. showed".',
     ' while': 'It might be better to replace "while" with "whereas", unless it really happens simultaneously.',
     ', while': 'Simple constructions like "A is white, while B is red" can be simplified as "A is white; B is red."',
     'e.g. ': 'In American English "e.g." should be followed by a comma.',
