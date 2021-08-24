@@ -1,17 +1,18 @@
-elements_list = set(['Al', 'Si', 'Cr', 'Ga', 'Ti', 'InP', 'GaAs', 'SiC', 'Cu',
+elements_list = set(['Al', 'Si', 'Cr', 'Ga', 'Ti', 'GaAs', 'SiC', 'Cu', 'Ge',
     'Li', 'Ne', 'Na', 'Cl', 'Ar', 'Au', 'VO2', 'Sc', 'Fe', 'Nb', 'Ni', 'SiGe',
     'Sr', 'Zr', 'Ag', 'Ta', 'Pt', 'Hg', 'U', 'O2', 'H2O', 'Sn', 'Sb',
     'SiN', 'SiO', 'H', 'N', 'GaN', 'InP', 'InAs', 'GaP', 'AlP', 'He',
-    'BAs', 'BN', 'AlN'])
+    'BAs', 'BN', 'AlN', 'TiNiSn', 'AlGaAs', ])
 
 units_list = set(["m.", "m ", "mm", "um", "nm", "km", "cm", "W", "V", "K", "s ",
     "s.", "ps", "us ", "Pa", "min", "h.", "h,", "h ", "Hz", "GHz", "THz", "MHz",
-    "g", 'mg', 'ml', 'nV', 'mV', 'mW', 'nW', 'MPa'])
+    "g", 'mg', 'ml', 'nV', 'mV', 'mW', 'nW', 'MPa', 'GPa'])
 
-exceptions_list = ['RESULTS', 'DISCUSSION', 'DISCUSSIONS','METHODS', 'JST',
+exceptions_list = set(['RESULTS', 'DISCUSSION', 'DISCUSSIONS','METHODS', 'JST',
     'INTRODUCTION', 'LIMMS', 'DNA', 'RNA', 'IIS', 'CREST', 'PRESTO', 'PNAS',
     'APL', 'ZT', 'LaTeX', 'MEMS', 'NEMS', 'AIP', 'AM', 'PM', 'AIDS', 'AC', 'DC',
-    'CNRS', 'KAKENHI', 'APA', 'GaA', 'ErA', 'AlA', 'BA']
+    'CNRS', 'KAKENHI', 'APA', 'GaA', 'ErA', 'AlA', 'BA', 'BibTeX', 'APS', 'InA',
+    'LED', 'OLED',])
 
 overused_intro_dictionary = {
     'However': 'But or Yet',
@@ -382,7 +383,7 @@ bad_patterns_dictionary = {
     'would like to': 'Consider removing "would like to" and writing the next verb directly, e.g. "We (would like to) emphasize that"',
     'At the temperature of': 'Consider shortening "At the temperature of" to just value, e.g. "At 4 K".',
     'At temperature of': 'Consider shortening "At temperature of" to just value, e.g. "At 4 K".',
-    'at the temperature of': 'Consider shortening "at the temperature of" to just value, e.g. "At 4 K".',
+    'at the temperature of': 'Consider shortening "at the temperature of" to just value, e.g. "at 4 K".',
     'at temperature of': 'Consider shortening "at temperature of" to just value, e.g. "at 4 K".',
     'along the lines of': 'Consider replacing "along the lines of" with shorter "like".',
     'majority of': 'Consider replacing "majority of" with shorter "most".',
@@ -479,9 +480,9 @@ bad_patterns_dictionary = {
     'larger then': 'Probably "then" should be changed to "than" if this is a comparison.',
     'better then': 'Probably "then" should be changed to "than" if this is a comparison.',
     'micrometer': 'To avoid confusion with a device called "micrometer", you can use "micron" for units.',
-    ' data is': 'The word "data" is plural, double-check sure if "data is" is correct.',
-    ' data has': 'The word "data" is plural, double-check sure if "data has" is correct.',
-    ' data shows': 'The word "data" is plural, double-check sure if "data shows" is correct.',
+    ' data is': 'The word "data" is plural, double-check if "data is" is correct.',
+    ' data has': 'The word "data" is plural, double-check if "data has" is correct.',
+    ' data shows': 'The word "data" is plural, double-check if "data shows" is correct.',
     ' 0 ': 'Simple numbers 0-10 are better to be spelled out, e.g. "five samples", "above zero", "equal to one".',
     'and/or': 'Try to say it without "and/or". Often, just "and" or "or" is enough.',
     'or/and': 'Try to say it without "or/end". Often, just "and" or "or" is enough.',

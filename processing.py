@@ -80,10 +80,21 @@ def elements(text):
     '''Check how many times chemical elements occur in the text'''
     mistakes = []
     entire_text = ' '.join(text)
+    found_elements = []
     for element in elements_list:
         occurance = entire_text.count(" "+element+" ")
-        if occurance > 0 and occurance < 5:
-            mistakes.append(f'The element {element} occurs only {number_to_words(occurance)}. Consider using its full name instead of the symbol.')
+        if 0 < occurance < 5:
+            found_elements.append(element)
+
+    # Advise is constructed depending on how many elements were found
+    if len(found_elements) == 1:
+        mistakes.append(f'The symbol {found_elements[0]} occurs only a few times. Since most readers do not know how to read all chemical symbols, just write actual name of the element each time. For example "silicon wafer".')
+    if len(found_elements) > 1:
+        output_string = found_elements[0]
+        found_elements[-1] = ' and ' + found_elements[-1]
+        for name in found_elements[1:]:
+            output_string += f', {name}'
+        mistakes.append(f'The symbols {output_string} occur only a few times each. Since most readers do not know how to read all chemical symbols, just write actual names of the elements each time. For example "silicon wafer".')
     return mistakes
 
 
@@ -91,7 +102,7 @@ def abbreviations(text):
     '''Check how many times abbreviations occur in the text'''
     # Find abbreviations as ALLCAPS or ALLCaPs strings and cut "s" at the ends
     entire_text = ' '.join(text)
-    all_abbreviations = re.findall(r"\b(?:[A-Z][a-z]*){2,}", entire_text)
+    all_abbreviations = re.findall(r"\b(?:[A-Z][a-z]?){2,}", entire_text)
     filtered_abbreviations = []
     for abbreviation in all_abbreviations:
         trimmed_abbreviation = abbreviation[:-1] if abbreviation[-1] == 's' else abbreviation
@@ -99,11 +110,22 @@ def abbreviations(text):
     mistakes = []
 
     # Check how often each abbreviation occurs and comment if less than five
+    found_abbreviations = []
     for unique_abbreviation in set(filtered_abbreviations):
         if (unique_abbreviation not in elements_list) and (unique_abbreviation not in exceptions_list) and (unique_abbreviation not in units_list):
             occurance = filtered_abbreviations.count(unique_abbreviation)
-            if occurance > 0 and occurance < 5:
-                mistakes.append(f'Abbreviation {unique_abbreviation} occurs only {number_to_words(occurance)}. Since abbreviations are hard to read, consider just spelling it out.')
+            if 0 < occurance < 5:
+                found_abbreviations.append(unique_abbreviation)
+
+    # Advise is constructed depending on how many abbreviations were found
+    if len(found_abbreviations) == 1:
+        mistakes.append(f'The abbreviation {found_abbreviations[0]} occurs only a few times. Since abbreviations are hard to decrypt, just spell it out each time. It is easier to read a few words more than to search the text for the meaning.')
+    if len(found_abbreviations) > 1:
+        output_string = found_abbreviations[0]
+        found_abbreviations[-1] = ' and ' + found_abbreviations[-1]
+        for name in found_abbreviations[1:]:
+            output_string += f', {name}'
+        mistakes.append(f'The abbreviations {output_string} occur only a few times each. Since abbreviations are hard to decrypt, just spell them out each time. It is easier to read a few words more than to search the text for the meaning.')
     return mistakes
 
 
@@ -170,7 +192,7 @@ def title_lenght(text):
     words = len(title.split())
     symbols = len(title)
     mistakes = []
-    if words > 15 and words > 1:
+    if 1 < words > 15:
         mistakes.append(f'Your title has {words} words or {symbols} characters. Consider making it shorter. Some journals limit the title by 15 words only.')
     return mistakes
 
@@ -218,17 +240,18 @@ def references(text):
                 for name in each_author_splitter:
                     name = re.sub(r'\}', '', name)
                     name = re.sub(r' ', '', name)
-                    names.append(name)
+                    if name != '':
+                        names.append(name)
         selfcitations = 0
         for name in names:
-            for reference in references:
-                if name.upper() in reference.upper():
-                    selfcitations += 1
+                for reference in references:
+                    if name.upper() in reference.upper():
+                        selfcitations += 1
         selfcitation_percentage = 100*selfcitations//len(references)
-        if selfcitation_percentage > 0 and selfcitation_percentage < 20:
-            mistakes.append(f"At least {selfcitations} out of {len(references)} of your references appears to be self-citations. This is acceptable, but keep it in check.")
+        if 0 < selfcitation_percentage < 20:
+            mistakes.append(f"At least {selfcitations} out of {len(references)} references seems to be self-citations. This is acceptable, but keep it in check.")
         if selfcitation_percentage >= 20:
-            mistakes.append(f"At least {selfcitations} out of {len(references)} of your references appears to be self-citations. Consider if you need so many self references, it might not look good.")
+            mistakes.append(f"At least {selfcitations} out of {len(references)} references seems to be self-citations. Consider if you need so many self-references, it might not look good.")
     return mistakes
 
 
@@ -250,7 +273,7 @@ def intro_patterns(text):
     for word in overused_intro_dictionary:
         occurance = entire_text.count(word)
         occurance_percentage = occurance/len(entire_text.split(" "))
-        if occurance_percentage > 0.0012 and occurance_percentage < 0.002 and occurance > 1:
+        if (0.0012 < occurance_percentage < 0.002) and (occurance > 1):
             mistakes.append(f'Sentences often start with {word}. Try alternatives like {overused_intro_dictionary[word]}.')
         if occurance_percentage > 0.002 and occurance > 1:
             mistakes.append(f'Sentences start with {word} too often. Try alternatives like {overused_intro_dictionary[word]}.')
@@ -293,6 +316,7 @@ def main(text, english):
     results += abstract_lenght(text)
     results += references(text)
     results += intro_patterns(text)
+    results += elements(text)
 
     # Checks for each line which is not a comment
     for index, line in enumerate(text):
@@ -310,7 +334,6 @@ def main(text, english):
             results += negatives(line, index)
 
     # Additional checks
-    results += elements(text)
     results += abbreviations(text)
 
     if len(results) == 0:
