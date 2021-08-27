@@ -31,13 +31,12 @@ To learn more about the rules used by Angry Reviewer, see the literature:
 - The Craft of Scientific Writing by Michael Alley
 - On writing well: the classic guide to writing nonfiction by William Zinsser
 - Science research writing for non-native speakers of English by Hilary Glasman-Deal
-- 
+ 
 ### Articles
 
-- Elements of Style - Nature Physics 3, 581 (2007)
-- How to Write With Style - Article in Novel Writing Help blog
-- The Elements of Style - Collection of rules by Strunk, W., Jr. and White, E.B.
-
+- [Elements of Style](https://www.nature.com/articles/nphys724) - Nature Physics 3, 581 (2007)
+- [How to Write With Style](https://www.novel-writing-help.com/prose-writing.html) - Article in Novel Writing Help blog
+- [The Elements of Style](https://faculty.washington.edu/heagerty/Courses/b572/public/StrunkWhite.pdf) - Collection of rules by Strunk, W., Jr. and White, E.B.
 
 ## Support
 
