@@ -12,7 +12,7 @@ exceptions_list = set(['RESULTS', 'DISCUSSION', 'DISCUSSIONS','METHODS', 'JST',
     'INTRODUCTION', 'LIMMS', 'DNA', 'RNA', 'IIS', 'CREST', 'PRESTO', 'PNAS',
     'APL', 'ZT', 'LaTeX', 'MEMS', 'NEMS', 'AIP', 'AM', 'PM', 'AIDS', 'AC', 'DC',
     'CNRS', 'KAKENHI', 'APA', 'GaA', 'ErA', 'AlA', 'BA', 'BibTeX', 'APS', 'InA',
-    'LED', 'OLED',])
+    'LED', 'OLED', 'ACS',])
 
 overused_intro_dictionary = {
     'However': 'But or Yet',
@@ -683,7 +683,7 @@ bad_patterns_dictionary = {
     '$\mu$m': 'You may replace LaTeX expression "$\mu$m" with "{\\textmu}m" for better looking letter mu.',
     '$\mu$s': 'You may replace LaTeX expression "$\mu$m" with "{\\textmu}s" for better looking letter mu.',
     '$\mu$g': 'You may replace LaTeX expression "$\mu$m" with "{\\textmu}g" for better looking letter mu.',
-    '$\mu$TDTR': 'You may replace LaTeX expression "$\mu$TDTR" with "{\`textmu}TDTR" for better looking letter mu.',
+    '$\mu$TDTR': 'You may replace LaTeX expression "$\mu$TDTR" with "{\\textmu}TDTR" for better looking letter mu.',
     '\hslash': 'If by "\hslash" you mean the reduced Plack constant, use "\hbar".',
     '+/-': 'If you are in LaTeX, use "\pm" instead of "+/-". Otherwise, find proper plus-minus symbol.',
     ' $^\circ$C': 'Degrees Celsius should not be separated from the number with a space',

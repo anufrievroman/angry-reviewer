@@ -317,15 +317,48 @@ def negatives(line, index):
     return mistakes
 
 
-def main(text, english):
+def latex_best_practices(text):
+    '''Check is sentences are not on separate lines in LaTeX'''
+    mistakes = []
+    dots_in_line = 0
+    useful_lines = 0
+    for line in text:
+        if line_is_valid(line):
+            line = re.sub(r'Fig\.', '', line)
+            line = re.sub(r'Eq\.', '', line)
+            line = re.sub(r'i\.e\.', '', line)
+            line = re.sub(r'et al\.', '', line)
+            line = re.sub(r'e\.g\.', '', line)
+            line = re.sub(r'\d.\d', '', line)
+            line = re.sub(r'\.[^ ]', '', line)
+            dots_in_line += line.count('.')
+            useful_lines += 1
+    if dots_in_line/useful_lines > 1.2:
+        mistakes.append(f'In LaTeX, it is considered a best practice to start each sentence from a new line.')
+    return mistakes
+
+
+def it_is_latex_text(text):
+    '''Check if this is LaTeX document'''
+    entire_text = unite_valid_lines(text)
+    it_is_latex_text = (('\\begin{document}' in entire_text) or ('\\documentclass' in entire_text))
+    return it_is_latex_text
+
+
+def main(text, english='american'):
     '''This is the main function that runs all checks and returns the results to the web app'''
-    # General checks
     results = []
-    results += title_lenght(text)
-    results += abstract_lenght(text)
-    results += references(text)
+    # Checks for LaTeX specific issues
+    if it_is_latex_text(text):
+        results += title_lenght(text)
+        results += abstract_lenght(text)
+        results += references(text)
+        results += latex_best_practices(text)
+
+    # General checks
     results += intro_patterns(text)
     results += elements(text)
+    results += abbreviations(text)
 
     # Checks for each line which is not a comment
     for index, line in enumerate(text):
@@ -341,9 +374,6 @@ def main(text, english):
             results += overcitation(line, index)
             results += redundancy(line, index)
             results += negatives(line, index)
-
-    # Additional checks
-    results += abbreviations(text)
 
     if len(results) == 0:
         results = ["Looks like this text is perfect!"]
