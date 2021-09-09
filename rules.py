@@ -198,8 +198,6 @@ bad_patterns_dictionary = {
     ' proved ': 'Phrases about "prove" should be considered with caution. Strict proof is possible only in math, whereas science usually operates with evidence. Consider replacing with words like "evidence", "demonstration", "confirmation" etc.',
     ' proof ': 'Phrases about "proof" should be considered with caution. Strict proof is possible only in math, whereas science usually operates with evidence. Consider replacing with words like "evidence", "demonstration", "confirmation" etc.',
     ' proves ': 'Phrases about "proves" should be considered with caution. Strict proof is possible only in math, whereas science usually operates with evidence. Consider replacing with verbs like "evidence", "demonstrate", "confirm" etc.',
-    ' never ': 'According to Craft of Scientific Writing: "Never is a frightening word because it invites the readers to think of exceptions". Consider alternatives: "rarely", "seldom", "remains unclear", "remains challenging".',
-    'always': 'According to Craft of Scientific Writing: "Always is a frightening word because it invites the readers to think of exceptions. You should go in fear of absolutes".',
     'certainly': 'Consider if this sentence needs the word "certainly". According to The Elements of Style: "Used indiscriminately by some speakers, much as others use very, to intensify any and every statement. A mannerism of this kind, bad in speech, is even worse in writing".',
     ' fact ': 'Check if the word "fact" is actually applied to a fact. According to The Elements of Style: "Use this word only of matters of a kind capable of direct verification, not of matters of judgment."',
     'highly': 'The word "highly" rarely highly contributes to better understanding. Consider removing it or, if important quantifying it.',
@@ -768,3 +766,13 @@ negatives_dictionary = {
     'not known': 'unknown',
     'not significant': 'negligible',
     }
+
+absolutes_dictionary = {
+    ' never ': 'According to Craft of Scientific Writing: "Never is a frightening word because it invites the readers to think of exceptions". Consider alternatives: "rarely", "seldom", "remains unclear", "remains challenging".',
+    'always': 'According to Craft of Scientific Writing: "Always is a frightening word because it invites the readers to think of exceptions. You should go in fear of absolutes".',
+    }
+
+absolutes_exceptions = [
+    ['almost never'],
+    ['not always', 'almost always'],
+    ]

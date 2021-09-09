@@ -3,6 +3,7 @@ from datetime import date
 from rules import elements_list, units_list, exceptions_list, comma_after_list
 from rules import british_dictionary, very_dictionary, bad_patterns_dictionary
 from rules import overused_intro_dictionary, redundant_dictionary, negatives_dictionary
+from rules import absolutes_dictionary, absolutes_exceptions
 
 
 def number_to_words(number):
@@ -345,6 +346,16 @@ def it_is_latex_text(text):
     return it_is_latex_text
 
 
+def absolutes(line, index):
+    '''This checks for words like 'always' or 'never' but excepts exceptions'''
+    mistakes = []
+    for num, word in enumerate(absolutes_dictionary):
+        not_exception = [exception not in line for exception in absolutes_exceptions[num]]
+        if (word in line) and all(not_exception):
+            mistakes.append(f'Line {index + 1}. {absolutes_dictionary[word]}')
+    return mistakes
+
+
 def main(text, english='american'):
     '''This is the main function that runs all checks and returns the results to the web app'''
     results = []
@@ -374,6 +385,7 @@ def main(text, english='american'):
             results += overcitation(line, index)
             results += redundancy(line, index)
             results += negatives(line, index)
+            results += absolutes(line, index)
 
     if len(results) == 0:
         results = ["Looks like this text is perfect!"]
