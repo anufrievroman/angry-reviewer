@@ -354,7 +354,7 @@ def sentence_lenght(line, index):
     line = re.sub(r'\\ref{[^}]+}', '', line)
     line = re.sub(r'\$[^\$]+\$', '', line)
     sentences = line.split('.')
-    if any([len(sentence) > 250 for sentence in sentences]):
+    if any([len(sentence) > 240 for sentence in sentences]):
         mistakes.append(f'Line {index + 1}. The sentence seems to be too long. Consider shortening or splitting it in two.')
     return mistakes
 
