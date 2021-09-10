@@ -33,7 +33,7 @@ def comma_after(line, index):
     mistakes = []
     for word in comma_after_list:
         if word in line:
-            mistakes.append(f'Line {index + 1}. Might need a comma after "{word[:-1]}"')
+            mistakes.append(f'Line {index + 1}. Might need a comma after "{word[:-1]}".')
     return mistakes
 
 
@@ -61,7 +61,7 @@ def figure_references(line, index):
         if 'Fig.' in line[0:4] or 'Figs.' in line[0:4]:
             mistakes.append(f'Line {index + 1}. The word "Fig." in the beginning of a sentence can usually be spelled out, e.g. "Figure 1 shows"')
         if 'Figure ' in line[7:]:
-            mistakes.append(f'Line {index + 1}. Most journals prefer shortening the word "Figure" as "Fig." if it is not opening the sentence')
+            mistakes.append(f'Line {index + 1}. Most journals prefer shortening the word "Figure" as "Fig." if it is not opening the sentence.')
     return mistakes
 
 
@@ -339,6 +339,26 @@ def latex_best_practices(text):
     return mistakes
 
 
+def sentence_lenght(line, index):
+    '''Check is the sentences is too long'''
+    mistakes = []
+    line = re.sub(r'Fig\.', '', line)
+    line = re.sub(r'Eq\.', '', line)
+    line = re.sub(r'i\.e\.', '', line)
+    line = re.sub(r'et al\.', '', line)
+    line = re.sub(r'e\.g\.', '', line)
+    line = re.sub(r'\d.\d', '', line)
+    line = re.sub(r'\.[^ ]', '', line)
+    line = re.sub(r'\.[^ ]', '', line)
+    line = re.sub(r'\\cite{[^}]+}', '', line)
+    line = re.sub(r'\\ref{[^}]+}', '', line)
+    line = re.sub(r'\$[^\$]+\$', '', line)
+    sentences = line.split('.')
+    if any([len(sentence) > 250 for sentence in sentences]):
+        mistakes.append(f'Line {index + 1}. The sentence seems to be too long. Consider shortening or splitting it in two.')
+    return mistakes
+
+
 def it_is_latex_text(text):
     '''Check if this is LaTeX document'''
     entire_text = unite_valid_lines(text)
@@ -386,6 +406,7 @@ def main(text, english='american'):
             results += redundancy(line, index)
             results += negatives(line, index)
             results += absolutes(line, index)
+            results += sentence_lenght(line, index)
 
     if len(results) == 0:
         results = ["Looks like this text is perfect!"]
