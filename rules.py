@@ -260,7 +260,6 @@ bad_patterns_dictionary = {
     'have tandency': 'Rewrite using the verb "tend" instead of zombie noun "tendency".',
     'has tandency': 'Rewrite using the verb "tends" instead of zombie noun "tendency".',
     'take into consideration': 'Rewrite using the verb "consider" instead of zombie noun "consideration".',
-    'under the assumption': 'Rewrite using the verb "assume" instead of zombie noun "assumption".',
 
     # Inconcise expressions
 

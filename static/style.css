@@ -21,6 +21,7 @@ h2 {
   margin: auto;
   font-size: 140%;
   font-weight: normal;
+  padding-top: 15px;
 }
 
 h3 {
@@ -83,6 +84,7 @@ input[type=submit]:hover {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 7px 20px;
+  padding-bottom: 20px;
 }
 
 /* Style the header with a grey background and some padding */
@@ -156,8 +158,8 @@ input[type=submit]:hover {
   float: right;
   width: 193px;
   height: 43px;
-  padding: 3px 12px;
-  margin-top: 18px;
+  padding: 3px 17px;
+  margin-top: 0px;
 }
 
 select {
