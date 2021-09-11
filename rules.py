@@ -187,7 +187,7 @@ bad_patterns_dictionary = {
 
     # Hype and clichés
 
-    'excellent agreement': 'Usually, the agreement is actually not so excellent. Consider replacing with "good agreement" or better yet, quantify the agreement, e.g. "A agrees with B within 5%".',
+    'excellent agreement': 'Usually, the agreement is actually not so excellent. Consider replacing with "good agreement" or better yet, quantify the agreement, e.g. "A agrees with B within 5% uncertainty".',
     'excellent fit': 'Sometimes the fit is actually not so excellent. Consider quantifying the fit, e.g. "Line fits the data within 5% of uncertainty".',
     'outstanding': 'The word "outstanding" might be considered hype. Consider alternatives, e.g. "remarkable".',
     'groundbreaking': 'The word "groundbreaking" might be considered hype. Consider alternatives, e.g. "remarkable".',
@@ -233,9 +233,34 @@ bad_patterns_dictionary = {
     'one of the most': 'Consider rewriting it without "one of the most". According to the Elements of Style: "There is nothing wrong in this; it is simply threadbare and forcible-feeble."',
 
     # Spelling out the abbreviations
+
     'FORTRAN': 'Uncapitalize "FORTRAN" as "Fortran" for clearer look.',
     'COMSOL': 'Uncapitalize "COMSOL" as "Comsol" for clearer look.',
     'APPOLO': 'Uncapitalize "APPOLO" as "Appolo" for clearer look.',
+    'ELMER': 'Uncapitalize "ELMER" as "Elmer" for clearer look.',
+
+    # Zombie nouns
+
+    'made a decision': 'Rewrite using the verb "decided" instead of zombie noun "decision".',
+    'make a decision': 'Rewrite using the verb "decide" instead of zombie noun "decision".',
+    'performed the measurement': 'Rewrite using the verb "measured" instead of zombie noun "mesurement".',
+    'made the measurement': 'Rewrite using the verb "measured" instead of zombie noun "mesurement".',
+    'make the measurement': 'Rewrite using the verb "measure" instead of zombie noun "mesurement".',
+    'take into consideration': 'Rewrite using the verb "consider" instead of zombie noun "consideration".',
+    'is in agreement': 'Rewrite using the verb "agrees" instead of zombie noun "agreement".',
+    'is in good agreement': 'Rewrite using the verb "agrees" instead of zombie noun "agreement".',
+    'are in agreement': 'Rewrite using the verb "agree" instead of zombie noun "agreement".',
+    'are in good agreement': 'Rewrite using the verb "agree" instead of zombie noun "agreement".',
+    'was in agreement': 'Rewrite using the verb "agreed" instead of zombie noun "agreement".',
+    'is an indication of': 'Rewrite using the verb "indicate" instead of zombie noun "indication".',
+    'is indication of': 'Rewrite using the verb "indicate" instead of zombie noun "indication".',
+    'are indication of': 'Rewrite using the verb "indicate" instead of zombie noun "indication".',
+    'have a tandency': 'Rewrite using the verb "tend" instead of zombie noun "tendency".',
+    'has a tandency': 'Rewrite using the verb "tends" instead of zombie noun "tendency".',
+    'have tandency': 'Rewrite using the verb "tend" instead of zombie noun "tendency".',
+    'has tandency': 'Rewrite using the verb "tends" instead of zombie noun "tendency".',
+    'take into consideration': 'Rewrite using the verb "consider" instead of zombie noun "consideration".',
+    'under the assumption': 'Rewrite using the verb "assume" instead of zombie noun "assumption".',
 
     # Inconcise expressions
 
@@ -421,10 +446,6 @@ bad_patterns_dictionary = {
     'Based on the assumption': 'Consider replacing "Based on the assumption" with simpler "Assuming" or just "If".',
     'have long been known to be': 'Consider replacing "have long been known to be" with simple "are".',
     'has long been known to be': 'Consider replacing "has long been known to be" with simple "is".',
-    'performed the measurement of': 'Consider replacing "performed the measurement of" with simple "measured".',
-    'made the measurement of': 'Consider replacing "made the measurement of" with simple "measured".',
-    'performed the measurements of': 'Consider replacing "performed the measurements of" with simple "measured".',
-    'made the measurements of': 'Consider replacing "made the measurements of" with simple "measured".',
 
     # Replace "to be" with a verb
 
@@ -515,6 +536,7 @@ bad_patterns_dictionary = {
     '$\hbar$ is the Planck': 'It is safe to assume that all physicists know the meaning of h-bar.',
     '$\hbar$ is Planck': 'It is safe to assume that all physicists know the meaning of h-bar.',
     'irregardless': 'Replace "irregardless" with "regardless".',
+    'Monte-Carlo': 'Spell "Monte-Carlo" without a hyphen, i.e. "Monte Carlo".',
 
     # Numbers next to words
 

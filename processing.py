@@ -318,20 +318,32 @@ def negatives(line, index):
     return mistakes
 
 
+def remove_latex_syntax(line):
+    '''Remove latex stuff containing dots and long syntax from the line'''
+    line = re.sub(r'Fig\.', '', line)
+    line = re.sub(r'Figs\.', '', line)
+    line = re.sub(r'Eq\.', '', line)
+    line = re.sub(r'i\.e\.', '', line)
+    line = re.sub(r'et al\.', '', line)
+    line = re.sub(r'e\.g\.', '', line)
+    line = re.sub(r'vs\.', '', line)
+    line = re.sub(r'a\.k\.a\.', '', line)
+    line = re.sub(r'\d.\d', '', line)
+    line = re.sub(r'\.[^ ]', '', line)
+    line = re.sub(r'\\cite{[^}]+}', '', line)
+    line = re.sub(r'\\ref{[^}]+}', '', line)
+    line = re.sub(r'\$[^\$]+\$', '', line)
+    return line
+
+
 def latex_best_practices(text):
-    '''Check is sentences are not on separate lines in LaTeX'''
+    '''Check if sentences are not on separate lines in LaTeX'''
     mistakes = []
     dots_in_line = 0
     useful_lines = 0
     for line in text:
         if line_is_valid(line):
-            line = re.sub(r'Fig\.', '', line)
-            line = re.sub(r'Eq\.', '', line)
-            line = re.sub(r'i\.e\.', '', line)
-            line = re.sub(r'et al\.', '', line)
-            line = re.sub(r'e\.g\.', '', line)
-            line = re.sub(r'\d.\d', '', line)
-            line = re.sub(r'\.[^ ]', '', line)
+            line = remove_latex_syntax(line)
             dots_in_line += line.count('.')
             useful_lines += 1
     if dots_in_line/useful_lines > 1.2:
@@ -342,17 +354,7 @@ def latex_best_practices(text):
 def sentence_lenght(line, index):
     '''Check is the sentences is too long'''
     mistakes = []
-    line = re.sub(r'Fig\.', '', line)
-    line = re.sub(r'Eq\.', '', line)
-    line = re.sub(r'i\.e\.', '', line)
-    line = re.sub(r'et al\.', '', line)
-    line = re.sub(r'e\.g\.', '', line)
-    line = re.sub(r'\d.\d', '', line)
-    line = re.sub(r'\.[^ ]', '', line)
-    line = re.sub(r'\.[^ ]', '', line)
-    line = re.sub(r'\\cite{[^}]+}', '', line)
-    line = re.sub(r'\\ref{[^}]+}', '', line)
-    line = re.sub(r'\$[^\$]+\$', '', line)
+    line = remove_latex_syntax(line)
     sentences = line.split('.')
     if any([len(sentence) > 240 for sentence in sentences]):
         mistakes.append(f'Line {index + 1}. The sentence seems to be too long. Consider shortening or splitting it in two.')
