@@ -7,6 +7,22 @@ Stylistic corrector for academic writing and scientific papers. An easy to use w
 
 The rules used by Angry Reviewer are based on various journal guidelines, articles, books, and lectures on modern academic writing. But, the main source is the book *The Craft of Scientific Writing* by Michael Alley. The alghorithm knows hundreds of rules, most of which are stylistic. For the spell check you should rely on your text editor and other services.
 
+## Running offline version
+
+To run standalone version on your computer, you need to install python 3. Then, just download this repository (you only need two files `plocessing.py` and `rules.py`):
+
+```
+git clone https://github.com/anufrievroman/Angry-Reviewer
+```
+
+Put your text into `your_text.txt` file and run the `processing.py` file:
+
+```
+python processing.py
+```
+
+The suggestions should be generated in your python console.
+
 ## Main priciples
 
 - Don't hype. Avoid words like novel, highly, clearly, greatly. Better still, avoid all adverbs.
