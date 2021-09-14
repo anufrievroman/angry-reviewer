@@ -435,3 +435,17 @@ def main(text, english='american'):
     if len(results) == 0:
         results = ["Looks like this text is perfect!"]
     return results
+
+
+def standalone_run():
+    '''This runs program in standalone regime, just a python code'''
+    path = "your_text.txt"
+    with open(path, "r") as manuscript:
+        text = manuscript.readlines()
+    results = main(text)
+    for line in results:
+        print(line+"\n")
+
+
+if __name__ == "__main__":
+    standalone_run()

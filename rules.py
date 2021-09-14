@@ -12,7 +12,8 @@ exceptions_list = set(['RESULTS', 'DISCUSSION', 'DISCUSSIONS','METHODS', 'JST',
     'INTRODUCTION', 'LIMMS', 'DNA', 'RNA', 'IIS', 'CREST', 'PRESTO', 'PNAS',
     'APL', 'ZT', 'LaTeX', 'MEMS', 'NEMS', 'AIP', 'AM', 'PM', 'AIDS', 'AC', 'DC',
     'CNRS', 'KAKENHI', 'APA', 'GaA', 'ErA', 'AlA', 'BA', 'BibTeX', 'APS', 'InA',
-    'LED', 'OLED', 'ACS', 'PhD', 'MIT', 'NASA', 'HIV', 'RAM', 'CPU', 'LCD', 'LED', 'OLED'])
+    'LED', 'OLED', 'ACS', 'PhD', 'MIT', 'NASA', 'HIV', 'RAM', 'CPU', 'LCD', 'LED',
+    'OLED', 'AFM', 'SEM', 'TEM', 'TDTR'])
 
 overused_intro_dictionary = {
     'However': 'But or Yet',
@@ -77,11 +78,11 @@ british_dictionary = {
     'litre': 'liter',
     'tumour': 'tumor',
     'fibre': 'fiber',
-    'analogue': 'analog ',
+    'analogue ': 'analog ',
     'analogues': 'analogs',
-    'catalogue': 'catalog ',
+    'catalogues ': 'catalog ',
     'catalogues': 'catalogs',
-    'dialogue': 'dialog ',
+    'dialogue ': 'dialog ',
     'dialogues': 'dialogs',
     'homologue': 'homolog ',
     'analyse': 'analyze',
@@ -206,12 +207,8 @@ bad_patterns_dictionary = {
     'literal ': 'The word "literal" is often misused to support an exaggeration, which is hardly appropriate for a scientific paper. Consider if use is appropriate.',
     'respectively': 'Consider if "respectively" is necessary. In clear cases, you can omit it, e.g. "A and B are equal to 1 and 2". Or simplify it as "A = 1 and B = 2".',
     'correspondingly': 'Consider if "correspondingly" is necessary. In clear cases, you can omit it, e.g. "A and B are equal to 1 and 2". Or simplify it as "A = 1 and B = 2".',
-    'hallmark': 'Phrases like "A is a hallmark of B" are considered a cliché.',
-    'paradigm shift': 'Phrases like "paradigm shift" are considered a cliché.',
     'best': 'If the word "best" serves here to qualify results or methods, it will be considered hype and should be avoided. Consider replacing it with "optimal" or "reasonable" or just removing it.',
     'Best': 'If the word "best" serves here to qualify results or methods, it will be considered hype and should be avoided. Consider replacing it with "optimal" or "reasonable" or just removing it.',
-    'at the end of the day': 'Phrases like "at the end of the day" are considered a cliché.',
-    'At the end of the day': 'Phrases like "At the end of the day" are considered a cliché.',
     'It is known': 'It is known that phrases like "It is known" should be avoided. Often, it is not actually known to the readers. Just state the fact and supply a reference.',
     'it is known': 'It is known that phrases like "it is known" should be avoided. Often, it is not actually known to the readers. Just state the fact and supply a reference.',
     'are well known': 'It is well known that phrases with "are well known" are considered arrogant. Usually, is it not so well known to the reader. Consider removing it or at least supplying the references.',
@@ -372,7 +369,6 @@ bad_patterns_dictionary = {
     'simultaneously with': 'Consider replacing "simultaneously with" with a simple "as".',
     'Simultaneously with': 'Consider replacing "Simultaneously with" with a simple "As".',
     'facilitate': 'Replace "facilitate" with simple "help". According to The Craft Of Scientific Writing: "Words such as facilitate are pretentious".',
-    'implement': 'Consider replacing "implement" with simpler "carry out".',
     'great many': 'Replace "great many" with just "many".',
     'Great many': 'Replace "Great many" with just "Many".',
     'large number of': 'Consider replacing "large number of" with just "many".',
@@ -480,10 +476,7 @@ bad_patterns_dictionary = {
     'This is': 'It might be unclear what "This is" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This result is".',
     'This leads': 'It might be unclear what "This leads" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This result leads".',
     'et al ': 'Needs a period after "et al". For example "Alferov et al. showed".',
-    ' while': 'It might be better to replace "while" with "whereas", unless it really happens simultaneously.',
-    ', while': 'Simple constructions like "A is white, while B is red" can be simplified as "A is white; B is red."',
-    'e.g. ': 'In American English "e.g." should be followed by a comma.',
-    'i.e. ': 'In American English "i.e." should be followed by a comma.',
+    # ' while': 'It might be better to replace "while" with "whereas", unless it really happens simultaneously. Simple phrases like "A is white, while B is red" can be simplified as "A is white; B is red."',
 
     # Random corrections
 
@@ -714,14 +707,15 @@ bad_patterns_dictionary = {
     ' $^\circ$F': 'Degrees Fahrenheit should not be separated from the number with a space.',
     }
 
-# The following rules were taken a page titled CLICHE'S: AVOID THEM LIKE THE PLAGUE.
-# Author has permitted redistribution as long as they are given credit.
-# Also need to site their e-mail address and web address:
-
+# This list of cliches was taked from suspense.net:
 # Web Page: http://suspense.net/whitefish/cliche.htm
 # Email: suspense@suspense.net 
 
 cliche_list = set([
+    "Hallmark",
+    "paradigm shift",
+    "At the end of the day",
+    "at the end of the day",
     "In a nutshell",
     "in a nutshell",
     "Holy Grail",
