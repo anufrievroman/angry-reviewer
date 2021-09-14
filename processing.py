@@ -369,12 +369,23 @@ def it_is_latex_text(text):
 
 
 def absolutes(line, index):
-    '''This checks for words like 'always' or 'never' but excepts exceptions'''
+    '''Checks for words like 'always' or 'never' but excepts exceptions'''
     mistakes = []
     for num, word in enumerate(absolutes_dictionary):
         not_exception = [exception not in line for exception in absolutes_exceptions[num]]
         if (word in line) and all(not_exception):
             mistakes.append(f'Line {index + 1}. {absolutes_dictionary[word]}')
+    return mistakes
+
+
+def comparing_absolutes(line, index):
+    '''Checks if there are comperative absolutes like "nearly infinite"'''
+    all_absolutes = re.findall(r"((a little( bit)?|almost|astonishingly|completely|exceedingly|extremely|highly|incredibly|more than|nearly|partly|partially|quite|somewhat|totally|unbelievably|very) (dead|disappeared|false|gone|illegal|infinite|invaluable|legal|perfect|pervasive|pregnant|professional|true|whole|vanished))", line)
+    mistakes = []
+    for phrase in all_absolutes:
+        phrase = str(phrase[0])
+        absolute = phrase.split(" ")[-1]
+        mistakes.append(f'Line {index + 1}. In "{phrase}" comprative degree is applied to an absolute. Usually, it is either {absolute} or not.')
     return mistakes
 
 
@@ -409,6 +420,7 @@ def main(text, english='american'):
             results += negatives(line, index)
             results += absolutes(line, index)
             results += sentence_lenght(line, index)
+            results += comparing_absolutes(line, index)
 
     if len(results) == 0:
         results = ["Looks like this text is perfect!"]
