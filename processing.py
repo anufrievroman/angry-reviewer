@@ -3,7 +3,7 @@ from datetime import date
 from rules import elements_list, units_list, exceptions_list, comma_after_list
 from rules import british_dictionary, very_dictionary, bad_patterns_dictionary
 from rules import overused_intro_dictionary, redundant_dictionary, negatives_dictionary
-from rules import absolutes_dictionary, absolutes_exceptions
+from rules import absolutes_dictionary, absolutes_exceptions, cliche_list
 
 
 def number_to_words(number):
@@ -389,6 +389,15 @@ def comparing_absolutes(line, index):
     return mistakes
 
 
+def cliches(line, index):
+    '''Check for cliches'''
+    mistakes = []
+    for phrase in cliche_list:
+        if phrase in line:
+            mistakes.append(f'Line {index + 1}. The phrase "{phrase}" is considered a cliché and should be avoided.')
+    return mistakes
+
+
 def main(text, english='american'):
     '''This is the main function that runs all checks and returns the results to the web app'''
     results = []
@@ -421,6 +430,7 @@ def main(text, english='american'):
             results += absolutes(line, index)
             results += sentence_lenght(line, index)
             results += comparing_absolutes(line, index)
+            results += cliches(line, index)
 
     if len(results) == 0:
         results = ["Looks like this text is perfect!"]
