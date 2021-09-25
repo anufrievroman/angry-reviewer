@@ -13,7 +13,7 @@ exceptions_list = set(['RESULTS', 'DISCUSSION', 'DISCUSSIONS','METHODS', 'JST',
     'APL', 'ZT', 'LaTeX', 'MEMS', 'NEMS', 'AIP', 'AM', 'PM', 'AIDS', 'AC', 'DC',
     'CNRS', 'KAKENHI', 'APA', 'GaA', 'ErA', 'AlA', 'BA', 'BibTeX', 'APS', 'InA',
     'LED', 'OLED', 'ACS', 'PhD', 'MIT', 'NASA', 'HIV', 'RAM', 'CPU', 'LCD', 'LED',
-    'OLED', 'AFM', 'SEM', 'TEM', 'TDTR'])
+    'OLED', 'AFM', 'SEM', 'TEM', 'TDTR', 'COMSOL', 'APPOLO', 'ELMER', ])
 
 overused_intro_dictionary = {
     'However': 'But or Yet',
@@ -26,6 +26,8 @@ overused_intro_dictionary = {
     'Moreover': 'Also',
     'Indeed': 'For example',
     'Furthermore': 'Also or Moreover',
+    'First': 'On the one hand',
+    'On the other hand': 'However, Yet, or But',
     }
 
 comma_after_list = [
@@ -97,8 +99,10 @@ british_dictionary = {
     'offence': 'offense',
     'pretence': 'pretense',
     'fulfil': 'fulfill',
-    'enrol': 'enroll',
-    'distil': 'distill',
+    'enrol ': 'enroll ',
+    'enrols': 'enrolls',
+    'distil ': 'distill ',
+    'distils': 'distills',
     'instalment': 'installment',
     'labelled': 'labeled',
     'labelling': 'labeling',
@@ -170,7 +174,7 @@ very_dictionary = {
     'very significant': 'key, notable, substantial, noteworthy, momentous, major, vital',
     'very similar': 'alike, akin, analogous, comparable, equivalent',
     'very simple': 'easy, straightforward, effortless, uncomplicated',
-    'very small': 'tiny, minuscule, infinitesimal, microscopic, wee',
+    'very small': 'tiny, minuscule, infinitesimal, microscopic',
     'very smooth': 'flat, glassy, polished, level, even, unblemished',
     'very specific': 'precise, exact, explicit, definite, unambiguous',
     'very strange': 'weird, eerie, bizarre, uncanny, peculiar, odd',
@@ -224,6 +228,12 @@ bad_patterns_dictionary = {
     'attracted attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
     'One of the most': 'Consider rewriting it without "One of the most". According to the Elements of Style: "There is nothing wrong in this; it is simply threadbare and forcible-feeble."',
     'one of the most': 'Consider rewriting it without "one of the most". According to the Elements of Style: "There is nothing wrong in this; it is simply threadbare and forcible-feeble."',
+    'This shows': 'It might be unclear what "This" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This data show", "This dependence shows" etc.',
+    'This demonstrates': 'It might be unclear what "This" points to if previous phrase was complicated. Rewrite with a more specific subject, e.g. "This data show", "This dependence shows" etc.',
+    'This proves': 'It might be unclear what "This" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This experiment proves".',
+    'This is': 'It might be unclear what "This is" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This result is".',
+    'This leads': 'It might be unclear what "This leads" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This result leads".',
+    'et al ': 'Needs a period after "et al". For example "Alferov et al. showed".',
 
     # Spelling out the abbreviations
 
@@ -236,9 +246,9 @@ bad_patterns_dictionary = {
 
     'made a decision': 'Rewrite using the verb "decided" instead of zombie noun "decision".',
     'make a decision': 'Rewrite using the verb "decide" instead of zombie noun "decision".',
-    'performed the measurement': 'Rewrite using the verb "measured" instead of zombie noun "mesurement".',
-    'made the measurement': 'Rewrite using the verb "measured" instead of zombie noun "mesurement".',
-    'make the measurement': 'Rewrite using the verb "measure" instead of zombie noun "mesurement".',
+    'performed the measurement': 'Rewrite using the verb "measured" instead of zombie noun "measurement".',
+    'made the measurement': 'Rewrite using the verb "measured" instead of zombie noun "measurement".',
+    'make the measurement': 'Rewrite using the verb "measure" instead of zombie noun "measurement".',
     'take into consideration': 'Rewrite using the verb "consider" instead of zombie noun "consideration".',
     'is in agreement': 'Rewrite using the verb "agrees" instead of zombie noun "agreement".',
     'is in good agreement': 'Rewrite using the verb "agrees" instead of zombie noun "agreement".',
@@ -248,14 +258,15 @@ bad_patterns_dictionary = {
     'is an indication of': 'Rewrite using the verb "indicate" instead of zombie noun "indication".',
     'is indication of': 'Rewrite using the verb "indicate" instead of zombie noun "indication".',
     'are indication of': 'Rewrite using the verb "indicate" instead of zombie noun "indication".',
-    'have a tandency': 'Rewrite using the verb "tend" instead of zombie noun "tendency".',
-    'has a tandency': 'Rewrite using the verb "tends" instead of zombie noun "tendency".',
-    'have tandency': 'Rewrite using the verb "tend" instead of zombie noun "tendency".',
-    'has tandency': 'Rewrite using the verb "tends" instead of zombie noun "tendency".',
+    'have a tendency': 'Rewrite using the verb "tend" instead of zombie noun "tendency".',
+    'has a tendency': 'Rewrite using the verb "tends" instead of zombie noun "tendency".',
+    'have tendency': 'Rewrite using the verb "tend" instead of zombie noun "tendency".',
+    'has tendency': 'Rewrite using the verb "tends" instead of zombie noun "tendency".',
     'take into consideration': 'Rewrite using the verb "consider" instead of zombie noun "consideration".',
 
     # Inconcise expressions
 
+    'a variety of': 'Replace "a variety of" with shorter "various".',
     'by means of': 'Usually, "by means of" can be replaced with shorter "by" or "using".',
     'By means of': 'Usually, "By means of" can be replaced with shorter "By" or "Using".',
     'It is important to note': 'Consider replacing long "It is important to note" with just "Note".',
@@ -285,6 +296,7 @@ bad_patterns_dictionary = {
     'owning to the fact that': 'Consider replacing "owning to the fact that" with simple "since" or "because".',
     'In spite of the fact that': 'Consider replacing "In spite of the fact that" with simple "Although".',
     'in spite of the fact that': 'Consider replacing "in spite of the fact that" with simple "though".',
+    'in spite of ': 'Consider replacing "in spite of" with shorter "despite".',
     'Despite the fact that': 'Consider replacing "Despite the fact that" with simple "Although".',
     'despite the fact that': 'Consider replacing "despite the fact that" with simple "though".',
     'Considering the fact that': 'Consider replacing "Considering the fact that" with simple "Since" or "Because".',
@@ -468,14 +480,8 @@ bad_patterns_dictionary = {
     'obvious ': 'The word "obvious" is often misused in science and might describe something that is not so obvious. It also annoys readers. Consider removing it.',
     'strongly': 'The word "strongly" is often strongly misused to describe not so strong things. Strongly consider removing it and expressing the strength quantitatively, e.g. "42% stronger".',
     'strong ': 'The word "strong" is often misused to describe not so strong things. Consider if the usage here is appropriate.',
-    'significantly': 'The word "significantly" is often significantly misused in science. It might mean statistically significant or significant to the author, so the meaning is unclear. Consider removing it and describe significance quantitatively, e.g. "increased by 50%" or "50% different". Other alternatives: "substantially, notably"',
-    'significant ': 'The word "significant" is often misused in science. It might mean statistically significant or significant to the author, so the meaning is unclear. Consider removing it and writing about significance more quantitatively, e.g. "by 50%". Other alternatives: "substantial, notable"',
-    'This shows': 'It might be unclear what "This" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This data show", "This dependence shows" etc.',
-    'This demonstrates': 'It might be unclear what "This" points to if previous phrase was complicated. Rewrite with a more specific subject, e.g. "This data show", "This dependence shows" etc.',
-    'This proves': 'It might be unclear what "This" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This experiment proves".',
-    'This is': 'It might be unclear what "This is" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This result is".',
-    'This leads': 'It might be unclear what "This leads" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This result leads".',
-    'et al ': 'Needs a period after "et al". For example "Alferov et al. showed".',
+    'significantly': 'The word "significantly" is often significantly misused and vague. It might mean statistically significant or significant to the author. State significance quantitatively, e.g. "increased by 42%". Other alternatives: "substantially, notably"',
+    'significant ': 'The word "significant" is often misused and vague. It might mean statistically significant or significant to the author. State significance quantitatively, e.g. "by 42%". Other alternatives: "substantial, notable"',
     # ' while': 'It might be better to replace "while" with "whereas", unless it really happens simultaneously. Simple phrases like "A is white, while B is red" can be simplified as "A is white; B is red."',
 
     # Random corrections
@@ -529,9 +535,19 @@ bad_patterns_dictionary = {
     'has to have': 'Replace "have to have" with "must have" or "should have".',
     'everyone of ': 'Correct "everyone of" as "every one of".',
     ' an other ': 'Correct "an other" as "another".',
-    ' is comprised of ': 'Correct "is comprised of" as "comprases". The whole comprises its parts.',
+    ' is comprised of ': 'Correct "is comprised of" as "comprises". The whole comprises its parts.',
     ' onboard ': 'Correct "onboard" as "on-board".',
     ' cause and affect': 'Correct as "cause and affect" as "cause and effect".',
+    'carefully chosen': 'The word "carefully" does not add much here. The act of choice already implies some consideration.',
+    'carefully selected': 'The word "carefully" does not add much here. The act of selection already implies some consideration.',
+    'carefully select': 'The word "carefully" does not add much here. The act of selection already implies some consideration.',
+    'carefully choose': 'The word "carefully" does not add much here. The act of choice already implies some consideration.',
+    'low frequency range': 'Correct as "low-frequency".',
+    'high frequency range': 'Correct as "high-frequency".',
+    'high frequency vibration': 'Correct as "high-frequency".',
+    'low frequency vibration': 'Correct as "low-frequency".',
+    'high frequency phonon': 'Correct as "high-frequency".',
+    'low frequency phonon': 'Correct as "low-frequency".',
 
     # Numbers next to words
 
@@ -630,6 +646,7 @@ bad_patterns_dictionary = {
     'sort of': 'Consider sort of replacing "sort of" with "rather" or sort of avoiding it completely.',
     ' less ': 'Verify that "less" is not misused for "fewer" (e.g. "less time", but "fewer samples") or cannot be replaced with a more precise word like "thinner", "shorter", "weaker" etc.',
     ' very ': 'Consider if the word "very" is very very necessary. If the emphasis is required, use words strong in themselves or quantify the statement.',
+    ' these days.': 'These days we consider "these days" too informal. Consider omitting or using "recently".',
     'viewpoint': 'Consider replacing with "point of view".',
     "don't": "Most academic journals prefer do not instead of don't.",
     "isn't": "Most academic journals prefer is not instead of isn't.",
@@ -707,7 +724,7 @@ bad_patterns_dictionary = {
     ' $^\circ$F': 'Degrees Fahrenheit should not be separated from the number with a space.',
     }
 
-# This list of cliches was taked from suspense.net:
+# This list of cliches was taken from suspense.net:
 # Web Page: http://suspense.net/whitefish/cliche.htm
 # Email: suspense@suspense.net 
 
@@ -1272,6 +1289,9 @@ redundant_dictionary = {
     'basic fundamentals': 'fundamentals',
     'continue to remain': 'remain',
     'continues to remain': 'remains',
+    'remains still': 'remains',
+    'remain still': 'remain',
+    'still remain': 'remain',
     'currently being': 'being',
     'currently underway': 'underway',
     'empty space': 'space',

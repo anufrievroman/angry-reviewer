@@ -48,6 +48,7 @@ def phrases_with_very(line, index):
 
 def start_with_numbers(line, index):
     '''Check if a non-empty line starts with a number'''
+    # Need to fix this function. It make many false positives if there is a reference list
     mistakes = []
     if line[0].isdigit():
         mistakes.append(f'Line {index + 1}. Avoid starting sentences with numbers. Rewrite spelling out the number, e.g. "Five samples..."')
@@ -352,7 +353,7 @@ def latex_best_practices(text):
 
 
 def sentence_lenght(line, index):
-    '''Check is the sentences is too long'''
+    '''Check if the sentence is too long'''
     mistakes = []
     line = remove_latex_syntax(line)
     sentences = line.split('.')
@@ -369,7 +370,7 @@ def it_is_latex_text(text):
 
 
 def absolutes(line, index):
-    '''Checks for words like 'always' or 'never' but excepts exceptions'''
+    '''Check for words like 'always' or 'never' but except exceptions'''
     mistakes = []
     for num, word in enumerate(absolutes_dictionary):
         not_exception = [exception not in line for exception in absolutes_exceptions[num]]
@@ -379,7 +380,7 @@ def absolutes(line, index):
 
 
 def comparing_absolutes(line, index):
-    '''Checks if there are comperative absolutes like "nearly infinite"'''
+    '''Check if there are comperative absolutes like "nearly infinite"'''
     all_absolutes = re.findall(r"((a little( bit)?|almost|astonishingly|completely|exceedingly|extremely|highly|incredibly|more than|nearly|partly|partially|quite|somewhat|totally|unbelievably|very) (dead|disappeared|false|gone|illegal|infinite|invaluable|legal|perfect|pervasive|pregnant|professional|true|whole|vanished))", line)
     mistakes = []
     for phrase in all_absolutes:
@@ -398,8 +399,17 @@ def cliches(line, index):
     return mistakes
 
 
+def numbers_with_apostrophe(line, index):
+    '''Check for number ending with 's like in 10's'''
+    mistakes = []
+    error = re.findall(r"\d's", line)
+    if error != []:
+        mistakes.append(f"Line {index + 1}. Placing 's after a number might be a mistake. For example, these were 2000s with three 0s. But, number 0's influence on 2000s' days was clear.")
+    return mistakes
+
+
 def main(text, english='american'):
-    '''This is the main function that runs all checks and returns the results to the web app'''
+    '''This is the main function that runs all checks and returns the results'''
     results = []
     # Checks for LaTeX specific issues
     if it_is_latex_text(text):
@@ -431,6 +441,7 @@ def main(text, english='american'):
             results += sentence_lenght(line, index)
             results += comparing_absolutes(line, index)
             results += cliches(line, index)
+            results += numbers_with_apostrophe(line, index)
 
     if len(results) == 0:
         results = ["Looks like this text is perfect!"]
@@ -438,7 +449,7 @@ def main(text, english='american'):
 
 
 def standalone_run():
-    '''This runs program in standalone regime, just a python code'''
+    '''This runs program in the standalone regime, just as a python code'''
     path = "your_text.txt"
     with open(path, "r") as manuscript:
         text = manuscript.readlines()
