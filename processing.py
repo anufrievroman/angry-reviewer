@@ -13,7 +13,7 @@ def number_to_words(number):
     elif number == 2:
         word = "twice"
     elif number > 2:
-        word = str(number)+" times"
+        word = str(number) + " times"
     else:
         word = ''
     return word
@@ -24,7 +24,8 @@ def bad_patterns(line, index):
     mistakes = []
     for word in bad_patterns_dictionary:
         if word in line:
-            mistakes.append(f'Line {index + 1}. {bad_patterns_dictionary[word]}')
+            mistakes.append(
+                f'Line {index + 1}. {bad_patterns_dictionary[word]}')
     return mistakes
 
 
@@ -33,7 +34,8 @@ def comma_after(line, index):
     mistakes = []
     for word in comma_after_list:
         if word in line:
-            mistakes.append(f'Line {index + 1}. Might need a comma after "{word[:-1]}".')
+            mistakes.append(
+                f'Line {index + 1}. Might need a comma after "{word[:-1]}".')
     return mistakes
 
 
@@ -42,7 +44,9 @@ def phrases_with_very(line, index):
     mistakes = []
     for word in very_dictionary:
         if word in line:
-            mistakes.append(f'Line {index + 1}. Consider replacing "{word}" with words like "{very_dictionary[word]}" etc')
+            mistakes.append(
+                f'Line {index + 1}. Consider replacing "{word}" with words like "{very_dictionary[word]}" etc'
+            )
     return mistakes
 
 
@@ -51,7 +55,9 @@ def start_with_numbers(line, index):
     # Need to fix this function. It make many false positives if there is a reference list
     mistakes = []
     if line[0].isdigit():
-        mistakes.append(f'Line {index + 1}. Avoid starting sentences with numbers. Rewrite spelling out the number, e.g. "Five samples..."')
+        mistakes.append(
+            f'Line {index + 1}. Avoid starting sentences with numbers. Rewrite spelling out the number, e.g. "Five samples..."'
+        )
     return mistakes
 
 
@@ -60,9 +66,13 @@ def figure_references(line, index):
     mistakes = []
     if len(line) > 5:
         if 'Fig.' in line[0:4] or 'Figs.' in line[0:4]:
-            mistakes.append(f'Line {index + 1}. The word "Fig." in the beginning of a sentence can usually be spelled out, e.g. "Figure 1 shows"')
+            mistakes.append(
+                f'Line {index + 1}. The word "Fig." in the beginning of a sentence can usually be spelled out, e.g. "Figure 1 shows"'
+            )
         if 'Figure ' in line[7:]:
-            mistakes.append(f'Line {index + 1}. Most journals prefer shortening the word "Figure" as "Fig." if it is not opening the sentence.')
+            mistakes.append(
+                f'Line {index + 1}. Most journals prefer shortening the word "Figure" as "Fig." if it is not opening the sentence.'
+            )
     return mistakes
 
 
@@ -71,10 +81,16 @@ def numbers_next_to_units(line, index):
     mistakes = []
     for number in range(9):
         for unit in units_list:
-            if (f'{number}{unit} ' in line) or (f'{number}{unit}.' in line) or (f'{number}{unit},' in line):
-                mistakes.append(f'Line {index + 1}. Put a space between the digit {number} and the unit {unit}')
-        if (str(number)+' %' in line) or (str(number)+' \%' in line):
-            mistakes.append(f'Line {index + 1}. Percent sign "%" should follow numberals without a space, i.e. {number}%')
+            if (f'{number}{unit} ' in line) or (f'{number}{unit}.'
+                                                in line) or (f'{number}{unit},'
+                                                             in line):
+                mistakes.append(
+                    f'Line {index + 1}. Put a space between the digit {number} and the unit {unit}'
+                )
+        if (str(number) + ' %' in line) or (str(number) + ' \%' in line):
+            mistakes.append(
+                f'Line {index + 1}. Percent sign "%" should follow numberals without a space, i.e. {number}%'
+            )
     return mistakes
 
 
@@ -84,19 +100,23 @@ def elements(text):
     entire_text = unite_valid_lines(text)
     found_elements = []
     for element in elements_list:
-        occurance = entire_text.count(" "+element+" ")
+        occurance = entire_text.count(" " + element + " ")
         if 0 < occurance < 5:
             found_elements.append(element)
 
     # Advise is constructed depending on how many elements were found
     if len(found_elements) == 1:
-        mistakes.append(f'The symbol {found_elements[0]} occurs only a few times. Since most readers do not know how to read all chemical symbols, just write actual name of the element each time. For example "silicon wafer".')
+        mistakes.append(
+            f'The symbol {found_elements[0]} occurs only a few times. Since most readers do not know how to read all chemical symbols, just write actual name of the element each time. For example "silicon wafer".'
+        )
     if len(found_elements) > 1:
         output_string = found_elements[0]
         found_elements[-1] = ' and ' + found_elements[-1]
         for name in found_elements[1:]:
             output_string += f', {name}'
-        mistakes.append(f'The symbols {output_string} occur only a few times each. Since most readers do not know how to read all chemical symbols, just write actual names of the elements each time. For example "silicon wafer".')
+        mistakes.append(
+            f'The symbols {output_string} occur only a few times each. Since most readers do not know how to read all chemical symbols, just write actual names of the elements each time. For example "silicon wafer".'
+        )
     return mistakes
 
 
@@ -107,27 +127,35 @@ def abbreviations(text):
     all_abbreviations = re.findall(r"\b(?:[A-Z][a-z]?){2,}", entire_text)
     filtered_abbreviations = []
     for abbreviation in all_abbreviations:
-        trimmed_abbreviation = abbreviation[:-1] if abbreviation[-1] == 's' else abbreviation
+        trimmed_abbreviation = abbreviation[:-1] if abbreviation[
+            -1] == 's' else abbreviation
         filtered_abbreviations.append(trimmed_abbreviation)
     mistakes = []
 
     # Check how often each abbreviation occurs and comment if less than five
     found_abbreviations = []
     for unique_abbreviation in set(filtered_abbreviations):
-        if (unique_abbreviation not in elements_list) and (unique_abbreviation not in exceptions_list) and (unique_abbreviation not in units_list):
+        if (unique_abbreviation not in elements_list) and (
+                unique_abbreviation
+                not in exceptions_list) and (unique_abbreviation
+                                             not in units_list):
             occurance = filtered_abbreviations.count(unique_abbreviation)
             if 0 < occurance < 5:
                 found_abbreviations.append(unique_abbreviation)
 
     # Advise is constructed depending on how many abbreviations were found
     if len(found_abbreviations) == 1:
-        mistakes.append(f'The abbreviation {found_abbreviations[0]} occurs only a few times. Since abbreviations are hard to decrypt, just spell it out each time. It is easier to read a few words than to search for meanings of abbreviations.')
+        mistakes.append(
+            f'The abbreviation {found_abbreviations[0]} occurs only a few times. Since abbreviations are hard to decrypt, just spell it out each time. It is easier to read a few words than to search for meanings of abbreviations.'
+        )
     if len(found_abbreviations) > 1:
         output_string = found_abbreviations[0]
         found_abbreviations[-1] = ' and ' + found_abbreviations[-1]
         for name in found_abbreviations[1:]:
             output_string += f', {name}'
-        mistakes.append(f'The abbreviations {output_string} occur only a few times each. Since abbreviations are hard to decrypt, just spell them out each time. It is easier to read a few words than to search for meanings of abbreviations.')
+        mistakes.append(
+            f'The abbreviations {output_string} occur only a few times each. Since abbreviations are hard to decrypt, just spell them out each time. It is easier to read a few words than to search for meanings of abbreviations.'
+        )
     return mistakes
 
 
@@ -135,8 +163,11 @@ def in_conclusions(line, index, text):
     '''Check if we can skip In conclusions because there is already a title Conclusions'''
     mistakes = []
     if ('In conclusion') in line:
-        if (('Conclusion' or 'CONCLUSION') in text[index - 1]) or (('Conclusion' or 'CONCLUSION') in text[index - 2]):
-            mistakes.append(f'Line {index + 1}. This section seems to be already titled "Conclusions", thus you may omit "In conclusion" at the beginning.')
+        if (('Conclusion' or 'CONCLUSION') in text[index - 1]) or (
+            ('Conclusion' or 'CONCLUSION') in text[index - 2]):
+            mistakes.append(
+                f'Line {index + 1}. This section seems to be already titled "Conclusions", thus you may omit "In conclusion" at the beginning.'
+            )
     return mistakes
 
 
@@ -146,11 +177,15 @@ def british_spelling(line, index, english):
     if english == 'american':
         for word in british_dictionary:
             if word in line:
-                mistakes.append(f'Line {index + 1}. In American English, word "{word}" is spelled as "{british_dictionary[word]}".')
+                mistakes.append(
+                    f'Line {index + 1}. In American English, word "{word}" is spelled as "{british_dictionary[word]}".'
+                )
     if english == 'british':
         for word in british_dictionary:
             if british_dictionary[word] in line:
-                mistakes.append(f'Line {index + 1}. In British English, word "{british_dictionary[word]}" is spelled as "{word}".')
+                mistakes.append(
+                    f'Line {index + 1}. In British English, word "{british_dictionary[word]}" is spelled as "{word}".'
+                )
     return mistakes
 
 
@@ -160,7 +195,8 @@ def abstract_lenght(text):
     try:
         entire_text = unite_valid_lines(text)
         pattern = '+++'
-        abstract = entire_text.replace("begin{abstract", pattern).split(pattern)
+        abstract = entire_text.replace("begin{abstract",
+                                       pattern).split(pattern)
         abstract = abstract[1].replace("end{abstract", pattern).split(pattern)
         abstract = abstract[0][1:-1]
     except:
@@ -169,7 +205,7 @@ def abstract_lenght(text):
     if abstract == "":
         for line in text:
             if "abstract{" in line:
-                abstract  = line[9:-1]
+                abstract = line[9:-1]
 
     # Check the abstract length and comment accordingly
     words = len(abstract.split())
@@ -177,11 +213,17 @@ def abstract_lenght(text):
     mistakes = []
     if len(abstract) > 1:
         if words > 150:
-            mistakes.append(f"Your abstract has {words} words or {symbols} characters. Many journals limit abstracts by 150 words only. Check if this is within limitations of your journal.")
+            mistakes.append(
+                f"Your abstract has {words} words or {symbols} characters. Many journals limit abstracts by 150 words only. Check if this is within limitations of your journal."
+            )
         elif words < 50:
-            mistakes.append(f"Your abstract has only {words} words or {symbols} characters. Seems a bit short.")
+            mistakes.append(
+                f"Your abstract has only {words} words or {symbols} characters. Seems a bit short."
+            )
         else:
-            mistakes.append(f"Your abstract has {words} words or {symbols} characters. It seems fine, but double-check if this is within limitations of your journal.")
+            mistakes.append(
+                f"Your abstract has {words} words or {symbols} characters. It seems fine, but double-check if this is within limitations of your journal."
+            )
     return mistakes
 
 
@@ -190,12 +232,14 @@ def title_lenght(text):
     title = ""
     for line in text:
         if "title{" in line:
-            title  = line[6:-1]
+            title = line[6:-1]
     words = len(title.split())
     symbols = len(title)
     mistakes = []
     if 1 < words > 15:
-        mistakes.append(f'Your title has {words} words or {symbols} characters. Consider making it shorter. Some journals limit the title by 15 words only.')
+        mistakes.append(
+            f'Your title has {words} words or {symbols} characters. Consider making it shorter. Some journals limit the title by 15 words only.'
+        )
     return mistakes
 
 
@@ -224,18 +268,26 @@ def references(text):
     if len(years) > 0:
         this_year = int(date.today().year)
         reference_ages = [this_year - year for year in years]
-        older_than_ten = 100*len([age for age in reference_ages if age > 10])//len(years)
-        older_than_five = 100*len([age for age in reference_ages if age > 5])//len(years)
-        if older_than_five > 50 or older_than_ten > 20 :
-            mistakes.append(f"Looks like {older_than_five}% of your references are older than five years and {older_than_ten}% are even older than ten years. Mostly old references might signal poor actuality of your work to journal editors. Try to use newer references.")
+        older_than_ten = 100 * len([age for age in reference_ages if age > 10
+                                    ]) // len(years)
+        older_than_five = 100 * len([age for age in reference_ages if age > 5
+                                     ]) // len(years)
+        if older_than_five > 50 or older_than_ten > 20:
+            mistakes.append(
+                f"Looks like {older_than_five}% of your references are older than five years and {older_than_ten}% are even older than ten years. Mostly old references might signal poor actuality of your work to journal editors. Try to use newer references."
+            )
         if len(references) > 50:
-            mistakes.append(f"You have {len(references)} references, while most journals allow maximum of 50. Check the guidelines to see how many your journal allows.")
+            mistakes.append(
+                f"You have {len(references)} references, while most journals allow maximum of 50. Check the guidelines to see how many your journal allows."
+            )
 
         # Analyse self-citation. Find authors and cross-check with references.
-        all_authors_lines = re.findall(r'\\author[\[\]abcdefg\* ,\d]*{[^}]+}', entire_text)
+        all_authors_lines = re.findall(r'\\author[\[\]abcdefg\* ,\d]*{[^}]+}',
+                                       entire_text)
         names = []
         for author_line in all_authors_lines:
-            author_line = re.sub(r'\\author[\[\]abcdefg,\d]*{', '', author_line)
+            author_line = re.sub(r'\\author[\[\]abcdefg,\d]*{', '',
+                                 author_line)
             author_line_splitted = author_line.split(',')
             for each_author in author_line_splitted:
                 each_author_splitter = each_author.split(' ')
@@ -246,14 +298,18 @@ def references(text):
                         names.append(name)
         selfcitations = 0
         for name in names:
-                for reference in references:
-                    if name.upper() in reference.upper():
-                        selfcitations += 1
-        selfcitation_percentage = 100*selfcitations//len(references)
+            for reference in references:
+                if name.upper() in reference.upper():
+                    selfcitations += 1
+        selfcitation_percentage = 100 * selfcitations // len(references)
         if 0 < selfcitation_percentage < 20:
-            mistakes.append(f"At least {selfcitations} out of {len(references)} references seems to be self-citations. This is acceptable, but keep it in check.")
+            mistakes.append(
+                f"At least {selfcitations} out of {len(references)} references seems to be self-citations. This is acceptable, but keep it in check."
+            )
         if selfcitation_percentage >= 20:
-            mistakes.append(f"At least {selfcitations} out of {len(references)} references seems to be self-citations. Consider if you need so many self-references, it might not look good.")
+            mistakes.append(
+                f"At least {selfcitations} out of {len(references)} references seems to be self-citations. Consider if you need so many self-references, it might not look good."
+            )
     return mistakes
 
 
@@ -264,7 +320,9 @@ def overcitation(line, index):
     for citation in all_citations:
         number_of_references = len(citation.split(','))
         if number_of_references > 4:
-            mistakes.append(f"Line {index}. There are {number_of_references} references in one place. Bloated references neither make the statement stronger nor help the reader. Consider reducing citations or just citing one review instead.")
+            mistakes.append(
+                f"Line {index}. There are {number_of_references} references in one place. Bloated references neither make the statement stronger nor help the reader. Consider reducing citations or just citing one review instead."
+            )
     return mistakes
 
 
@@ -274,11 +332,15 @@ def intro_patterns(text):
     entire_text = unite_valid_lines(text)
     for word in overused_intro_dictionary:
         occurance = entire_text.count(word)
-        occurance_percentage = occurance/len(entire_text.split(" "))
+        occurance_percentage = occurance / len(entire_text.split(" "))
         if (0.0012 < occurance_percentage < 0.002) and (occurance > 1):
-            mistakes.append(f'Sentences often start with {word}. Try alternatives like {overused_intro_dictionary[word]}.')
+            mistakes.append(
+                f'Sentences often start with {word}. Try alternatives like {overused_intro_dictionary[word]}.'
+            )
         if occurance_percentage > 0.002 and occurance > 1:
-            mistakes.append(f'Sentences start with {word} too often. Try alternatives like {overused_intro_dictionary[word]}.')
+            mistakes.append(
+                f'Sentences start with {word} too often. Try alternatives like {overused_intro_dictionary[word]}.'
+            )
     return mistakes
 
 
@@ -306,7 +368,9 @@ def redundancy(line, index):
     mistakes = []
     for word in redundant_dictionary:
         if word in line:
-            mistakes.append(f'Line {index + 1}. Replace likely redundant "{word}" with just "{redundant_dictionary[word]}".')
+            mistakes.append(
+                f'Line {index + 1}. Replace likely redundant "{word}" with just "{redundant_dictionary[word]}".'
+            )
     return mistakes
 
 
@@ -315,7 +379,9 @@ def negatives(line, index):
     mistakes = []
     for word in negatives_dictionary:
         if word in line:
-            mistakes.append(f'Line {index + 1}. Replace negative "{word}" with a more positive "{negatives_dictionary[word]}".')
+            mistakes.append(
+                f'Line {index + 1}. Replace negative "{word}" with a more positive "{negatives_dictionary[word]}".'
+            )
     return mistakes
 
 
@@ -347,8 +413,10 @@ def latex_best_practices(text):
             line = remove_latex_syntax(line)
             dots_in_line += line.count('.')
             useful_lines += 1
-    if dots_in_line/useful_lines > 1.2:
-        mistakes.append(f'In LaTeX, it is considered a best practice to start each sentence from a new line.')
+    if dots_in_line / useful_lines > 1.2:
+        mistakes.append(
+            f'In LaTeX, it is considered a best practice to start each sentence from a new line.'
+        )
     return mistakes
 
 
@@ -358,14 +426,17 @@ def sentence_lenght(line, index):
     line = remove_latex_syntax(line)
     sentences = line.split('.')
     if any([len(sentence) > 240 for sentence in sentences]):
-        mistakes.append(f'Line {index + 1}. The sentence seems to be too long. Consider shortening or splitting it in two.')
+        mistakes.append(
+            f'Line {index + 1}. The sentence seems to be too long. Consider shortening or splitting it in two.'
+        )
     return mistakes
 
 
 def it_is_latex_text(text):
     '''Check if this is LaTeX document'''
     entire_text = unite_valid_lines(text)
-    it_is_latex_text = (('\\begin{document}' in entire_text) or ('\\documentclass' in entire_text))
+    it_is_latex_text = (('\\begin{document}' in entire_text)
+                        or ('\\documentclass' in entire_text))
     return it_is_latex_text
 
 
@@ -373,7 +444,9 @@ def absolutes(line, index):
     '''Check for words like 'always' or 'never' but except exceptions'''
     mistakes = []
     for num, word in enumerate(absolutes_dictionary):
-        not_exception = [exception not in line for exception in absolutes_exceptions[num]]
+        not_exception = [
+            exception not in line for exception in absolutes_exceptions[num]
+        ]
         if (word in line) and all(not_exception):
             mistakes.append(f'Line {index + 1}. {absolutes_dictionary[word]}')
     return mistakes
@@ -381,12 +454,27 @@ def absolutes(line, index):
 
 def comparing_absolutes(line, index):
     '''Check if there are comperative absolutes like "nearly infinite"'''
-    all_absolutes = re.findall(r"((a little( bit)?|almost|astonishingly|completely|exceedingly|extremely|highly|incredibly|more than|nearly|partly|partially|quite|somewhat|totally|unbelievably|very) (dead|disappeared|false|gone|illegal|infinite|invaluable|legal|perfect|pervasive|pregnant|professional|true|whole|vanished))", line)
+    all_absolutes = re.findall(
+        r"((a little( bit)?|almost|astonishingly|completely|exceedingly|extremely|highly|incredibly|more than|nearly|partly|partially|quite|somewhat|totally|unbelievably|very) (dead|disappeared|false|gone|illegal|infinite|invaluable|legal|perfect|pervasive|pregnant|professional|true|whole|vanished))",
+        line)
     mistakes = []
     for phrase in all_absolutes:
         phrase = str(phrase[0])
         absolute = phrase.split(" ")[-1]
-        mistakes.append(f'Line {index + 1}. In "{phrase}" comprative degree is applied to an absolute. Usually, it is either {absolute} or not.')
+        mistakes.append(
+            f'Line {index + 1}. In "{phrase}" comprative degree is applied to an absolute. Usually, it is either {absolute} or not.'
+        )
+    return mistakes
+
+
+def in_the_name_of_law(line, index):
+    '''Check if names of laws mistakenly start with an article'''
+    pattern = re.compile("((T|t)he [^ ]*'s (law|distribution|equation|formula|wavelength|rule))")
+    all_matches = pattern.findall(line)
+    mistakes = []
+    for match in all_matches:
+        match_str = match[0]
+        mistakes.append(f'Line {index + 1}. In "{match_str}" probably no article "the" is needed.')
     return mistakes
 
 
@@ -395,16 +483,20 @@ def cliches(line, index):
     mistakes = []
     for phrase in cliche_list:
         if phrase in line:
-            mistakes.append(f'Line {index + 1}. The phrase "{phrase}" is considered a cliché and should be avoided.')
+            mistakes.append(
+                f'Line {index + 1}. The phrase "{phrase}" is considered a cliché and should be avoided.'
+            )
     return mistakes
 
 
-def numbers_with_apostrophe(line, index):
+def numbers_with_s(line, index):
     '''Check for number ending with 's like in 10's'''
     mistakes = []
     error = re.findall(r"\d's", line)
     if error != []:
-        mistakes.append(f"Line {index + 1}. Placing 's after a number might be a mistake. For example, these were 2000s with three 0s. But, number 0's influence on 2000s' days was clear.")
+        mistakes.append(
+            f"Line {index + 1}. Placing 's after a number might be a mistake. For example, these were 2000s with three 0s, and number 0's influence on 2000s' days was clear."
+        )
     return mistakes
 
 
@@ -441,7 +533,8 @@ def main(text, english='american'):
             results += sentence_lenght(line, index)
             results += comparing_absolutes(line, index)
             results += cliches(line, index)
-            results += numbers_with_apostrophe(line, index)
+            results += numbers_with_s(line, index)
+            results += in_the_name_of_law(line, index)
 
     if len(results) == 0:
         results = ["Looks like this text is perfect!"]
@@ -455,7 +548,7 @@ def standalone_run():
         text = manuscript.readlines()
     results = main(text)
     for line in results:
-        print(line+"\n")
+        print(line + "\n")
 
 
 if __name__ == "__main__":
