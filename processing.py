@@ -469,7 +469,7 @@ def comparing_absolutes(line, index):
 
 def in_the_name_of_law(line, index):
     '''Check if names of laws mistakenly start with an article'''
-    pattern = re.compile("((T|t)he [^ ]*'s (law|distribution|equation|formula|wavelength|rule))")
+    pattern = re.compile("((T|t)he [^ ]*'s (law|distribution|equation|formula|wavelength|rule|limit|theory|radiation))")
     all_matches = pattern.findall(line)
     mistakes = []
     for match in all_matches:
