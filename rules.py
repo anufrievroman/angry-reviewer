@@ -13,7 +13,7 @@ exceptions_list = set(['RESULTS', 'DISCUSSION', 'DISCUSSIONS','METHODS', 'JST',
     'APL', 'ZT', 'LaTeX', 'MEMS', 'NEMS', 'AIP', 'AM', 'PM', 'AIDS', 'AC', 'DC',
     'CNRS', 'KAKENHI', 'APA', 'GaA', 'ErA', 'AlA', 'BA', 'BibTeX', 'APS', 'InA',
     'LED', 'OLED', 'ACS', 'PhD', 'MIT', 'NASA', 'HIV', 'RAM', 'CPU', 'LCD', 'LED',
-    'OLED', 'AFM', 'SEM', 'TEM', 'TDTR', 'COMSOL', 'APPOLO', 'ELMER', ])
+    'OLED', 'AFM', 'SEM', 'TEM', 'TDTR', 'COMSOL', 'APPOLO', 'ELMER', 'COVID'])
 
 overused_intro_dictionary = {
     'However': 'But or Yet',
@@ -26,7 +26,7 @@ overused_intro_dictionary = {
     'Moreover': 'Also',
     'Indeed': 'For example',
     'Furthermore': 'Also or Moreover',
-    'First': 'On the one hand',
+    'First': 'To begin',
     'On the other hand': 'However, Yet, or But',
     }
 
@@ -192,8 +192,9 @@ bad_patterns_dictionary = {
 
     # Hype 
 
-    'excellent agreement': 'Usually, the agreement is actually not so excellent. Consider replacing with "good agreement" or better yet, quantify the agreement, e.g. "A agrees with B within 5% uncertainty".',
-    'excellent fit': 'Sometimes the fit is actually not so excellent. Consider quantifying the fit, e.g. "Line fits the data within 5% of uncertainty".',
+    'excellent agreement': 'Usually, the agreement is not so excellent. Consider replacing with "good agreement" or better yet, quantify the agreement, e.g. "A agrees with B within 5% uncertainty".',
+    'excellent fit': 'Often, the fit is not so excellent. Consider quantifying the fit, e.g. "Line fits the data within 5% of uncertainty".',
+    'comprehensive review': 'Consider if the review is really "comprehensive". More often than not it is hype.',
     'outstanding': 'The word "outstanding" might be considered hype. Consider alternatives, e.g. "remarkable".',
     'groundbreaking': 'The word "groundbreaking" might be considered hype. Consider alternatives, e.g. "remarkable".',
     'ground breaking': 'The word "groundbreaking" might be considered hype. Consider alternatives, e.g. "remarkable".',
@@ -217,21 +218,21 @@ bad_patterns_dictionary = {
     'it is known': 'It is known that phrases like "it is known" should be avoided. Often, it is not actually known to the readers. Just state the fact and supply a reference.',
     'are well known': 'It is well known that phrases with "are well known" are considered arrogant. Usually, is it not so well known to the reader. Consider removing it or at least supplying the references.',
     'is well known': 'It is well known that phrases with "is well known" are considered arrogant. Usually, is it not so well known to the reader. Consider removing it or at least supplying the references.',
-    'the first time': 'If "the first time" refers to the findings, consider if there is a better way to claim novelty of the work because such expressions are often considered hype and discouraged by journals. Try using verbs already suggesting the novelty, like "uncover", "invent", "resolve", "solve", "propose" etc.',
-    'the very first time': 'If "the very first time" refers to the findings, consider if there is a better way to claim novelty of the work because such expressions are often considered hype and discouraged by journals. Try using verbs already suggesting the novelty, like "uncover", "invent", "resolve", "solve", "propose" etc.',
+    'the first time': 'If "the first time" refers to the findings, try to find a better way to claim novelty of the work because such expressions are often considered hype and discouraged by journals. Try using verbs already suggesting the novelty, like "uncover", "invent", "resolve", "solve", "propose" etc.',
+    'the very first time': 'If "the very first time" refers to the findings, try to find a better way to claim novelty of the work because such expressions are often considered hype and discouraged by journals. Try using verbs already suggesting the novelty, like "uncover", "invent", "resolve", "solve", "propose" etc.',
 
     # Questionable patterns
 
-    'been attracting a great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
-    'attracted a great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
-    'attracted great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
-    'attracted attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation.',
+    'been attracting a great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation. Moreover, this phrase is overused.',
+    'attracted a great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation. Moreover, this phrase is overused.',
+    'attracted great attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation. Moreover, this phrase is overused.',
+    'attracted attention': 'Attracted attention is not necessarily a good motivation for research. Consider a stronger motivation. Moreover, this phrase is overused.',
     'One of the most': 'Consider rewriting it without "One of the most". According to the Elements of Style: "There is nothing wrong in this; it is simply threadbare and forcible-feeble."',
     'one of the most': 'Consider rewriting it without "one of the most". According to the Elements of Style: "There is nothing wrong in this; it is simply threadbare and forcible-feeble."',
-    'This shows': 'It might be unclear what "This" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This data show", "This dependence shows" etc.',
-    'This demonstrates': 'It might be unclear what "This" points to if previous phrase was complicated. Rewrite with a more specific subject, e.g. "This data show", "This dependence shows" etc.',
+    'This shows': 'It might be unclear what "This" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This trend shows".',
+    'This demonstrates': 'It might be unclear what "This" points to if previous phrase was complicated. Rewrite with a more specific subject, e.g. "This experiment demonstrates".',
     'This proves': 'It might be unclear what "This" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This experiment proves".',
-    'This is': 'It might be unclear what "This is" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This result is".',
+    'This is': 'It might be unclear what "This is" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This value is".',
     'This leads': 'It might be unclear what "This leads" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This result leads".',
     'et al ': 'Needs a period after "et al". For example "Alferov et al. showed".',
 
@@ -270,6 +271,8 @@ bad_patterns_dictionary = {
 
     # Inconcise expressions
 
+    ' is known to ': 'Try rewriting without vague "is known to", e.g. rewrite "A is known to cause B" as "A causes B".',
+    ' are known to ': 'Try rewriting without vague "are known to", e.g. rewrite "A are known to cause B" as "A causes B".',
     'a variety of': 'Replace "a variety of" with shorter "various".',
     'by means of': 'Usually, "by means of" can be replaced with shorter "by" or "using".',
     'By means of': 'Usually, "By means of" can be replaced with shorter "By" or "Using".',
@@ -316,8 +319,6 @@ bad_patterns_dictionary = {
     'due to the fact that': 'Consider replacing "due to the fact that" with simple "because".',
     'It is interesting to note that': 'Consider removing "It is interesting to note that". According to Craft of Scientific Writing: "If the detail is not interesting, then the writer should not include it".',
     ' the fact that': 'Consider replacing "the fact that" with just "that".',
-    ' PM in the afternoon': 'It is redundant to precise "in the afternoon" after "PM".',
-    ' AM in the morning': 'It is redundant to precise "in the morning" after "AM".',
     'as to whether': 'Consider shortening "as to whether" as just "whether".',
     'In order to': 'Consider shortening "In order to" as just "To".',
     'in order to': 'Consider shortening "in order to" as just "to".',
@@ -377,8 +378,9 @@ bad_patterns_dictionary = {
     'subsequent to': 'Consider replacing "subsequent to" with simple "after".',
     'at the same time as': 'Consider replacing "at the same time as" with a simple "as".',
     'At the same time as': 'Consider replacing "At the same time as" with a simple "As".',
-    'the question as to whether': 'Consider replacing "the question as to whether" with a simple "whether".',
-    'The question as to whether': 'Consider replacing "The question as to whether" with a simple "Whether".',
+    'question as to whether': 'Consider replacing "the question as to whether" with a simple "whether".',
+    'question of whether': 'In "question of whether" you can omit "of".',
+    'question as to whether': 'Consider replacing "The question as to whether" with a simple "Whether".',
     'simultaneously with': 'Consider replacing "simultaneously with" with a simple "as".',
     'Simultaneously with': 'Consider replacing "Simultaneously with" with a simple "As".',
     'facilitate': 'Replace "facilitate" with simple "help". According to The Craft Of Scientific Writing: "Words such as facilitate are pretentious".',
@@ -462,7 +464,6 @@ bad_patterns_dictionary = {
 
     # Empty adjectives
 
-    'comprehensive': 'Consider if adjective "comprehensive" really adds anything here.',
     'detailed': 'Consider if adjective "detailed" really adds anything here.',
     'fundamental': 'Consider if adjective "fundamental" really adds anything here.',
 
@@ -1211,7 +1212,6 @@ cliche_list = set([
     "wild goose chase",
     "wild oats",
     "will wonders never cease",
-    "wimp",
     "win friends and influence people",
     "win one for the Gippe",
     "wnning is everything",
@@ -1253,9 +1253,12 @@ cliche_list = set([
     ])
 
 redundant_dictionary = {
+    'PM in the afternoon': 'PM',
+    'AM in the morning': 'AM',
     'necessary requirements': 'requirements',
     'necessary requirement ': 'requirement',
     'smaller in size': 'smaller',
+    'future candidate': 'candidate',
     'larger in size': 'larger',
     'bigger in size': 'bigger',
     'most unique': 'unique',
