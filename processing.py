@@ -456,8 +456,7 @@ def in_the_name_of_law(line, index):
 def extreme_quantities(line, index):
     '''Check if adjectives like big or small match the type of quantity'''
     # Quantities that should be high or low:
-    pattern = re.compile("(big|large|small) ((conductivity|conductance|resistance|diffusivity)|(thermal|electrical|interface|boundary) \
-            (conductivity|conductance|resistance|diffusivity)|frequency|value|temperature|pressure|altitude)")
+    pattern = re.compile("(big|large|small) ((conductivity|conductance|resistance|diffusivity)|(thermal|electrical|interface|boundary) (conductivity|conductance|resistance|diffusivity)|frequency|value|temperature|pressure|altitude)")
     all_matches = pattern.findall(line)
     mistakes = []
     for match in all_matches:
