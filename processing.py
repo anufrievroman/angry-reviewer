@@ -311,11 +311,11 @@ def intro_patterns(text):
         occurance_percentage = occurance / len(entire_text.split(" "))
         if (0.0012 < occurance_percentage < 0.002) and (occurance > 1):
             mistakes.append(
-                f'Sentences often start with {word}. Try alternatives like {overused_intro_dictionary[word]}.'
+                f'Sentences often start with "{word}". Try alternatives like "{overused_intro_dictionary[word]}".'
             )
         if occurance_percentage > 0.002 and occurance > 1:
             mistakes.append(
-                f'Sentences start with {word} too often. Try alternatives like {overused_intro_dictionary[word]}.'
+                f'Sentences start with "{word}" too often. Try alternatives like "{overused_intro_dictionary[word]}".'
             )
     return mistakes
 
@@ -456,15 +456,14 @@ def in_the_name_of_law(line, index):
 def extreme_quantities(line, index):
     '''Check if adjectives like big or small match the type of quantity'''
     # Quantities that should be high or low:
-    pattern = re.compile("(big|large|small) ((conductivity|conductance|resistance|diffusivity)|(thermal|electrical|interface|boundary) (conductivity|conductance|resistance|diffusivity)|frequency|value|temperature|pressure|altitude)")
+    pattern = re.compile("(big|large|small) ((conductivity|conductance|resistance|diffusivity)|(thermal|electrical|interface|boundary) (conductivity|conductance|resistance|resistivity|diffusivity)|frequency|value|temperature|concentration|pressure|altitude)")
     all_matches = pattern.findall(line)
     mistakes = []
     for match in all_matches:
         mistakes.append(f'Line {index + 1}. Usually "{match[1]}" is high/low rather than "{match[0]}".')
 
     # Quantities that should be long or short:
-    pattern = re.compile("(big|large|small) (wavelength|lifespan|length|period|time frame|time period\
-            |distance|path|mean free path|MFP)")
+    pattern = re.compile("(big|large|small) (wavelength|lifespan|length|period|time frame|time period|distance|path|mean free path|MFP)")
     all_matches = pattern.findall(line)
     for match in all_matches:
         mistakes.append(f'Line {index + 1}. Usually "{match[1]}" is long/short rather than "{match[0]}".')

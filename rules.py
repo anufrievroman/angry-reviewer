@@ -22,7 +22,7 @@ overused_intro_dictionary = {
     'Therefore': 'Thus or Hence',
     'Since': 'Because or As',
     'Yet': 'However or But',
-    'In addition': 'Also or But',
+    'In addition': 'Also',
     'Moreover': 'Also',
     'Indeed': 'For example',
     'Furthermore': 'Also or Moreover',
@@ -77,7 +77,7 @@ british_dictionary = {
     'spectre': 'specter',
     'calibre': 'caliber',
     'theatre': 'theater',
-    'litre': 'liter',
+    'litre': 'liter ',
     'tumour': 'tumor',
     'fibre': 'fiber',
     'analogue ': 'analog ',
@@ -122,7 +122,7 @@ british_dictionary = {
     'grey': 'gray',
     ' plough': ' plow',
     ' tyre': ' tire',
-    'towards': 'toward',
+    'towards': 'toward ',
     ' ageing': ' aging',
     'anaesthetic': 'anesthetic',
     'haemoglobin': 'hemoglobin',
@@ -235,6 +235,7 @@ bad_patterns_dictionary = {
     'This is': 'It might be unclear what "This is" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This value is".',
     'This leads': 'It might be unclear what "This leads" points to if the previous phrase was complicated. Rewrite with a more specific subject, e.g. "This result leads".',
     'et al ': 'Needs a period after "et al". For example "Alferov et al. showed".',
+    'convincing proof': 'Usually proof if by definition convincing, so you may omit the word "convincing".',
 
     # Spelling out the abbreviations
 
@@ -719,7 +720,7 @@ bad_patterns_dictionary = {
     '$\mu$s': 'You may replace LaTeX expression "$\mu$m" with "{\\textmu}s" for better looking letter mu.',
     '$\mu$g': 'You may replace LaTeX expression "$\mu$m" with "{\\textmu}g" for better looking letter mu.',
     '$\mu$TDTR': 'You may replace LaTeX expression "$\mu$TDTR" with "{\\textmu}TDTR" for better looking letter mu.',
-    '\hslash': 'If by "\hslash" you mean the reduced Plack constant, use "\hbar".',
+    '\hslash': 'If by "\hslash" you mean the reduced Planck constant, use "\hbar".',
     '+/-': 'If you are in LaTeX, use "\pm" instead of "+/-". Otherwise, find proper plus-minus symbol.',
     ' $^\circ$C': 'Degrees Celsius should not be separated from the number with a space',
     ' $^\circ$F': 'Degrees Fahrenheit should not be separated from the number with a space.',
