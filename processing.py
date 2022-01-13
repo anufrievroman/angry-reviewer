@@ -449,7 +449,7 @@ def number_of_times(line, index):
 
     # Patterns like "thousands of times":
     all_patterns = re.findall(
-        r"((millions|hundreds|thousands|dozens) of (times)",
+        r"((millions|hundreds|thousands|dozens) of (times|samples))",
         line)
     for phrase in all_patterns:
         phrase_wrong = str(phrase[0])
