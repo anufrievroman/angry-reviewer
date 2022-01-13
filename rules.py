@@ -549,6 +549,8 @@ bad_patterns_dictionary = {
     'low frequency vibration': 'Correct as "low-frequency".',
     'high frequency phonon': 'Correct as "high-frequency".',
     'low frequency phonon': 'Correct as "low-frequency".',
+    'straight curve': 'Usually a line is either straight or curved. Consider replacing "straight curve" with "straight line".',
+    'linear curve': 'Usually a linear dependence is not curved. Consider replacing "linear curve" with "line".',
 
     # Numbers next to words
 

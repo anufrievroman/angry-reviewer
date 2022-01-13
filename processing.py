@@ -443,6 +443,34 @@ def comparing_absolutes(line, index):
     return mistakes
 
 
+def number_of_times(line, index):
+    '''Check if there are phrases like "hundreds of times"'''
+    mistakes = []
+
+    # Patterns like "thousands of times":
+    all_patterns = re.findall(
+        r"((millions|hundreds|thousands|dozens) of (times)",
+        line)
+    for phrase in all_patterns:
+        phrase_wrong = str(phrase[0])
+        phrase_corrected = phrase_wrong.split(" of ")[0][:-1] + " " + phrase_wrong.split(" of ")[1]
+        mistakes.append(
+            f'Line {index + 1}. Consider replacing "{phrase_wrong}" with "a few {phrase_corrected}".'
+        )
+
+    # Patterns like "thousands meters":
+    all_patterns = re.findall(
+        r"((millions|hundreds|thousands|dozens) (times|microns|micrometers|meters|hours|people|years))",
+        line)
+    for phrase in all_patterns:
+        phrase_wrong = str(phrase[0])
+        phrase_corrected = phrase_wrong.split(" ")[0][:-1] + " " + phrase_wrong.split(" ")[1]
+        mistakes.append(
+            f'Line {index + 1}. Replace "{phrase_wrong}" with "a {phrase_corrected}".'
+        )
+    return mistakes
+
+
 def in_the_name_of_law(line, index):
     '''Check if names of laws mistakenly start with an article'''
     pattern = re.compile("((T|t)he [^ ]*'s (law|distribution|equation|formula|wavelength|rule|limit|theory|radiation))")
@@ -534,6 +562,7 @@ def main(text, english='american'):
             results += numbers_with_s(line, index)
             results += in_the_name_of_law(line, index)
             results += extreme_quantities(line, index)
+            results += number_of_times(line, index)
 
     if len(results) == 0:
         results = ["Looks like this text is perfect!"]
