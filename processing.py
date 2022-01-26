@@ -3,7 +3,7 @@ from datetime import date
 from rules import elements_list, units_list, exceptions_list, comma_after_list
 from rules import british_dictionary, very_dictionary, bad_patterns_dictionary
 from rules import overused_intro_dictionary, redundant_dictionary, negatives_dictionary
-from rules import absolutes_dictionary, absolutes_exceptions, cliche_list
+from rules import absolutes_dictionary, absolutes_exceptions, cliche_list, complex_words
 
 
 def bad_patterns(line, index):
@@ -526,6 +526,27 @@ def numbers_with_s(line, index):
     return mistakes
 
 
+def difficult_words(text):
+    '''Check if there are some complex word with simple synonyms'''
+    mistakes = []
+    found_words = []
+    entire_text = unite_valid_lines(text)
+    for word in complex_words:
+        occurance = entire_text.count(word)
+        if (occurance > 0):
+            found_words.append(word)
+    if found_words != []:
+        synonyms = ''
+        errors = ''
+        for word in found_words:
+            synonyms += '"' + complex_words[word] + '", '
+            errors += '"' + word + '", '
+        mistakes.append(
+                f'You used some difficult words like {errors[:-2]}. Try using simple synonyms, like {synonyms[:-2]} because most readers of scientific papers are not native English speakers.'
+        )
+    return mistakes
+
+
 def main(text, english='american'):
     '''This is the main function that runs all checks and returns the results'''
     results = []
@@ -540,6 +561,7 @@ def main(text, english='american'):
     results += intro_patterns(text)
     results += elements(text)
     results += abbreviations(text)
+    results += difficult_words(text)
 
     # Checks for each line which is not a comment:
     for index, line in enumerate(text):
