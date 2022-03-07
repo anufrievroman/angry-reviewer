@@ -537,6 +537,7 @@ bad_patterns_dictionary = {
     'everyone of ': 'Correct "everyone of" as "every one of".',
     ' an other ': 'Correct "an other" as "another".',
     ' is comprised of ': 'Correct "is comprised of" as "comprises". The whole comprises its parts.',
+    ' are comprised of ': 'Correct "are comprised of" as "comprise". The whole comprises its parts.',
     ' onboard ': 'Correct "onboard" as "on-board".',
     ' cause and affect': 'Correct as "cause and affect" as "cause and effect".',
     'carefully chosen': 'The word "carefully" does not add much here. The act of choice already implies some consideration.',
@@ -551,6 +552,8 @@ bad_patterns_dictionary = {
     'low frequency phonon': 'Correct as "low-frequency".',
     'straight curve': 'Usually a line is either straight or curved. Consider replacing "straight curve" with "straight line".',
     'linear curve': 'Usually a linear dependence is not curved. Consider replacing "linear curve" with "line".',
+    'before hand': 'Beforehand is spelled as one word.',
+    'different than': 'Correct "different than" as "different from".',
 
     # Numbers next to words
 
