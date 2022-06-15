@@ -1,21 +1,21 @@
-elements_list = set(['Al', 'Si', 'Cr', 'Ga', 'Ti', 'GaAs', 'SiC', 'Cu', 'Ge',
+ELEMENTS = {'Al', 'Si', 'Cr', 'Ga', 'Ti', 'GaAs', 'SiC', 'Cu', 'Ge',
     'Li', 'Ne', 'Na', 'Cl', 'Ar', 'Au', 'VO2', 'Sc', 'Fe', 'Nb', 'Ni', 'SiGe',
     'Sr', 'Zr', 'Ag', 'Ta', 'Pt', 'Hg', 'U', 'O2', 'H2O', 'Sn', 'Sb',
     'SiN', 'SiO', 'H', 'N', 'GaN', 'InP', 'InAs', 'GaP', 'AlP', 'He',
-    'BAs', 'BN', 'AlN', 'TiNiSn', 'AlGaAs', ])
+    'BAs', 'BN', 'AlN', 'TiNiSn', 'AlGaAs', }
 
-units_list = set(["m.", "m ", "mm", "um", "nm", "km", "cm", "W", "V", "K", "s ",
+UNITS = {"m.", "m ", "mm", "um", "nm", "km", "cm", "W", "V", "K", "s ",
     "s.", "ps", "us ", "Pa", "min", "h.", "h,", "h ", "Hz", "GHz", "THz", "MHz",
-    "g", 'mg', 'ml', 'nV', 'mV', 'mW', 'nW', 'MPa', 'GPa'])
+    "g", 'mg', 'ml', 'nV', 'mV', 'mW', 'nW', 'MPa', 'GPa'}
 
-exceptions_list = set(['RESULTS', 'DISCUSSION', 'DISCUSSIONS','METHODS', 'JST',
+EXCEPTIONS = {'RESULTS', 'DISCUSSION', 'DISCUSSIONS','METHODS', 'JST',
     'INTRODUCTION', 'LIMMS', 'DNA', 'RNA', 'IIS', 'CREST', 'PRESTO', 'PNAS',
     'APL', 'ZT', 'LaTeX', 'MEMS', 'NEMS', 'AIP', 'AM', 'PM', 'AIDS', 'AC', 'DC',
     'CNRS', 'KAKENHI', 'APA', 'GaA', 'ErA', 'AlA', 'BA', 'BibTeX', 'APS', 'InA',
     'LED', 'OLED', 'ACS', 'PhD', 'MIT', 'NASA', 'HIV', 'RAM', 'CPU', 'LCD', 'LED',
-    'OLED', 'AFM', 'SEM', 'TEM', 'TDTR', 'COMSOL', 'APPOLO', 'ELMER', 'COVID'])
+    'OLED', 'AFM', 'SEM', 'TEM', 'TDTR', 'COMSOL', 'APPOLO', 'ELMER', 'COVID'}
 
-overused_intro_dictionary = {
+OVERUSED_INTRO = {
     'However': 'But or Yet',
     'Thus': 'Hence or Therefore',
     'Hence': 'Thus or Therefore',
@@ -30,7 +30,7 @@ overused_intro_dictionary = {
     'On the other hand': 'However, Yet, or But',
     }
 
-comma_after_list = [
+COMMA_AFTER = [
     'However ',
     'Therefore ',
     'Thus ',
@@ -59,7 +59,7 @@ comma_after_list = [
     'In the meantime ',
     ]
 
-british_dictionary = {
+BRITISH = {
     'vapour': 'vapor',
     'colour': 'color',
     'favourite': 'favorite',
@@ -139,7 +139,7 @@ british_dictionary = {
     'St ': 'St.',
     }
 
-very_dictionary = {
+VERY = {
     'very precise': 'precise, exact, unimpeachable, perfect, flawless',
     'very basic': 'rudimentary, primary, fundamental, simple',
     'very capable': 'efficient, proficient, skillful',
@@ -188,7 +188,7 @@ very_dictionary = {
     'very afraid': 'terrified',
     }
 
-bad_patterns_dictionary = {
+BAD_PATTERNS = {
 
     # Hype 
 
@@ -647,6 +647,7 @@ bad_patterns_dictionary = {
     # Inappropriate language
 
     "it's": 'If you mean "it is", it is better just to write "it is". Otherwise, it might need to be corrected as "its", e.g. "material and its properties".',
+    "it`s": 'If you mean "it is", it is better just to write "it is". Otherwise, it might need to be corrected as "its", e.g. "material and its properties".',
     'kind of': 'Consider kind of replacing "kind of" with "rather" or kind of avoiding it completely.',
     'pretty much': 'Consider pretty much deleting "pretty much".',
     ' and so on.': 'Try to rewrite without "...and so on". It might be too informal and vague if other items in the list are unclear. Either list all important items or generalize the remaining, for example "Voyager flew past Mars, Jupiter, and other planets.',
@@ -735,7 +736,7 @@ bad_patterns_dictionary = {
 # Web Page: http://suspense.net/whitefish/cliche.htm
 # Email: suspense@suspense.net 
 
-cliche_list = set([
+CLICHES = set([
     "Hallmark",
     "paradigm shift",
     "At the end of the day",
@@ -1258,7 +1259,7 @@ cliche_list = set([
     "It takes him an hour to cook Minute Rice."
     ])
 
-redundant_dictionary = {
+REDUNDANT = {
     'PM in the afternoon': 'PM',
     'AM in the morning': 'AM',
     'necessary requirements': 'requirements',
@@ -1505,7 +1506,7 @@ redundant_dictionary = {
     'plan in advance': 'plan',
     }
 
-negatives_dictionary = {
+NEGATIVES = {
     'not able': 'unable',
     'not different': 'alike',
     'did not accept': 'rejected',
@@ -1530,17 +1531,17 @@ negatives_dictionary = {
     'not significant': 'negligible',
     }
 
-absolutes_dictionary = {
+ABSOLUTES = {
     ' never ': 'According to Craft of Scientific Writing: "Never is a frightening word because it invites the readers to think of exceptions". Consider alternatives: "rarely", "seldom", "remains unclear", "remains challenging".',
     'always': 'According to Craft of Scientific Writing: "Always is a frightening word because it invites the readers to think of exceptions. You should go in fear of absolutes".',
     }
 
-absolutes_exceptions = [
+ABSOLUTES_EXCEPTIONS = [
     ['almost never'],
     ['not always', 'almost always'],
     ]
 
-complex_words = {
+COMPLEX_WORDS = {
     'elucidate':'explain',
     'diminish': 'decrease',
     'establish': 'set',
@@ -1571,4 +1572,8 @@ complex_words = {
     'execute': 'do',
     'outstanding': 'great',
     'achievement': 'result',
+    'prevalent': 'dominant',
+    'tremendous': 'huge',
+    'infinitesimal': 'tiny',
+    'substantiate': 'verify',
     }

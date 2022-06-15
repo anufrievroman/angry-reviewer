@@ -1,24 +1,22 @@
 import re
 from datetime import date
-from rules import elements_list, units_list, exceptions_list, comma_after_list
-from rules import british_dictionary, very_dictionary, bad_patterns_dictionary
-from rules import overused_intro_dictionary, redundant_dictionary, negatives_dictionary
-from rules import absolutes_dictionary, absolutes_exceptions, cliche_list, complex_words
+
+from rules import *
 
 
 def bad_patterns(line, index):
     '''Cross-check with the dictionary of known errors and suggest fixes'''
     mistakes = []
-    for word in bad_patterns_dictionary:
+    for word in BAD_PATTERNS:
         if word in line:
-            mistakes.append(f'Line {index + 1}. {bad_patterns_dictionary[word]}')
+            mistakes.append(f'Line {index + 1}. {BAD_PATTERNS[word]}')
     return mistakes
 
 
 def comma_after(line, index):
     '''Check for words that usually have comma after them'''
     mistakes = []
-    for word in comma_after_list:
+    for word in COMMA_AFTER:
         if word in line:
             mistakes.append(
                 f'Line {index + 1}. Might need a comma after "{word[:-1]}".')
@@ -28,10 +26,10 @@ def comma_after(line, index):
 def phrases_with_very(line, index):
     '''Check for patterns like "very ..." in the dictionary'''
     mistakes = []
-    for word in very_dictionary:
+    for word in VERY:
         if word in line:
             mistakes.append(
-                f'Line {index + 1}. Consider replacing "{word}" with words like "{very_dictionary[word]}" etc'
+                f'Line {index + 1}. Consider replacing "{word}" with words like "{VERY[word]}" etc'
             )
     return mistakes
 
@@ -66,7 +64,7 @@ def numbers_next_to_units(line, index):
     '''Check if units separated or not separated from numbers with a space'''
     mistakes = []
     for number in range(9):
-        for unit in units_list:
+        for unit in UNITS:
             if (f'{number}{unit} ' in line) or (f'{number}{unit}.' in line) or (f'{number}{unit},' in line):
                 mistakes.append(
                     f'Line {index + 1}. Put a space between the digit {number} and the unit {unit}'
@@ -83,7 +81,7 @@ def elements(text):
     mistakes = []
     entire_text = unite_valid_lines(text)
     found_elements = []
-    for element in elements_list:
+    for element in ELEMENTS:
         occurance = entire_text.count(" " + element + " ")
         if 0 < occurance < 5:
             found_elements.append(element)
@@ -118,8 +116,8 @@ def abbreviations(text):
     # Check how often each abbreviation occurs and comment if less than five
     found_abbreviations = []
     for unique_abbreviation in set(filtered_abbreviations):
-        if (unique_abbreviation not in elements_list) and (unique_abbreviation
-                not in exceptions_list) and (unique_abbreviation not in units_list):
+        if (unique_abbreviation not in ELEMENTS) and (unique_abbreviation
+                not in EXCEPTIONS) and (unique_abbreviation not in UNITS):
             occurance = filtered_abbreviations.count(unique_abbreviation)
             if 0 < occurance < 5:
                 found_abbreviations.append(unique_abbreviation)
@@ -156,16 +154,16 @@ def british_spelling(line, index, english):
     '''Check if spelling of some words is american/british'''
     mistakes = []
     if english == 'american':
-        for word in british_dictionary:
+        for word in BRITISH:
             if word in line:
                 mistakes.append(
-                    f'Line {index + 1}. In American English, word "{word}" is spelled as "{british_dictionary[word]}".'
+                    f'Line {index + 1}. In American English, word "{word}" is spelled as "{BRITISH[word]}".'
                 )
     if english == 'british':
-        for word in british_dictionary:
-            if british_dictionary[word] in line:
+        for word in BRITISH:
+            if BRITISH[word] in line:
                 mistakes.append(
-                    f'Line {index + 1}. In British English, word "{british_dictionary[word]}" is spelled as "{word}".'
+                    f'Line {index + 1}. In British English, word "{BRITISH[word]}" is spelled as "{word}".'
                 )
     return mistakes
 
@@ -306,16 +304,16 @@ def intro_patterns(text):
     '''Check if some introduction words occur too often times'''
     mistakes = []
     entire_text = unite_valid_lines(text)
-    for word in overused_intro_dictionary:
+    for word in OVERUSED_INTRO:
         occurance = entire_text.count(word)
         occurance_percentage = occurance / len(entire_text.split(" "))
         if (0.0012 < occurance_percentage < 0.002) and (occurance > 1):
             mistakes.append(
-                f'Sentences often start with "{word}". Try alternatives like "{overused_intro_dictionary[word]}".'
+                f'Sentences often start with "{word}". Try alternatives like "{OVERUSED_INTRO[word]}".'
             )
         if occurance_percentage > 0.002 and occurance > 1:
             mistakes.append(
-                f'Sentences start with "{word}" too often. Try alternatives like "{overused_intro_dictionary[word]}".'
+                f'Sentences start with "{word}" too often. Try alternatives like "{OVERUSED_INTRO[word]}".'
             )
     return mistakes
 
@@ -342,10 +340,10 @@ def unite_valid_lines(text):
 def redundancy(line, index):
     '''Check for the redundancies'''
     mistakes = []
-    for word in redundant_dictionary:
+    for word in REDUNDANT:
         if word in line:
             mistakes.append(
-                f'Line {index + 1}. Replace likely redundant "{word}" with just "{redundant_dictionary[word]}".'
+                f'Line {index + 1}. Replace likely redundant "{word}" with just "{REDUNDANT[word]}".'
             )
     return mistakes
 
@@ -353,10 +351,10 @@ def redundancy(line, index):
 def negatives(line, index):
     '''Check for the negatives'''
     mistakes = []
-    for word in negatives_dictionary:
+    for word in NEGATIVES:
         if word in line:
             mistakes.append(
-                f'Line {index + 1}. Replace negative "{word}" with a more positive "{negatives_dictionary[word]}".'
+                f'Line {index + 1}. Replace negative "{word}" with a more positive "{NEGATIVES[word]}".'
             )
     return mistakes
 
@@ -419,12 +417,12 @@ def it_is_latex_text(text):
 def absolutes(line, index):
     '''Check for words like 'always' or 'never' but except exceptions'''
     mistakes = []
-    for num, word in enumerate(absolutes_dictionary):
+    for num, word in enumerate(ABSOLUTES):
         not_exception = [
-            exception not in line for exception in absolutes_exceptions[num]
+            exception not in line for exception in ABSOLUTES_EXCEPTIONS[num]
         ]
         if (word in line) and all(not_exception):
-            mistakes.append(f'Line {index + 1}. {absolutes_dictionary[word]}')
+            mistakes.append(f'Line {index + 1}. {ABSOLUTES[word]}')
     return mistakes
 
 
@@ -507,7 +505,7 @@ def extreme_quantities(line, index):
 def cliches(line, index):
     '''Check for cliches'''
     mistakes = []
-    for phrase in cliche_list:
+    for phrase in CLICHES:
         if phrase in line:
             mistakes.append(
                 f'Line {index + 1}. The phrase "{phrase}" is considered a cliché and should be avoided.'
@@ -531,7 +529,7 @@ def difficult_words(text):
     mistakes = []
     found_words = []
     entire_text = unite_valid_lines(text)
-    for word in complex_words:
+    for word in COMPLEX_WORDS:
         occurance = entire_text.count(word)
         if (occurance > 0):
             found_words.append(word)
@@ -539,7 +537,7 @@ def difficult_words(text):
         synonyms = ''
         errors = ''
         for word in found_words:
-            synonyms += '"' + complex_words[word] + '", '
+            synonyms += '"' + COMPLEX_WORDS[word] + '", '
             errors += '"' + word + '", '
         mistakes.append(
                 f'You used some difficult words like {errors[:-2]}. Try using simple synonyms, like {synonyms[:-2]} because most readers of scientific papers are not native English speakers.'
