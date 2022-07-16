@@ -621,6 +621,13 @@ BAD_PATTERNS = {
     'few mm': 'Consider spelling our the units as millimeters instead of mm',
     'several mm': 'Consider spelling our the units as millimeters instead of mm',
 
+    # Numbers instead of words
+
+    '100s of ': 'Write "hundreds of" instead of "100s of "',
+    '10s of ': 'Write "tens of" instead of "100s of "',
+    '1000s of ': 'Write "thousands of" instead of "100s of "',
+    '1000000s of ': 'Write "millions of" instead of "100s of "',
+
     # Passive voice
 
     'has been observed': 'Consider rewriting the sentence with "has been observed" in active voice, e.g. "we observed that".',
