@@ -394,7 +394,7 @@ def latex_best_practices(text):
     return mistakes
 
 
-def sentence_lenght(line, index):
+def sentence_length(line, index):
     '''Check if the sentence is too long'''
     mistakes = []
     line = remove_latex_syntax(line)
@@ -576,7 +576,7 @@ def main(text, english='american'):
             results += redundancy(line, index)
             results += negatives(line, index)
             results += absolutes(line, index)
-            results += sentence_lenght(line, index)
+            results += sentence_length(line, index)
             results += comparing_absolutes(line, index)
             results += cliches(line, index)
             results += numbers_with_s(line, index)
