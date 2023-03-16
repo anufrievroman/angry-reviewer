@@ -173,7 +173,7 @@ VERY = {
     'very severe': 'acute, grave, critical, serious, brutal, relentless',
     'very significant': 'key, notable, substantial, noteworthy, momentous, major, vital',
     'very similar': 'alike, akin, analogous, comparable, equivalent',
-    'very simple': 'easy, straightforward, effortless, uncomplicated',
+    'very simple': 'easy, straightforward, effortless, basic',
     'very small': 'tiny, minuscule, infinitesimal, microscopic, petite',
     'very smooth': 'flat, glassy, polished, level, even, unblemished',
     'very specific': 'precise, exact, explicit, definite, unambiguous',
@@ -196,7 +196,6 @@ VERY = {
     'very serious': 'grave',
     'very shiny': 'gleaming',
     'very short': 'brief',
-    'very simple': 'basic',
     }
 
 BAD_PATTERNS = {
@@ -390,9 +389,8 @@ BAD_PATTERNS = {
     'subsequent to': 'Consider replacing "subsequent to" with simple "after".',
     'at the same time as': 'Consider replacing "at the same time as" with a simple "as".',
     'At the same time as': 'Consider replacing "At the same time as" with a simple "As".',
-    'question as to whether': 'Consider replacing "the question as to whether" with a simple "whether".',
+    'question as to whether': 'Consider replacing "question as to whether" with a simple "whether".',
     'question of whether': 'In "question of whether" you can omit "of".',
-    'question as to whether': 'Consider replacing "The question as to whether" with a simple "Whether".',
     'simultaneously with': 'Consider replacing "simultaneously with" with a simple "as".',
     'Simultaneously with': 'Consider replacing "Simultaneously with" with a simple "As".',
     'facilitate': 'Replace "facilitate" with simple "help". According to The Craft Of Scientific Writing: "Words such as facilitate are pretentious".',
