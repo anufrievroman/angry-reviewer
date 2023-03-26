@@ -57,6 +57,8 @@ COMMA_AFTER = [
     'On one hand ',
     'Furthermore ',
     'In the meantime ',
+    'Interestingly ',
+    'Surprisingly ',
     ]
 
 BRITISH = {
