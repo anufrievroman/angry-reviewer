@@ -43,6 +43,15 @@ a:active {text-decoration: none;}
 .nicetext a:hover{color: #006AE5;}
 .nicetext a:active{color: #006AE5;}
 
+.pluginstext a:link{color: #006AE5;}
+.pluginstext a:visited{color: #006AE5;}
+.pluginstext a:hover{color: #006AE5;}
+.pluginstext {
+  font-size: 80%;
+  padding-top: 10px;
+  text-align: right;
+}
+
 .content {
   max-width: 920px;
   margin: auto;
