@@ -485,7 +485,10 @@ BAD_PATTERNS = {
     # Subjective words
 
     'clearly': 'The word "clearly" is clearly overused in science and often points to things that clearly are not so clear. Consider removing it.',
-    'clear ': 'The word "clear" is overused in science and often points to things that actually are not so clear. Consider if it is necessary here.',
+    ' clear ': 'The word "clear" is overused in science and often points to things that actually are not so clear. Consider if it is necessary here.',
+    ' clear ': 'The word "clear" is overused in science and often points to things that actually are not so clear. Consider if it is necessary here.',
+    ' clear.': 'The word "clear" is overused in science and often points to things that actually are not so clear. Consider if it is necessary here.',
+    ' clear,': 'The word "clear" is overused in science and often points to things that actually are not so clear. Consider if it is necessary here.',
     'clearly demonstrate': 'According to The Craft Of Scientific Writing: "When someone uses "clearly demonstrate" more often than not those results do not clearly demonstrate anything at all".',
     'unambiguous': 'According to The Craft Of Scientific Writing: "The word "unambiguous" is arrogant; it defies the reader to question the figure".',
     'obviously': 'The word "obviously" is often misused in science and might describe something that is not so obvious. Consider removing it.',
